@@ -1,12 +1,13 @@
 package org.genia.fishstore.services;
 
+import java.util.List;
+
+import org.genia.fishstore.entities.Customer;
+
 
 public interface CustomerService {
-	
-	
-	
-	
-	
+	public Customer findByLogin(String login);
+	public List<Customer> getCustomerList();
 	
 	
 //	@Inject

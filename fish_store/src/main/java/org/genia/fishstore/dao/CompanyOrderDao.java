@@ -6,7 +6,8 @@ import org.genia.fishstore.entities.CompanyOrder;
 import org.genia.fishstore.entities.CompanyOrderItem;
 
 public interface CompanyOrderDao extends GenericDao<CompanyOrder> {
-	public List<CompanyOrderItem> getAvailableItems();
+	public List<CompanyOrderItem> getAllItems(int id);
+	
 	/**
 	 * move to services
 	 */
@@ -14,6 +15,4 @@ public interface CompanyOrderDao extends GenericDao<CompanyOrder> {
 	//public void removeFromSale(CompanyOrderItem item);		//mark as not available for sale
 	//public void writeOffOrderItem(CompanyOrderItem item);	//write-off the rest
 //	public void acceptOnStore(int orderId, int coldStoreManagerId);		//accept order to store.
-	public String generateReportByDates();
-	public String generateReportByFishTypes();
 }

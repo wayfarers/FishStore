@@ -10,19 +10,20 @@ import org.genia.fishstore.entities.CompanyOrderItem;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CompanyOrderDaoImpl implements CompanyOrderDao {
+public class CompanyOrderDaoImpl extends GenericDaoImpl<CompanyOrder> implements CompanyOrderDao {
 
-	@PersistenceContext
-	EntityManager em;
+	public CompanyOrderDaoImpl() {
+		super(CompanyOrder.class);
+	}
 	
 	@Override
-	public List<CompanyOrderItem> getAvailableItems() {
+	public List<CompanyOrderItem> getAllItems(int id) {
 		return em.createQuery("select coi from CompanyOrderItem coi", CompanyOrderItem.class).getResultList();
 	}
 
 	@Override
 	public CompanyOrder findById(int id) {
-		return em.find(CompanyOrder.class, id);
+		return em.find(entityClass, id);
 	}
 
 	@Override
@@ -36,16 +37,4 @@ public class CompanyOrderDaoImpl implements CompanyOrderDao {
 //		
 //		order.set
 //	}
-
-	@Override
-	public String generateReportByDates() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String generateReportByFishTypes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
