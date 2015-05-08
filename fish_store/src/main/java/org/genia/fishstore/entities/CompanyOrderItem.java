@@ -30,4 +30,92 @@ public class CompanyOrderItem {
 	@ManyToOne
 	@JoinColumn(name = "companyOrderId")
 	private CompanyOrder order;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getQuality() {
+		return quality;
+	}
+
+	public void setQuality(String quality) {
+		this.quality = quality;
+	}
+
+	public int getWeightOrdered() {
+		return weightOrdered;
+	}
+
+	public void setWeightOrdered(int weightOrdered) {
+		this.weightOrdered = weightOrdered;
+	}
+
+	public int getWeightArrived() {
+		return weightArrived;
+	}
+
+	public void setWeightArrived(int weightArrived) {
+		this.weightArrived = weightArrived;
+	}
+
+	public int getWeightLeft() {
+		return weightLeft;
+	}
+
+	public void setWeightLeft(int weightLeft) {
+		this.weightLeft = weightLeft;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	public boolean isWrittenOff() {
+		return writtenOff;
+	}
+
+	public void setWrittenOff(boolean writtenOff) {
+		this.writtenOff = writtenOff;
+	}
+
+	public double getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(double salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	public boolean isOnSale() {
+		return onSale;
+	}
+
+	public void setOnSale(boolean onSale) {
+		this.onSale = onSale;
+	}
+
+	public FishType getFishType() {
+		return fishType;
+	}
+
+	public void setFishType(FishType fishType) {
+		this.fishType = fishType;
+	}
+
+	public CompanyOrder getOrder() {
+		return order;
+	}
+
+	public void setOrder(CompanyOrder order) {
+		this.order = order;
+	}
 }

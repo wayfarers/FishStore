@@ -5,9 +5,10 @@ import java.util.List;
 import org.genia.fishstore.entities.Customer;
 
 
-public interface CustomerService {
+public interface CustomerService extends GenericService<Customer> {
 	public Customer findByLogin(String login);
 	public List<Customer> getCustomerList();
+	public List<Customer> findAll();
 	
 	
 //	@Inject

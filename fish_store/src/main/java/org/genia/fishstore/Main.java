@@ -18,11 +18,6 @@ public class Main {
 		
 		for (Customer customer : list) {
 			System.out.println(customer);
-			List<CustomerOrder> orderList = customerService.findOrdersById(customer.getId());
-			for (CustomerOrder customerOrder : orderList) {
-				System.out.println("\t" + customerOrder);
-			}
-			
 			for (CustomerOrder customerOrder : customer.getOrders()) {
 				System.out.println("\t" + customerOrder);
 			}
