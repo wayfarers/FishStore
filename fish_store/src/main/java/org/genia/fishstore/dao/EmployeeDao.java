@@ -7,5 +7,6 @@ import org.genia.fishstore.entities.Employee;
 public interface EmployeeDao extends GenericDao<Employee> {
 	public Employee findByLogin(String login);
 	public void suspendById(int id);
+	public void unSuspendById(int id);
 	public List<Employee> getEmployeeList();
 }
