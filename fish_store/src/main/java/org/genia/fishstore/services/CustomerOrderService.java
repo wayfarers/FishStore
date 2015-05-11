@@ -6,8 +6,7 @@ import org.genia.fishstore.entities.CompanyOrderItem;
 import org.genia.fishstore.entities.CustomerOrderItem;
 
 public interface CustomerOrderService {
-	public void removeOrderById(int id);
-	public void updateOrderList(List<CompanyOrderItem> items);
-	public List<CustomerOrderItem> getOrderDetails();
+	public void updateOrderList(int orderId, List<CompanyOrderItem> items);
+	public List<CustomerOrderItem> getOrderDetails(int orderId);
 	public void removeItemById(int id);
 }

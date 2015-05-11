@@ -28,5 +28,10 @@ public class GenericDaoImpl<T> implements GenericDao<T>{
 	public void save(T entity) {
 		em.persist(entity);
 	}
+	
+	@Override
+	public void removeById(int id) {
+		em.remove(findById(id));
+	}
 
 }

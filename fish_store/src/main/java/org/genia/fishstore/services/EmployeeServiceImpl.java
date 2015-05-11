@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmployeeServiceImpl extends GenericServiceImpl<Employee> implements
 		EmployeeService {
 	
-	@Inject
 	private EmployeeDao dao;
 	
 	@Inject
 	public EmployeeServiceImpl(EmployeeDao dao) {
 		super(dao, Employee.class);
+		this.dao = dao;
 	}
 	
 	@Override
@@ -41,5 +41,4 @@ public class EmployeeServiceImpl extends GenericServiceImpl<Employee> implements
 	public List<Employee> getEmployeeList() {
 		return dao.getEmployeeList();
 	}
-
 }

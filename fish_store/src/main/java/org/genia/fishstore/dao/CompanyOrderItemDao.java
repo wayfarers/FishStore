@@ -6,6 +6,6 @@ import org.genia.fishstore.entities.CompanyOrderItem;
 
 
 public interface CompanyOrderItemDao extends GenericDao<CompanyOrderItem> {
-//	public void updateOrder();
-	public List<CompanyOrderItem> getAvailableItems(int id);
+	// TODO: Implement query useful for a customer. Order does not make sense for him.
+	public List<CompanyOrderItem> getAvailableItems();
 }

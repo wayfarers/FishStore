@@ -29,8 +29,4 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer> implements
 	public List<Customer> getCustomerList() {
 		return dao.getCustomerList();
 	}
-	@Override
-	public List<Customer> findAll() {
-		return dao.getCustomerList();
-}
 }

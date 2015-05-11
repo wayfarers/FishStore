@@ -7,6 +7,8 @@ public interface CompanyOrderService {
 	public void removeFromSale(CompanyOrderItem item);		//mark as not available for sale
 	public void writeOffOrderItem(CompanyOrderItem item);	//write-off the rest
 	public void acceptOnStore(int orderId, int coldStoreManagerId);		//accept order to store.
+	
+	// TODO: Report should have a dedicated class, e.g. IncomeReport
 	public String generateReportByDates();
 	public String generateReportByFishTypes();
 }

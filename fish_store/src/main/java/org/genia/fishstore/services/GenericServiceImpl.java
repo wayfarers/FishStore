@@ -9,13 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class GenericServiceImpl<T> implements GenericService<T> {
 
 	protected GenericDao<T> dao;
-    protected Class<T> entityClass;
+//    protected Class<T> entityClass;
     
     public GenericServiceImpl() { }
 
     public GenericServiceImpl(GenericDao<T> dao, Class<T> entityClass) {
         this.dao = dao;
-        this.entityClass = entityClass;
+//        this.entityClass = entityClass;
     }
 	
 	@Override
