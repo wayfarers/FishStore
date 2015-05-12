@@ -33,6 +33,7 @@ public class GenericDaoImpl<T> implements GenericDao<T>{
 	
 	@Override
 	public void removeById(int id) {
+		// TODO: Use a single query to remove an item
 		em.remove(findById(id));
 	}
 

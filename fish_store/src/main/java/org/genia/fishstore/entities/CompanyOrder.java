@@ -21,6 +21,7 @@ public class CompanyOrder {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateOrdered;
+	
 	@Temporal(TemporalType.DATE)
 	private Date dateArrived;
 	
