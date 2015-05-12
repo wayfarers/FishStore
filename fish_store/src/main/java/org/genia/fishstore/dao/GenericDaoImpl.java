@@ -38,7 +38,7 @@ public class GenericDaoImpl<T> implements GenericDao<T>{
 
 	@Override
 	public List<T> findAll() {
-		return em.createQuery("select emp from employee emp", entityClass).getResultList();
+		return em.createQuery("select entity from " + entityClass.getSimpleName() + " entity", entityClass).getResultList();
 	}
 	
 

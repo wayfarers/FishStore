@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 public class CustomerOrder {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "orderId")
+	@Column(name = "customerOrderId")
 	private int id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -38,7 +38,7 @@ public class CustomerOrder {
 	@JoinColumn(name = "customerId")
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "customerOrder")
+	@OneToMany(mappedBy = "order")
 	private List<CustomerOrderItem> orderItems = new ArrayList<>();
 
 	

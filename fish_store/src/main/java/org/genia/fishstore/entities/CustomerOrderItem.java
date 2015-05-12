@@ -15,6 +15,7 @@ public class CustomerOrderItem {
 	@Column(name = "customerOrderItemId")
 	private int id;
 	private int weight;
+	
 //	private double primeCost;
 	
 	@ManyToOne
@@ -24,6 +25,7 @@ public class CustomerOrderItem {
 	@ManyToOne
 	@JoinColumn(name = "customerOrderId")
 	private CustomerOrder order; 		//Is in needed?
+
 
 	public int getId() {
 		return id;

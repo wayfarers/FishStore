@@ -13,15 +13,14 @@ public class Main {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		CustomerService customerService = context.getBean(CustomerService.class);
-		
+
 		List<Customer> list = customerService.findAll();
-		
+
 		for (Customer customer : list) {
 			System.out.println(customer);
 			for (CustomerOrder customerOrder : customer.getOrders()) {
 				System.out.println("\t" + customerOrder);
 			}
 		}
-		
 	}
 }

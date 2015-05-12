@@ -6,7 +6,9 @@ import javax.inject.Inject;
 
 import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.services.CustomerService;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CustomerOrderDaoImpl extends GenericDaoImpl<CustomerOrder> implements CustomerOrderDao {
 
 	@Inject
