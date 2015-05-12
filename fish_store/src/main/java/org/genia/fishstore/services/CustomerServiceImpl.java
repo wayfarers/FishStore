@@ -1,7 +1,5 @@
 package org.genia.fishstore.services;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.genia.fishstore.dao.CustomerDao;
@@ -26,7 +24,7 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer> implements
 	}
 
 	@Override
-	public List<Customer> getCustomerList() {
-		return dao.getCustomerList();
+	public void setPrepayment(int customerId, int prepayment) {
+		dao.findById(customerId).setPrepaymentRights(prepayment);
 	}
 }

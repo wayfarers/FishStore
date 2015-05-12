@@ -1,0 +1,17 @@
+//	@RequestMappinog("/saveOrder")
+//	public void saveOrder(Long orderId, Long[] itemIds, Long[] qty, Long[] companyOrderItemIds, boolean[] isDeleted) {
+//		// Option 1
+//		service.saveOrder(orderId, itemIds, qty, companyOrderItemIds);
+//		
+//		// Option 2
+//		Order order = service.findById(orderId);
+//		for (int i = 0; i < itemIds.length; i++) {
+//			if (isDeleted[i]) {
+//				service.removeItemById(itemIds[i]);
+//			} else {
+//				OrderItem item = order.findItemById(itemIds[i]);
+//				item.qty = qty[i];
+//			}
+//		}
+//		
+//	}

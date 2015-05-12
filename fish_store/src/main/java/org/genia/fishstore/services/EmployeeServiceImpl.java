@@ -29,16 +29,16 @@ public class EmployeeServiceImpl extends GenericServiceImpl<Employee> implements
 
 	@Override
 	public void suspendById(int id) {
-		dao.suspendById(id);
+		dao.findById(id).setSuspended(true);
 	}
 
 	@Override
 	public void unSuspendById(int id) {
-		dao.unSuspendById(id);
+		dao.findById(id).setSuspended(false);
 	}
 
 	@Override
 	public List<Employee> getEmployeeList() {
-		return dao.getEmployeeList();
+		return dao.findAll();
 	}
 }

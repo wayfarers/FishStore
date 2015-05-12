@@ -6,7 +6,6 @@ import org.genia.fishstore.entities.CompanyOrderItem;
 import org.genia.fishstore.entities.CustomerOrderItem;
 
 public interface CustomerOrderService {
-	public void updateOrderList(int orderId, List<CompanyOrderItem> items);
-	public List<CustomerOrderItem> getOrderDetails(int orderId);
-	public void removeItemById(int id);
+//	public void updateOrderList(int orderId, List<CompanyOrderItem> items);		//implement later. There is a question bout type of parameters.
+	public List<CustomerOrderItem> getOrderList(int orderId);
 }

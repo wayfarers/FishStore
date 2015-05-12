@@ -1,6 +1,7 @@
 package org.genia.fishstore.services;
 
 import org.genia.fishstore.entities.CompanyOrderItem;
+import org.genia.fishstore.entities.IncomeReport;
 
 public interface CompanyOrderService {
 	public void putOnSale(CompanyOrderItem item);			//mark as available for sale
@@ -8,7 +9,6 @@ public interface CompanyOrderService {
 	public void writeOffOrderItem(CompanyOrderItem item);	//write-off the rest
 	public void acceptOnStore(int orderId, int coldStoreManagerId);		//accept order to store.
 	
-	// TODO: Report should have a dedicated class, e.g. IncomeReport
-	public String generateReportByDates();
-	public String generateReportByFishTypes();
+	public IncomeReport generateReportByDates();
+	public IncomeReport generateReportByFishTypes();
 }

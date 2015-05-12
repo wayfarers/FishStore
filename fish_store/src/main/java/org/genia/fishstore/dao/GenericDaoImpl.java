@@ -1,5 +1,7 @@
 package org.genia.fishstore.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -33,5 +35,11 @@ public class GenericDaoImpl<T> implements GenericDao<T>{
 	public void removeById(int id) {
 		em.remove(findById(id));
 	}
+
+	@Override
+	public List<T> findAll() {
+		return em.createQuery("select emp from employee emp", entityClass).getResultList();
+	}
+	
 
 }

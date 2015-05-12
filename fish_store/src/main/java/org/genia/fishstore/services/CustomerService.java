@@ -5,5 +5,5 @@ import org.genia.fishstore.entities.Customer;
 
 public interface CustomerService extends GenericService<Customer> {
 	public Customer findByLogin(String login);
-	//TODO set prepayment rights, 
+	public void setPrepayment(int customerId, int prepayment);
 }

@@ -1,5 +1,7 @@
 package org.genia.fishstore.services;
 
+import java.util.List;
+
 import org.genia.fishstore.dao.GenericDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,13 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class GenericServiceImpl<T> implements GenericService<T> {
 
 	protected GenericDao<T> dao;
-//    protected Class<T> entityClass;
     
     public GenericServiceImpl() { }
 
     public GenericServiceImpl(GenericDao<T> dao, Class<T> entityClass) {
         this.dao = dao;
-//        this.entityClass = entityClass;
     }
 	
 	@Override
@@ -26,6 +26,11 @@ public class GenericServiceImpl<T> implements GenericService<T> {
 	@Override
 	public void save(T entity) {
 		dao.save(entity);
+	}
+
+	@Override
+	public List<T> findAll() {
+		return dao.findAll();
 	}
 
 }
