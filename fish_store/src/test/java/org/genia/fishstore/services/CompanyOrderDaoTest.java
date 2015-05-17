@@ -1,13 +1,11 @@
 package org.genia.fishstore.services;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.genia.fishstore.dao.CompanyOrderDao;
 import org.genia.fishstore.entities.CompanyOrderItem;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -34,4 +32,5 @@ public class CompanyOrderDaoTest {
 //	public void prepareDb() throws IOException {
 //		testSetupService.deleteEverything();
 //	}
+	
 }

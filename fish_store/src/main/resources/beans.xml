@@ -30,8 +30,8 @@
 		<property name="jpaVendorAdapter">
 			<bean
 				class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
-				<property value="false" name="showSql" />
-				<property value="false" name="generateDdl" />
+				<property name="showSql" value="false"  />
+				<property name="generateDdl" value="false" />
 				<!-- <property value="false" name="eclipselink.jpa.uppercase-column-names" />  -->
 				<property name="databasePlatform"
 					value="org.eclipse.persistence.platform.database.MySQLPlatform" />
