@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.genia.fishstore.ParcelFilter;
 import org.genia.fishstore.entities.CompanyOrderItem;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,12 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 	public List<CompanyOrderItem> getAvailableItems() {
 		return em.createQuery("select coi from CompanyOrderItem coi where coi.onSale = true", 
 				CompanyOrderItem.class).getResultList();
+	}
+	@Override
+	public List<CompanyOrderItem> findByFilter(ParcelFilter filter) {
+		String sql = "select coi from CompanyOrderItem coi";
+		
+		return null;
 	}
 
 }
