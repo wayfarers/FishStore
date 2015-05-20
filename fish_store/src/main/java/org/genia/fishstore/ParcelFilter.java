@@ -17,13 +17,39 @@ public class ParcelFilter {
 	}
 	
 	public String getAdditionalSql() {
-		String sql = "";
-		if(onStock = false) {
-			sql += " coi.onStock = false ";
+		String sql = null;
+		
+//		if (maxAgeInDays > 0) {
+//			sql += " ";
+//		}
+		
+		if (onStock == false) {
+			if (sql == null) {
+				sql = " where " + sql;
+			} 
+			sql += " coi.onStock = false";
 		}
 		if (maxPrice > 0) {
-			sql += "coi.price >= " + maxPrice;
+			if (sql == null) {
+				sql = " where " + sql;
+			} else {
+				sql = " and " + sql;
+			}
+			sql += " coi.price >= " + maxPrice;
 		}
+		if (fishType != null) {
+			if (sql == null) {
+				sql = " where " + sql;
+			} else {
+				sql = " and " + sql;
+			}
+			sql += " coi.fishType.name like " + fishType;
+		}
+		
+		if (paginator != null) {
+			sql += "limit " + paginator.getOffset() + ", " + paginator.getItemsPerPage();
+		}
+		
 		return sql;
 	}
 	
