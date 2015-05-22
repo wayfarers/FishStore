@@ -3,17 +3,12 @@ package org.genia.fishstore;
 public class ParcelFilter {
 	private PageInfo paginator;
 	
-	private int maxAgeInDays;
-	private boolean onStock;
-	private int maxPrice;
-	private String fishType;
+	private Integer maxAgeInDays;
+	private boolean onStockOnly;
+	private Integer maxPrice;
+	private String fishTypeName;
 	
 	public ParcelFilter() {
-		//if '-1' or 'null' - parameter is inactive
-		maxAgeInDays = -1; 		
-		onStock = true;
-		maxPrice = -1;
-		fishType = null;
 	}
 	
 	public String getAdditionalSql() {
@@ -23,31 +18,36 @@ public class ParcelFilter {
 //			sql += " ";
 //		}
 		
-		if (onStock == false) {
+		// WHERE CON1 AND COND2 AND COND3
+		
+		// "where " + StringUtils.join(conditions, " and ") // apache-commons
+		// coi.date > :coupleOfDaysAgo
+		
+		if (onStockOnly) { // WTF
 			if (sql == null) {
 				sql = " where " + sql;
 			} 
 			sql += " coi.onStock = false";
 		}
-		if (maxPrice > 0) {
+		if (maxPrice != null) {
 			if (sql == null) {
-				sql = " where " + sql;
+				sql = " where " + sql; // WTF
 			} else {
 				sql = " and " + sql;
 			}
 			sql += " coi.price >= " + maxPrice;
 		}
-		if (fishType != null) {
+		if (fishTypeName != null) {
 			if (sql == null) {
 				sql = " where " + sql;
 			} else {
 				sql = " and " + sql;
 			}
-			sql += " coi.fishType.name like " + fishType;
+			sql += " coi.fishType.name like " + fishTypeName;
 		}
 		
 		if (paginator != null) {
-			sql += "limit " + paginator.getOffset() + ", " + paginator.getItemsPerPage();
+			sql += "limit " + paginator.getOffset() + ", " + paginator.getItemsPerPage(); // TODO += paginator.getSql()
 		}
 		
 		return sql;
@@ -66,10 +66,10 @@ public class ParcelFilter {
 		this.maxAgeInDays = maxAgeInDays;
 	}
 	public boolean isOnStock() {
-		return onStock;
+		return onStockOnly;
 	}
 	public void setOnStock(boolean onStock) {
-		this.onStock = onStock;
+		this.onStockOnly = onStock;
 	}
 	public int getMaxPrice() {
 		return maxPrice;
@@ -78,10 +78,10 @@ public class ParcelFilter {
 		this.maxPrice = maxPrice;
 	}
 	public String getFishType() {
-		return fishType;
+		return fishTypeName;
 	}
 	public void setFishType(String fishType) {
-		this.fishType = fishType;
+		this.fishTypeName = fishType;
 	}
 
 }

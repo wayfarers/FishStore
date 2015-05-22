@@ -1,5 +1,6 @@
 package org.genia.fishstore.entities;
 
-public class IncomeReport {
+import java.util.List;
 
+public class IncomeReport {
 }
