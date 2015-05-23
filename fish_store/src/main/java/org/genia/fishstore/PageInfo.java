@@ -4,6 +4,12 @@ public class PageInfo {
 	private int itemsPerPage;
 	private int currentPage;
 
+	
+	public PageInfo(int itemsPerPage) {
+		this.itemsPerPage = itemsPerPage;
+		currentPage = 1;
+	}
+	
 	public int getOffset() {
 		return itemsPerPage * (currentPage - 1);
 	}
@@ -23,6 +29,4 @@ public class PageInfo {
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
-	
-	
 }

@@ -1,5 +1,7 @@
 package org.genia.fishstore;
 
+import javax.persistence.TypedQuery;
+
 public class ParcelFilter {
 	private PageInfo paginator;
 	
@@ -23,28 +25,6 @@ public class ParcelFilter {
 		// "where " + StringUtils.join(conditions, " and ") // apache-commons
 		// coi.date > :coupleOfDaysAgo
 		
-		if (onStockOnly) { // WTF
-			if (sql == null) {
-				sql = " where " + sql;
-			} 
-			sql += " coi.onStock = false";
-		}
-		if (maxPrice != null) {
-			if (sql == null) {
-				sql = " where " + sql; // WTF
-			} else {
-				sql = " and " + sql;
-			}
-			sql += " coi.price >= " + maxPrice;
-		}
-		if (fishTypeName != null) {
-			if (sql == null) {
-				sql = " where " + sql;
-			} else {
-				sql = " and " + sql;
-			}
-			sql += " coi.fishType.name like " + fishTypeName;
-		}
 		
 		if (paginator != null) {
 			sql += "limit " + paginator.getOffset() + ", " + paginator.getItemsPerPage(); // TODO += paginator.getSql()
@@ -59,19 +39,19 @@ public class ParcelFilter {
 	public void setPaginator(PageInfo paginator) {
 		this.paginator = paginator;
 	}
-	public int getMaxAgeInDays() {
+	public Integer getMaxAgeInDays() {
 		return maxAgeInDays;
 	}
 	public void setMaxAgeInDays(int maxAgeInDays) {
 		this.maxAgeInDays = maxAgeInDays;
 	}
-	public boolean isOnStock() {
+	public boolean getOnStockOnly() {
 		return onStockOnly;
 	}
-	public void setOnStock(boolean onStock) {
+	public void setOnStockOnly(boolean onStock) {
 		this.onStockOnly = onStock;
 	}
-	public int getMaxPrice() {
+	public Integer getMaxPrice() {
 		return maxPrice;
 	}
 	public void setMaxPrice(int maxPrice) {
@@ -82,6 +62,11 @@ public class ParcelFilter {
 	}
 	public void setFishType(String fishType) {
 		this.fishTypeName = fishType;
+	}
+	
+	public <T> void updateQueryPageIngo(TypedQuery<T> query) {
+		if (paginator != null)
+		query.setFirstResult(paginator.getOffset()).setMaxResults(paginator.getItemsPerPage());
 	}
 
 }
