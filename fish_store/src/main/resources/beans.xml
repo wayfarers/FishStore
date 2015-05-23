@@ -10,13 +10,21 @@
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:component-scan base-package="org.genia.fishstore" />
+	
+	<!-- Loads username and password from a properties file, 
+	     so that we don't have to commit passwords into Git -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:database.properties</value>
+		</property>
+	</bean>
 
 	<bean name="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/fish_store" />
-		<property name="username" value="test" />
-		<property name="password" value="test" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
 
 	<bean id="entityManagerFactory"
@@ -35,12 +43,15 @@
 				<!-- <property value="false" name="eclipselink.jpa.uppercase-column-names" />  -->
 				<property name="databasePlatform"
 					value="org.eclipse.persistence.platform.database.MySQLPlatform" />
-					
 			</bean>
 		</property>
 		<property name="jpaPropertyMap">
 			<map>
 				<entry key="eclipselink.weaving" value="false" />
+				
+				<!-- Required to override default table naming in EclipseLink, which wants UPPERCASE table names -->
+				<entry key="eclipselink.session.customizer"
+					value="org.genia.fishstore.infrastructure.EclipselinkTablenamesCustomizer" />
 			</map>
 		</property>
 	</bean>
