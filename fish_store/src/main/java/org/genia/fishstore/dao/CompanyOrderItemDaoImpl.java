@@ -45,7 +45,7 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 			conditions.add("coi.fishType.name like " + "'%" + filter.getFishType() + "%'");
 		}
 		if (filter.getMaxAgeInDays() != null) {
-			conditions.add("coi.order.dateArrived > :maxAgeDate");
+			conditions.add("coi.order.dateArrived >= :maxAgeDate");
 		}
 		
 		String sqlFilter = " where " + StringUtils.join(conditions, " and ");
