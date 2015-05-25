@@ -36,7 +36,7 @@ public class Main {
 		for (int i = 1; i <= 5; i++) {
 			filter.getPaginator().setCurrentPage(i);
 			
-			List<CompanyOrderItem> parties = companyDao.findByFilter(filter);
+			List<CompanyOrderItem> parties = companyDao.findByFilter(filter).getResultList();
 			
 			System.out.println("\nPage " + i + ": \n");
 			for (CompanyOrderItem coi : parties) {

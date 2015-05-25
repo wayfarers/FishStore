@@ -3,7 +3,6 @@ package org.genia.fishstore.dao;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -11,6 +10,7 @@ import javax.persistence.TypedQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.genia.fishstore.ParcelFilter;
 import org.genia.fishstore.entities.CompanyOrderItem;
+import org.genia.fishstore.entities.GenericResult;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -27,13 +27,12 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 	}
 	
 	@Override
-	public List<CompanyOrderItem> findByFilter(ParcelFilter filter) {
+	public GenericResult<CompanyOrderItem> findByFilter(ParcelFilter filter) {
 		String sql = "select coi from CompanyOrderItem coi";
+		String countSql = "select count(*) from CompanyOrderItem";
+		String sqlFilter;
 		
 		List<String> conditions = new ArrayList<>();
-		
-//		Calendar calendar = Calendar.getInstance().add(Calendar.DAY_OF_YEAR, -filter.getMaxAgeInDays());
-		
 		
 		if (filter.getOnStockOnly()) {
 			conditions.add("coi.onSale = true");
@@ -48,9 +47,13 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 			conditions.add("coi.order.dateArrived >= :maxAgeDate");
 		}
 		
-		String sqlFilter = " where " + StringUtils.join(conditions, " and ");
+		sqlFilter = " where " + StringUtils.join(conditions, " and ");
+		
+		int resultCount = em.createQuery(countSql + sqlFilter, int.class).getSingleResult();
 		
 		TypedQuery<CompanyOrderItem> query = em.createQuery(sql + sqlFilter, CompanyOrderItem.class);
+		
+		
 		
 		if (filter.getMaxAgeInDays() != null) {
 			Calendar calendar = Calendar.getInstance();
@@ -60,10 +63,10 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 		}
 		
 		if (filter.getPaginator() != null) {
-//			query.setFirstResult(filter.getPaginator().getOffset()).setMaxResults(filter.getPaginator().getItemsPerPage());
-			filter.updateQueryPageIngo(query);
+			filter.updateQueryPageInfo(query);
 		}
-		return query.getResultList();
+		
+		return new GenericResult<CompanyOrderItem> (resultCount, query.getResultList());
 	}
 
 }

@@ -13,26 +13,6 @@ public class ParcelFilter {
 	public ParcelFilter() {
 	}
 	
-	public String getAdditionalSql() {
-		String sql = null;
-		
-//		if (maxAgeInDays > 0) {
-//			sql += " ";
-//		}
-		
-		// WHERE CON1 AND COND2 AND COND3
-		
-		// "where " + StringUtils.join(conditions, " and ") // apache-commons
-		// coi.date > :coupleOfDaysAgo
-		
-		
-		if (paginator != null) {
-			sql += "limit " + paginator.getOffset() + ", " + paginator.getItemsPerPage(); // TODO += paginator.getSql()
-		}
-		
-		return sql;
-	}
-	
 	public PageInfo getPaginator() {
 		return paginator;
 	}
@@ -64,7 +44,7 @@ public class ParcelFilter {
 		this.fishTypeName = fishType;
 	}
 	
-	public <T> void updateQueryPageIngo(TypedQuery<T> query) {
+	public <T> void updateQueryPageInfo(TypedQuery<T> query) {
 		if (paginator != null)
 		query.setFirstResult(paginator.getOffset()).setMaxResults(paginator.getItemsPerPage());
 	}
