@@ -29,7 +29,7 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 	@Override
 	public PaginatedResult<CompanyOrderItem> findByFilter(ParcelFilter filter) {
 		String sql = "select coi from CompanyOrderItem coi";
-		String countSql = "select count(*) from CompanyOrderItem";
+		String countSql = "select count(coi.id) from CompanyOrderItem coi";
 		String sqlFilter;
 		
 		List<String> conditions = new ArrayList<>();

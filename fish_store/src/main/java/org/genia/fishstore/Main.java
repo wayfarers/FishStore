@@ -28,10 +28,10 @@ public class Main {
 		
 		ParcelFilter filter = new ParcelFilter();
 		filter.setPaginator(new PageInfo(2));
-		filter.setMaxPrice(300);
+//		filter.setMaxPrice(300);
 		filter.setOnStockOnly(true);
-		filter.setFishType("ka");
-		filter.setMaxAgeInDays(1000);
+		//filter.setFishType("ka");
+//		filter.setMaxAgeInDays(1000);
 		
 		for (int i = 1; i <= 5; i++) {
 			filter.getPaginator().setCurrentPage(i);
