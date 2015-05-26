@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.genia.fishstore.ParcelFilter;
 import org.genia.fishstore.entities.CompanyOrderItem;
-import org.genia.fishstore.entities.GenericResult;
+import org.genia.fishstore.entities.PaginatedResult;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -27,7 +27,7 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 	}
 	
 	@Override
-	public GenericResult<CompanyOrderItem> findByFilter(ParcelFilter filter) {
+	public PaginatedResult<CompanyOrderItem> findByFilter(ParcelFilter filter) {
 		String sql = "select coi from CompanyOrderItem coi";
 		String countSql = "select count(*) from CompanyOrderItem";
 		String sqlFilter;
@@ -53,8 +53,6 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 		
 		TypedQuery<CompanyOrderItem> query = em.createQuery(sql + sqlFilter, CompanyOrderItem.class);
 		
-		
-		
 		if (filter.getMaxAgeInDays() != null) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_YEAR, -filter.getMaxAgeInDays());
@@ -63,10 +61,10 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 		}
 		
 		if (filter.getPaginator() != null) {
-			filter.updateQueryPageInfo(query);
+			filter.getPaginator().updateQueryPageInfo(query);
 		}
 		
-		return new GenericResult<CompanyOrderItem> (resultCount, query.getResultList());
+		return new PaginatedResult<CompanyOrderItem> (resultCount, query.getResultList());
 	}
 
 }

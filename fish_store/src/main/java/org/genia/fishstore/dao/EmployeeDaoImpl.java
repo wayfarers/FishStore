@@ -8,8 +8,7 @@ import javax.persistence.TypedQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.genia.fishstore.EmployeeFilter;
 import org.genia.fishstore.entities.Employee;
-import org.genia.fishstore.entities.GenericResult;
-import org.genia.fishstore.entities.Role;
+import org.genia.fishstore.entities.PaginatedResult;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -28,7 +27,7 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee> implements Employe
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public GenericResult<Employee> findByFilter(EmployeeFilter filter) {
+	public PaginatedResult<Employee> findByFilter(EmployeeFilter filter) {
 		String sql = "select emp from Employee emp";
 		String countSql = "select count(*) from Employee";
 		String sqlFilter;
@@ -48,9 +47,9 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee> implements Employe
 		TypedQuery<Employee> query = em.createQuery(sql + sqlFilter, Employee.class);
 		
 		if (filter.getPaginator() != null) {
-			filter.updateQueryPageInfo(query);
+			filter.getPaginator().updateQueryPageInfo(query);
 		}
 		
-		return new GenericResult<>(resultCount, query.getResultList());
+		return new PaginatedResult<>(resultCount, query.getResultList());
 	}
 }

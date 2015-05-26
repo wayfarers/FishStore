@@ -1,7 +1,5 @@
 package org.genia.fishstore;
 
-import javax.persistence.TypedQuery;
-
 import org.genia.fishstore.entities.Role;
 
 public class EmployeeFilter {
@@ -30,10 +28,5 @@ public class EmployeeFilter {
 	}
 	public void setLogin(String login) {
 		this.login = login;
-	}
-	
-	public <T> void updateQueryPageInfo(TypedQuery<T> query) {
-		if (paginator != null)
-		query.setFirstResult(paginator.getOffset()).setMaxResults(paginator.getItemsPerPage());
 	}
 }

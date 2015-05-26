@@ -2,8 +2,6 @@ package org.genia.fishstore.dao;
 
 import java.util.List;
 
-import javax.persistence.TypedQuery;
-
 import org.genia.fishstore.entities.CompanyOrder;
 import org.genia.fishstore.entities.CompanyOrderItem;
 import org.springframework.stereotype.Repository;

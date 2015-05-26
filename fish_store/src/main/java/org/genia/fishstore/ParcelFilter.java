@@ -1,6 +1,5 @@
 package org.genia.fishstore;
 
-import javax.persistence.TypedQuery;
 
 public class ParcelFilter {
 	private PageInfo paginator;
@@ -43,10 +42,6 @@ public class ParcelFilter {
 	public void setFishType(String fishType) {
 		this.fishTypeName = fishType;
 	}
-	
-	public <T> void updateQueryPageInfo(TypedQuery<T> query) {
-		if (paginator != null)
-		query.setFirstResult(paginator.getOffset()).setMaxResults(paginator.getItemsPerPage());
-	}
+
 
 }

@@ -2,14 +2,14 @@ package org.genia.fishstore.entities;
 
 import java.util.List;
 
-public class GenericResult <T> {
+public class PaginatedResult <T> {
 	int countOfItems;
 	List<T> resultList;
 	
-	public GenericResult() {
+	public PaginatedResult() {
 	}
 	
-	public GenericResult(int count, List<T> items) {
+	public PaginatedResult(int count, List<T> items) {
 		countOfItems = count;
 		resultList = items;
 	}
