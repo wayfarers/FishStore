@@ -42,7 +42,7 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee> implements Employe
 		}
 		
 		sqlFilter = " where " + StringUtils.join(conditions);
-		int resultCount = em.createQuery(countSql + sqlFilter, int.class).getSingleResult();
+		long resultCount = em.createQuery(countSql + sqlFilter, long.class).getSingleResult();
 		
 		TypedQuery<Employee> query = em.createQuery(sql + sqlFilter, Employee.class);
 		

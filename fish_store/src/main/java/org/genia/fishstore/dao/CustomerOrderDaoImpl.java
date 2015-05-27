@@ -50,7 +50,7 @@ public class CustomerOrderDaoImpl extends GenericDaoImpl<CustomerOrder> implemen
 
 		sqlFilter = " where " + StringUtils.join(conditions, " and ");
 		
-		int resultCount = em.createQuery(countSql + sqlFilter, int.class).getSingleResult();
+		long resultCount = em.createQuery(countSql + sqlFilter, long.class).getSingleResult();
 		
 		TypedQuery<CustomerOrder> query = em.createQuery(sql + sqlFilter, CustomerOrder.class);
 		

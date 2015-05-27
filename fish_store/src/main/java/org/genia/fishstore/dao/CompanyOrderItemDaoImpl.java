@@ -49,7 +49,7 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 		
 		sqlFilter = " where " + StringUtils.join(conditions, " and ");
 		
-		int resultCount = em.createQuery(countSql + sqlFilter, int.class).getSingleResult();
+		long resultCount = em.createQuery(countSql + sqlFilter, long.class).getSingleResult();
 		
 		TypedQuery<CompanyOrderItem> query = em.createQuery(sql + sqlFilter, CompanyOrderItem.class);
 		

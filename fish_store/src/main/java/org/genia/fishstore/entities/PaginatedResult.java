@@ -3,22 +3,22 @@ package org.genia.fishstore.entities;
 import java.util.List;
 
 public class PaginatedResult <T> {
-	int countOfItems;
+	long countOfItems;
 	List<T> resultList;
 	
 	public PaginatedResult() {
 	}
 	
-	public PaginatedResult(int count, List<T> items) {
+	public PaginatedResult(long count, List<T> items) {
 		countOfItems = count;
 		resultList = items;
 	}
 
-	public int getCountOfItems() {
+	public long getCountOfItems() {
 		return countOfItems;
 	}
 
-	public void setCountOfItems(int countOfItems) {
+	public void setCountOfItems(long countOfItems) {
 		this.countOfItems = countOfItems;
 	}
 
