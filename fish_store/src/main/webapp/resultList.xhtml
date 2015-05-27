@@ -13,9 +13,7 @@
 		<h:panelGrid columns="1">
 	
 			<h:dataTable value="#{parcelBean.result.resultList}" var="parcel"
-				styleClass="merchantTable" headerClass="merchantTableHeader"
-				rowClasses="merchantTableOddRow,
-			    merchantTableEvenRow">
+				styleClass="table table-striped">
 				<h:column>
 					<f:facet name="header">Id</f:facet> 
 				#{parcel.id} 

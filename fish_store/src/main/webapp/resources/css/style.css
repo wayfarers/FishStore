@@ -29,7 +29,7 @@ BODY {padding: 0px; margin: 0px;}
 
 #page-content H1 {font-family: Arial; font-size: 14pt;}
 
-#footer {background-color: #EEE; text-align: center; position: absolute; bottom: 0px; width: 100%;}
-
 #page-content {padding: 10px 30px;}
+
+#footer {text-align: center; border-top: 1px solid #EEE; margin-top: 20px; color: #444;}
 
