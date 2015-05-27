@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Parcel Filter</title>
+</h:head>
+<h:body>
+
+	<h1>Filter options:</h1>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Fish name:" />
+			<h:inputText id="fName" value="#{parcelBean.filter.fishType}"></h:inputText>
+
+			<h:outputText value="On stock only:" />
+			<h:inputText id="onStock" value="#{parcelBean.filter.onStockOnly}"></h:inputText>
+
+			<h:outputText value="Max price:" />
+			<h:inputText id="price" value="#{parcelBean.filter.maxPrice}">
+				<f:convertNumber integerOnly="true" />
+			</h:inputText>
+
+			<h:outputText value="Max age in days:" />
+			<h:inputText id="age" value="#{parcelBean.filter.maxAgeInDays}">
+				<f:convertNumber integerOnly="true" />
+			</h:inputText>
+			
+			<!-- <h:selectBooleanCheckbox value="#{parcel.filter.onStockOnly}" /> On stock only  -->
+
+		</h:panelGrid>
+		<h:commandButton value="Submit"
+			action="#{parcelBean.applyFilter}" />
+	</h:form>
+
+</h:body>
+</html>

@@ -21,7 +21,7 @@ public class ParcelFilter {
 	public Integer getMaxAgeInDays() {
 		return maxAgeInDays;
 	}
-	public void setMaxAgeInDays(int maxAgeInDays) {
+	public void setMaxAgeInDays(Integer maxAgeInDays) {
 		this.maxAgeInDays = maxAgeInDays;
 	}
 	public boolean getOnStockOnly() {
@@ -33,7 +33,7 @@ public class ParcelFilter {
 	public Integer getMaxPrice() {
 		return maxPrice;
 	}
-	public void setMaxPrice(int maxPrice) {
+	public void setMaxPrice(Integer maxPrice) {
 		this.maxPrice = maxPrice;
 	}
 	public String getFishType() {

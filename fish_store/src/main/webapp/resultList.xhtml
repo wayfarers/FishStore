@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Parcel filter</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<h2>Resulting parcels:</h2>
+	
+    <h:form>
+		<h:panelGrid columns="1">
+
+			<h:dataTable value="#{parcelBean.result.resultList}" var="parcel"
+				styleClass="merchantTable" headerClass="merchantTableHeader"
+				rowClasses="merchantTableOddRow,
+			    merchantTableEvenRow">
+				<h:column>
+					<f:facet name="header">Id</f:facet> 
+				#{parcel.id} 
+			</h:column>
+				<h:column>
+					<f:facet name="header">Name</f:facet> 
+				#{parcel.fishType.name} 
+			</h:column>
+				<h:column>
+					<f:facet name="header">Price</f:facet> 
+				#{parcel.salePrice} 
+			</h:column>
+				<h:column>
+					<f:facet name="header">Left</f:facet> 
+				#{parcel.weightLeft} 
+			</h:column>
+			</h:dataTable>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>
