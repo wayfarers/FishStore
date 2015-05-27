@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+BODY {padding: 0px; margin: 0px;}
+
 .merchantTable {
 	border-collapse: collapse;
 	border: 1px solid #000000;
@@ -22,10 +24,12 @@
 	background: none repeat scroll 0 0 #D3D3D3;
 }
 
-a{
-	background-color: brown;
-	color: white;
-	font-weight: bold;
-	font-size: 1.4em;
-	font-style: normal;
-}
+#header {background-color: #EEE; padding: 15px 30px;}
+#header H1 {margin: 0px; padding: 0px; font-family: Georgia;}
+
+#page-content H1 {font-family: Arial; font-size: 14pt;}
+
+#footer {background-color: #EEE; text-align: center; position: absolute; bottom: 0px; width: 100%;}
+
+#page-content {padding: 10px 30px;}
+
