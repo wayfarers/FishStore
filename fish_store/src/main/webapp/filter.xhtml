@@ -15,9 +15,6 @@
 			<h:outputText value="Fish name:" />
 			<h:inputText id="fName" value="#{parcelBean.filter.fishType}"></h:inputText>
 
-			<h:outputText value="On stock only:" />
-			<h:inputText id="onStock" value="#{parcelBean.filter.onStockOnly}"></h:inputText>
-
 			<h:outputText value="Max price:" />
 			<h:inputText id="price" value="#{parcelBean.filter.maxPrice}">
 				<f:convertNumber integerOnly="true" />
@@ -27,12 +24,11 @@
 			<h:inputText id="age" value="#{parcelBean.filter.maxAgeInDays}">
 				<f:convertNumber integerOnly="true" />
 			</h:inputText>
-			
-			<!-- <h:selectBooleanCheckbox value="#{parcel.filter.onStockOnly}" /> On stock only  -->
 
+			<h:outputText value="On stock only:" />
+			<h:selectBooleanCheckbox value="#{parcelBean.filter.onStockOnly}" />
 		</h:panelGrid>
-		<h:commandButton value="Submit"
-			action="#{parcelBean.applyFilter}" />
+		<h:commandButton value="Submit" action="#{parcelBean.applyFilter}" />
 	</h:form>
 
 </h:body>

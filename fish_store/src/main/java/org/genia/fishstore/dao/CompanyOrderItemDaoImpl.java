@@ -31,6 +31,7 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 		String sql = "select coi from CompanyOrderItem coi";
 		String countSql = "select count(coi.id) from CompanyOrderItem coi";
 		String sqlFilter;
+		long resultCount;
 		
 		List<String> conditions = new ArrayList<>();
 		
@@ -49,22 +50,23 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 		
 		sqlFilter = " where " + StringUtils.join(conditions, " and ");
 		
-		long resultCount = em.createQuery(countSql + sqlFilter, long.class).getSingleResult();
-		
 		TypedQuery<CompanyOrderItem> query = em.createQuery(sql + sqlFilter, CompanyOrderItem.class);
+		TypedQuery<Long> countQuery = em.createQuery(countSql + sqlFilter, long.class);
 		
 		if (filter.getMaxAgeInDays() != null) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_YEAR, -filter.getMaxAgeInDays());
 			Date maxAgeDate = calendar.getTime();
 			query.setParameter("maxAgeDate", maxAgeDate);
+			countQuery.setParameter("maxAgeDate", maxAgeDate);
 		}
 		
 		if (filter.getPaginator() != null) {
 			filter.getPaginator().updateQueryPageInfo(query);
 		}
 		
-		return new PaginatedResult<CompanyOrderItem> (resultCount, query.getResultList());
+		resultCount = countQuery.getSingleResult();
+		return new PaginatedResult<> (resultCount, query.getResultList());
 	}
 
 }

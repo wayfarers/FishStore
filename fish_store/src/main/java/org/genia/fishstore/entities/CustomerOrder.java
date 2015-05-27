@@ -26,7 +26,7 @@ public class CustomerOrder {
 	private Date date;
 	
 	private double sum;
-	private Status status;
+	private OrderStatus status;
 	private String comment;
 	private double sumPayed;
 	
@@ -103,11 +103,11 @@ public class CustomerOrder {
 		this.sum = sum;
 	}
 
-	public Status getStatus() {
+	public OrderStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
 

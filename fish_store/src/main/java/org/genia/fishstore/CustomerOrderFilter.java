@@ -2,14 +2,14 @@ package org.genia.fishstore;
 
 import java.util.Date;
 
-import org.genia.fishstore.entities.Status;
+import org.genia.fishstore.entities.OrderStatus;
 
 
 public class CustomerOrderFilter {
 	private PageInfo paginator;
 	private Date fromDate;
 	private Date tillDate;
-	private Status status;
+	private OrderStatus status;
 	private boolean unPayed;
 	
 	public CustomerOrderFilter() {
@@ -39,11 +39,11 @@ public class CustomerOrderFilter {
 		this.tillDate = tillDate;
 	}
 
-	public Status getStatus() {
+	public OrderStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
 
