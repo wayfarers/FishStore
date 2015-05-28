@@ -39,7 +39,7 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 			conditions.add("coi.onSale = true");
 		}
 		if (filter.getMaxPrice() != null) {
-			conditions.add("coi.salePrice >= " + filter.getMaxPrice());
+			conditions.add("coi.salePrice <= " + filter.getMaxPrice());
 		}
 		if (filter.getFishType() != null) {
 			conditions.add("coi.fishType.name like " + "'%" + filter.getFishType() + "%'");
