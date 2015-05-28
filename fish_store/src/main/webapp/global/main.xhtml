@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<f:facet name="first">
+			<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+			<h:outputStylesheet library="css" name="style.css" />
+			<h:outputStylesheet library="bootstrap/css" name="bootstrap.css" />
+			<h:outputStylesheet library="bootstrap/css"
+				name="bootstrap-theme.css" />
+			<title><ui:insert name="title">Title</ui:insert></title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+		<div id="header">
+			<h1>Welcome to FishStore!</h1>
+		</div>
+
+		<div id="page-content">
+			<ui:insert name="page-content" />
+		</div>
+
+		<div id="footer">Fish Store Inc. :: All rights reserved :: (c) 2015</div>
+
+		<script type="text/javascript"
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<!--<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+		<!--<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>-->
+		<script type="text/javascript" src="../resources/js/scripts.js"></script>
+	</h:body>
+</f:view>
+</html>
