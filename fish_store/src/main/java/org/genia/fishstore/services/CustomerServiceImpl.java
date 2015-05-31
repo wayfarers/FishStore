@@ -10,21 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class CustomerServiceImpl extends GenericServiceImpl<Customer> implements CustomerService {
-	@Inject
+
 	private CustomerDao dao;
 	
 	@Inject
 	public CustomerServiceImpl(CustomerDao dao) {
 		super(dao, Customer.class);
+		this.dao = dao;
 	}
 
 	@Override
 	public Customer findByLogin(String login) {
 		return dao.findByLogin(login);
-	}
-
-	@Override
-	public void setPrepayment(int customerId, int prepayment) {
-		dao.findById(customerId).setPrepaymentRights(prepayment);
 	}
 }

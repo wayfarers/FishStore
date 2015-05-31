@@ -7,4 +7,6 @@ import org.genia.fishstore.entities.CompanyOrderItem;
 
 public interface CompanyOrderDao extends GenericDao<CompanyOrder> {
 	public List<CompanyOrderItem> getOrderItems(int orderId);
+	public List<CompanyOrder> getOrders();
+	
 }

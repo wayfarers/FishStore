@@ -1,16 +1,13 @@
 package org.genia.fishstore.services;
 
-import java.util.List;
-
+import org.genia.fishstore.EmployeeFilter;
 import org.genia.fishstore.entities.Employee;
+import org.genia.fishstore.entities.PaginatedResult;
 
 public interface EmployeeService extends GenericService<Employee>{
 	
-	// Probably, all these four method will be removed
 	public Employee findByLogin(String login);
-	public void suspendById(int id);
-	public void unSuspendById(int id);
-	public List<Employee> getEmployeeList();
+	public PaginatedResult<Employee> findByFilter(EmployeeFilter filter);
 	
 	
 	// public void authentificate(String login, String password) throws InvalidAuthentificationException;

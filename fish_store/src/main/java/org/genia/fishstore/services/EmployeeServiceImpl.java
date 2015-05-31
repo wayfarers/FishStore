@@ -1,11 +1,11 @@
 package org.genia.fishstore.services;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
+import org.genia.fishstore.EmployeeFilter;
 import org.genia.fishstore.dao.EmployeeDao;
 import org.genia.fishstore.entities.Employee;
+import org.genia.fishstore.entities.PaginatedResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,17 +28,7 @@ public class EmployeeServiceImpl extends GenericServiceImpl<Employee> implements
 	}
 
 	@Override
-	public void suspendById(int id) {
-		dao.findById(id).setSuspended(true);
-	}
-
-	@Override
-	public void unSuspendById(int id) {
-		dao.findById(id).setSuspended(false);
-	}
-
-	@Override
-	public List<Employee> getEmployeeList() {
-		return dao.findAll();
+	public PaginatedResult<Employee> findByFilter(EmployeeFilter filter) {
+		return dao.findByFilter(filter);
 	}
 }

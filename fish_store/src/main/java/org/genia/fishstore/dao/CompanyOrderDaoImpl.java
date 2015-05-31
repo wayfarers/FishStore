@@ -19,4 +19,10 @@ public class CompanyOrderDaoImpl extends GenericDaoImpl<CompanyOrder> implements
 				.setParameter("orderId", orderId)
 				.getResultList();
 	}
+
+	@Override
+	public List<CompanyOrder> getOrders() {
+		return em.createQuery("select coi from CompanyOrderItem coi", CompanyOrder.class).getResultList();
+	}
+	
 }

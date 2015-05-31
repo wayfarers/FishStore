@@ -24,7 +24,7 @@ BODY {padding: 0px; margin: 0px;}
 	background: none repeat scroll 0 0 #D3D3D3;
 }
 
-#header {background-color: #EEE; padding: 15px 30px;}
+#header {background-color: #EEE; padding: 15px 30px; background-position:center;}
 #header H1 {margin: 0px; padding: 0px; font-family: Georgia;}
 
 #page-content H1 {font-family: Arial; font-size: 14pt;}

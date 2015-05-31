@@ -24,7 +24,7 @@ public class CompanyOrderDaoTest {
 	@Test
 	public void getsAllAvailableItems() {
 //		testSetupService.generateCompanyOrders(5);
-		List<CompanyOrderItem> results = companyOrderDao.getOrderItems(companyOrderDao.findAll().get(0).getId());
+		List<CompanyOrderItem> results = companyOrderDao.getOrderItems(companyOrderDao.getOrders().get(0).getId());
 //		Assert.assertEquals(5, results.size());
 	}
 //	

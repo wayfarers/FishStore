@@ -36,10 +36,10 @@ public class GenericDaoImpl<T> implements GenericDao<T>{
 		em.createQuery("delete from "  + entityClass.getSimpleName() + "where id = " + id).executeUpdate();
 	}
 
-	@Override
-	public List<T> findAll() {
-		return em.createQuery("select entity from " + entityClass.getSimpleName() + " entity", entityClass).getResultList();
-	}
+//	@Override
+//	public List<T> findAll() {
+//		return em.createQuery("select entity from " + entityClass.getSimpleName() + " entity", entityClass).getResultList();
+//	}
 	
 
 }
