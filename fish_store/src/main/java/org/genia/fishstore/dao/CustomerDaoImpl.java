@@ -14,7 +14,7 @@ public class CustomerDaoImpl extends GenericDaoImpl<Customer> implements Custome
 	
 	@Override
 	public Customer findByLogin(String login) {
-		TypedQuery<Customer> query = em.createQuery("select cust from Customer cust where cust.login = :login", entityClass);
+		TypedQuery<Customer> query = em.createQuery("select cust from Customer cust where cust.login = :login", Customer.class);
 		query.setParameter("login", login);
 		return query.getSingleResult();
 	}

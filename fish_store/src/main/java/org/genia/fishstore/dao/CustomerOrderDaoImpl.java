@@ -29,8 +29,8 @@ public class CustomerOrderDaoImpl extends GenericDaoImpl<CustomerOrder> implemen
 	@Override
 	public PaginatedResult<CustomerOrder> findByFilter(
 			CustomerOrderFilter filter) {
-		String sql = "select ord from CompanyOrder ord";
-		String countSql = "select count(*) from CompanyOrder";
+		String sql = "select ord from CustomerOrder ord";
+		String countSql = "select count(ord.id) from CustomerOrder ord";
 		String sqlFilter;
 		
 		List<String> conditions = new ArrayList<>();

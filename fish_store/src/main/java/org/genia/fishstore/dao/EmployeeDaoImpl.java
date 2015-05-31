@@ -29,7 +29,7 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee> implements Employe
 	@Override
 	public PaginatedResult<Employee> findByFilter(EmployeeFilter filter) {
 		String sql = "select emp from Employee emp";
-		String countSql = "select count(*) from Employee";
+		String countSql = "select count(emp.id) from Employee emp";
 		String sqlFilter;
 		
 		List<String> conditions = new ArrayList<>();

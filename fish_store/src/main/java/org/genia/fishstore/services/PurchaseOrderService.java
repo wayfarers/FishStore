@@ -2,11 +2,11 @@ package org.genia.fishstore.services;
 
 import java.util.Date;
 
-import org.genia.fishstore.entities.CompanyOrder;
+import org.genia.fishstore.entities.PurchaseOrder;
 import org.genia.fishstore.entities.FishType;
 import org.genia.fishstore.entities.IncomeReport;
 
-public interface CompanyOrderService extends GenericService<CompanyOrder> {
+public interface PurchaseOrderService extends GenericService<PurchaseOrder> {
 	
 	//move to Managed Bean
 //	public void putOnSale(CompanyOrderItem item);			//mark as available for sale

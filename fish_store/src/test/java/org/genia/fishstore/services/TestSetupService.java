@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.genia.fishstore.entities.CompanyOrder;
+import org.genia.fishstore.entities.PurchaseOrder;
 import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.entities.FishType;
 import org.springframework.stereotype.Service;
@@ -45,7 +45,7 @@ public class TestSetupService {
 	public void generateCompanyOrders(int orderNum) {
 		// ...
 		for (int i = 0; i < orderNum; i++) {
-			CompanyOrder order = new CompanyOrder();
+			PurchaseOrder order = new PurchaseOrder();
 			// ..
 			em.persist(order);
 		}

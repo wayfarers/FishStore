@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.genia.fishstore.dao.CompanyOrderDao;
-import org.genia.fishstore.entities.CompanyOrder;
+import org.genia.fishstore.dao.PurchaseOrderDao;
+import org.genia.fishstore.entities.PurchaseOrder;
 import org.genia.fishstore.entities.FishType;
 import org.genia.fishstore.entities.IncomeReport;
 import org.springframework.stereotype.Service;
@@ -14,23 +14,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class CompanyOrderServiceImpl extends GenericServiceImpl<CompanyOrder> implements CompanyOrderService {
+public class PurchaseOrderServiceImpl extends GenericServiceImpl<PurchaseOrder> implements PurchaseOrderService {
 
-	private CompanyOrderDao dao;
+	private PurchaseOrderDao dao;
 	
 	@Inject
-	public CompanyOrderServiceImpl(CompanyOrderDao dao) {
-		super(dao, CompanyOrder.class);
+	public PurchaseOrderServiceImpl(PurchaseOrderDao dao) {
+		super(dao, PurchaseOrder.class);
 		this.dao = dao;
 	}
 	
 	@Override
-	public CompanyOrder findById(int id) {
+	public PurchaseOrder findById(int id) {
 		return dao.findById(id);
 	}
 
 	@Override
-	public void save(CompanyOrder entity) {
+	public void save(PurchaseOrder entity) {
 		dao.save(entity);
 	}
 

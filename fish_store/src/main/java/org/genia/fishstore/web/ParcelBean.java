@@ -4,8 +4,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.genia.fishstore.ParcelFilter;
-import org.genia.fishstore.dao.CompanyOrderItemDao;
-import org.genia.fishstore.entities.CompanyOrderItem;
+import org.genia.fishstore.dao.FishBatchDao;
+import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.PaginatedResult;
 import org.springframework.context.annotation.Scope;
 
@@ -14,10 +14,10 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class ParcelBean {
 	ParcelFilter filter;
-	PaginatedResult<CompanyOrderItem> result;
+	PaginatedResult<FishBatch> result;
 	
 	@Inject
-	private CompanyOrderItemDao orderService; 	//temporary
+	private FishBatchDao orderService; 	//temporary
 	
 	public ParcelBean() {
 		filter = new ParcelFilter();
@@ -31,11 +31,11 @@ public class ParcelBean {
 		this.filter = filter;
 	}
 
-	public PaginatedResult<CompanyOrderItem> getResult() {
+	public PaginatedResult<FishBatch> getResult() {
 		return result;
 	}
 
-	public void setResult(PaginatedResult<CompanyOrderItem> result) {
+	public void setResult(PaginatedResult<FishBatch> result) {
 		this.result = result;
 	}
 	

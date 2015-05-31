@@ -9,27 +9,27 @@ import javax.persistence.TypedQuery;
 
 import org.apache.commons.lang3.StringUtils;
 import org.genia.fishstore.ParcelFilter;
-import org.genia.fishstore.entities.CompanyOrderItem;
+import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.PaginatedResult;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> implements CompanyOrderItemDao {
+public class FishBatchDaoImpl extends GenericDaoImpl<FishBatch> implements FishBatchDao {
 
-	public CompanyOrderItemDaoImpl() {
-		super(CompanyOrderItem.class);
+	public FishBatchDaoImpl() {
+		super(FishBatch.class);
 	}
 	
 	@Override
-	public List<CompanyOrderItem> getAvailableItems() {
-		return em.createQuery("select coi from CompanyOrderItem coi where coi.onSale = true", 
-				CompanyOrderItem.class).getResultList();
+	public List<FishBatch> getAvailableItems() {
+		return em.createQuery("select fb from FishBatch fb where fb.onSale = true", 
+				FishBatch.class).getResultList();
 	}
 	
 	@Override
-	public PaginatedResult<CompanyOrderItem> findByFilter(ParcelFilter filter) {
-		String sql = "select coi from CompanyOrderItem coi";
-		String countSql = "select count(coi.id) from CompanyOrderItem coi";
+	public PaginatedResult<FishBatch> findByFilter(ParcelFilter filter) {
+		String sql = "select fb from FishBatch fb";
+		String countSql = "select count(fb.id) from FishBatch fb";
 		String sqlFilter;
 		long resultCount;
 		
@@ -50,7 +50,7 @@ public class CompanyOrderItemDaoImpl extends GenericDaoImpl<CompanyOrderItem> im
 		
 		sqlFilter = " where " + StringUtils.join(conditions, " and ");
 		
-		TypedQuery<CompanyOrderItem> query = em.createQuery(sql + sqlFilter, CompanyOrderItem.class);
+		TypedQuery<FishBatch> query = em.createQuery(sql + sqlFilter, FishBatch.class);
 		TypedQuery<Long> countQuery = em.createQuery(countSql + sqlFilter, long.class);
 		
 		if (filter.getMaxAgeInDays() != null) {

@@ -2,8 +2,8 @@ package org.genia.fishstore;
 
 import java.util.List;
 
-import org.genia.fishstore.dao.CompanyOrderItemDao;
-import org.genia.fishstore.entities.CompanyOrderItem;
+import org.genia.fishstore.dao.FishBatchDao;
+import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.Customer;
 import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.services.CustomerService;
@@ -15,7 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		CustomerService customerService = context.getBean(CustomerService.class);
-		CompanyOrderItemDao companyDao = context.getBean(CompanyOrderItemDao.class);
+		FishBatchDao companyDao = context.getBean(FishBatchDao.class);
 
 //		List<Customer> list = customerService.findAll();
 //
@@ -36,10 +36,10 @@ public class Main {
 		for (int i = 1; i <= 5; i++) {
 			filter.getPaginator().setCurrentPage(i);
 			
-			List<CompanyOrderItem> parties = companyDao.findByFilter(filter).getResultList();
+			List<FishBatch> parties = companyDao.findByFilter(filter).getResultList();
 			
 			System.out.println("\nPage " + i + ": \n");
-			for (CompanyOrderItem coi : parties) {
+			for (FishBatch coi : parties) {
 				System.out.println("id = " + coi.getId()  + "; " + coi.getFishType().getName());
 			}
 		}

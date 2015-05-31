@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.genia.fishstore.dao.CustomerOrderDao;
-import org.genia.fishstore.entities.CompanyOrderItem;
+import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.entities.CustomerOrderItem;
 import org.springframework.stereotype.Service;

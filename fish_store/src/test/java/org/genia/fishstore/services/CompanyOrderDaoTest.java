@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.genia.fishstore.dao.CompanyOrderDao;
-import org.genia.fishstore.entities.CompanyOrderItem;
+import org.genia.fishstore.dao.PurchaseOrderDao;
+import org.genia.fishstore.entities.FishBatch;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,12 +19,12 @@ public class CompanyOrderDaoTest {
 	TestSetupService testSetupService;
 	
 	@Inject
-	CompanyOrderDao companyOrderDao;
+	PurchaseOrderDao companyOrderDao;
 	
 	@Test
 	public void getsAllAvailableItems() {
 //		testSetupService.generateCompanyOrders(5);
-		List<CompanyOrderItem> results = companyOrderDao.getOrderItems(companyOrderDao.getOrders().get(0).getId());
+		List<FishBatch> results = companyOrderDao.getOrderItems(companyOrderDao.getOrders().get(0).getId());
 //		Assert.assertEquals(5, results.size());
 	}
 //	

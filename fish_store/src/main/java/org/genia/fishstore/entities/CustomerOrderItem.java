@@ -20,7 +20,7 @@ public class CustomerOrderItem {
 	
 	@ManyToOne
 	@JoinColumn(name = "companyOrderItemId")
-	private CompanyOrderItem companyOrderItem; 		
+	private FishBatch companyOrderItem; 		
 	
 	@ManyToOne
 	@JoinColumn(name = "customerOrderId")
@@ -43,11 +43,11 @@ public class CustomerOrderItem {
 		this.weight = weight;
 	}
 
-	public CompanyOrderItem getCompanyOrderItem() {
+	public FishBatch getCompanyOrderItem() {
 		return companyOrderItem;
 	}
 
-	public void setCompanyOrderItem(CompanyOrderItem companyOrderItem) {
+	public void setCompanyOrderItem(FishBatch companyOrderItem) {
 		this.companyOrderItem = companyOrderItem;
 	}
 

@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class CompanyOrderItem {
+public class FishBatch {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "companyOrderItemId")
@@ -29,7 +29,7 @@ public class CompanyOrderItem {
 	
 	@ManyToOne
 	@JoinColumn(name = "companyOrderId")
-	private CompanyOrder order;
+	private PurchaseOrder order;
 
 	public int getId() {
 		return id;
@@ -111,11 +111,11 @@ public class CompanyOrderItem {
 		this.fishType = fishType;
 	}
 
-	public CompanyOrder getOrder() {
+	public PurchaseOrder getOrder() {
 		return order;
 	}
 
-	public void setOrder(CompanyOrder order) {
+	public void setOrder(PurchaseOrder order) {
 		this.order = order;
 	}
 }
