@@ -1,13 +1,24 @@
 package org.genia.fishstore.entities;
 
+import java.util.List;
 import java.util.Map;
 
 public class IncomeReport<T> {
+	
+	List<ReportLine> lines;
+	public List<ReportLine> getLines() {
+		return lines;
+	}
+
+	public void setLines(List<ReportLine> lines) {
+		this.lines = lines;
+	}
+
 	public Map<T, Double> earnings;
 	
 	
 	public void addEarning(T grouping, double value) {
-//		earnings.put(grouping, value);
+		earnings.put(grouping, value);
 	}
 	
 	public void getEarning(T period) {
@@ -15,10 +26,10 @@ public class IncomeReport<T> {
 	}
 	
 	public double getTotalEarnings() {
-		Double totals = null;
-//		for (T t : earnings.keySet()) {
-//			totals += earnings.get(t);
-//		}
+		Double totals = 0.0;
+		for (T t : earnings.keySet()) {
+			totals += earnings.get(t);
+		}
 		
 		return totals;
 	}

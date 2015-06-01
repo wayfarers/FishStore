@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 public class FishBatch {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "companyOrderItemId")
+	@Column(name = "fishBatchId")
 	private int id;
 	private String quality;
 	private int weightOrdered;
@@ -28,7 +28,7 @@ public class FishBatch {
 	private FishType fishType;
 	
 	@ManyToOne
-	@JoinColumn(name = "companyOrderId")
+	@JoinColumn(name = "purchaseOrderId")
 	private PurchaseOrder order;
 
 	public int getId() {

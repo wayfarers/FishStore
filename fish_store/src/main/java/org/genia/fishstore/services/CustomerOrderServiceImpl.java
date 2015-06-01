@@ -1,13 +1,15 @@
 package org.genia.fishstore.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.genia.fishstore.dao.CustomerOrderDao;
-import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.entities.CustomerOrderItem;
+import org.genia.fishstore.entities.FishType;
+import org.genia.fishstore.entities.IncomeReport;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,5 +28,15 @@ public class CustomerOrderServiceImpl extends GenericServiceImpl<CustomerOrder> 
 	@Override
 	public List<CustomerOrderItem> getOrderList(int orderId) {
 		return dao.findById(orderId).getOrderItems();
+	}
+
+	@Override
+	public IncomeReport<Date> generateReportByDates() {
+		return dao.generateReportByDates();
+	}
+
+	@Override
+	public IncomeReport<FishType> generateReportByFishTypes() {
+		return dao.generateReportByFishTypes();
 	}
 }

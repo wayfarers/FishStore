@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 public class PurchaseOrder {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "companyOrderId")
+	@Column(name = "purchaseOrderId")
 	private int id;
 	
 	@Temporal(TemporalType.DATE)

@@ -1,6 +1,7 @@
 package org.genia.fishstore.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -8,7 +9,10 @@ import javax.persistence.TypedQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.genia.fishstore.CustomerOrderFilter;
 import org.genia.fishstore.entities.CustomerOrder;
+import org.genia.fishstore.entities.FishType;
+import org.genia.fishstore.entities.IncomeReport;
 import org.genia.fishstore.entities.PaginatedResult;
+import org.genia.fishstore.entities.ReportLine;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -65,6 +69,25 @@ public class CustomerOrderDaoImpl extends GenericDaoImpl<CustomerOrder> implemen
 		}
 		
 		return new PaginatedResult<CustomerOrder>(resultCount, query.getResultList());
+	}
+
+	@Override
+	public IncomeReport<Date> generateReportByDates() {
+		String sql = "select new org.genia.fishstore.entities.ReportLine(co.date, SUM(coi.sum)) from CustomerOrder co, CustomerOrderItem coi where co.id = coi.order.id group by co.date";
+//		String sql = "select new org.genia.fishstore.entities.ReportLine(co.date, SUM(co.sum)) from CustomerOrder co group by co.date";
+		IncomeReport<Date> report = new IncomeReport<>();
+		List<ReportLine> list = em.createQuery(sql, ReportLine.class).getResultList();
+		report.setLines(list);
+		return report;
+	}
+
+	@Override
+	public IncomeReport<FishType> generateReportByFishTypes() {
+		String sql = "select new org.genia.fishstore.entities.ReportLine(coi.fishBatch.fishType, SUM(coi.sum)) from CustomerOrderItem coi group by coi.fishBatch.fishType";
+		IncomeReport<FishType> report = new IncomeReport<>();
+		List<ReportLine> list = em.createQuery(sql, ReportLine.class).getResultList();
+		report.setLines(list);
+		return report;
 	}
 
 }

@@ -15,12 +15,13 @@ public class CustomerOrderItem {
 	@Column(name = "customerOrderItemId")
 	private int id;
 	private int weight;
+	double sum;
 	
 //	private double primeCost;
 	
 	@ManyToOne
-	@JoinColumn(name = "companyOrderItemId")
-	private FishBatch companyOrderItem; 		
+	@JoinColumn(name = "fishBatchId")
+	private FishBatch fishBatch; 		
 	
 	@ManyToOne
 	@JoinColumn(name = "customerOrderId")
@@ -44,11 +45,11 @@ public class CustomerOrderItem {
 	}
 
 	public FishBatch getCompanyOrderItem() {
-		return companyOrderItem;
+		return fishBatch;
 	}
 
-	public void setCompanyOrderItem(FishBatch companyOrderItem) {
-		this.companyOrderItem = companyOrderItem;
+	public void setCompanyOrderItem(FishBatch fishBatch) {
+		this.fishBatch = fishBatch;
 	}
 
 	public CustomerOrder getOrder() {
@@ -59,5 +60,11 @@ public class CustomerOrderItem {
 		this.order = order;
 	}
 
-	
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
 }
