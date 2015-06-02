@@ -31,4 +31,13 @@ public class EmployeeServiceImpl extends GenericServiceImpl<Employee> implements
 	public PaginatedResult<Employee> findByFilter(EmployeeFilter filter) {
 		return dao.findByFilter(filter);
 	}
+
+	@Override
+	public Employee authentificate(String login, String password) {
+		Employee employee = dao.findByLogin(login);
+		if (employee != null && employee.getPassword().equals(password)) {
+			return employee;
+		}
+		return null;
+	}
 }

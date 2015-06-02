@@ -23,4 +23,13 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer> implements
 	public Customer findByLogin(String login) {
 		return dao.findByLogin(login);
 	}
+
+	@Override
+	public Customer authentificate(String login, String password) {
+		Customer customer = dao.findByLogin(login);
+		if (customer != null && customer.getPassword().equals(password)) {
+			return customer;
+		}
+		return null;
+	}
 }

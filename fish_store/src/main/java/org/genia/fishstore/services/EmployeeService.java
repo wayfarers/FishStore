@@ -8,6 +8,7 @@ public interface EmployeeService extends GenericService<Employee>{
 	
 	public Employee findByLogin(String login);
 	public PaginatedResult<Employee> findByFilter(EmployeeFilter filter);
+	public Employee authentificate(String login, String password);
 	
 	
 	// public void authentificate(String login, String password) throws InvalidAuthentificationException;

@@ -5,4 +5,5 @@ import org.genia.fishstore.entities.Customer;
 
 public interface CustomerService extends GenericService<Customer> {
 	public Customer findByLogin(String login);
+	public Customer authentificate(String login, String password);
 }
