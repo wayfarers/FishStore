@@ -25,7 +25,6 @@ public class CustomerOrder {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
-	private double sum;
 	private OrderStatus status;
 	private String comment;
 	private double sumPayed;
@@ -45,7 +44,7 @@ public class CustomerOrder {
 	
 	@Override
 	public String toString() {
-		return String.format("Comment: %s, sum: %f", comment, sum);
+		return String.format("Comment: %s, sum: %f", comment, getTotalSum());
 	}
 	
 	
@@ -95,14 +94,6 @@ public class CustomerOrder {
 		this.date = date;
 	}
 
-	public double getSum() {
-		return sum;
-	}
-
-	public void setSum(double sum) {
-		this.sum = sum;
-	}
-
 	public OrderStatus getStatus() {
 		return status;
 	}
@@ -125,6 +116,14 @@ public class CustomerOrder {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	
+	public double getTotalSum() {
+		double sum = 0;
+		for (CustomerOrderItem item : orderItems) {
+			sum += item.getSum();
+		}
+		return sum;
 	}
 	
 	

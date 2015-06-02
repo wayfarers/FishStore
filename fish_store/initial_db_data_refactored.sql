@@ -46,9 +46,9 @@ INSERT INTO `fish_store`.`FishBatch` (`fishBatchId`, `quality`, `weightOrdered`,
 INSERT INTO `fish_store`.`FishBatch` (`fishBatchId`, `quality`, `weightOrdered`, `weightArrived`, `weightLeft`, `cost`, `fishTypeId`, `purchaseOrderId`, `writtenOff`, `salePrice`, `onSale`) VALUES ('10', 'cool', '100', '100', '100', '12', '10', '3', '0', '123', '1');
 
 
-INSERT INTO `fish_store`.`CustomerOrder` (`customerOrderId`, `date`, `sum`, `status`, `customerId`, `sumPayed`, `approvedBy`) VALUES ('1', '2012-10-10', '1000', '1', '1', '1000', '3');
-INSERT INTO `fish_store`.`CustomerOrder` (`customerOrderId`, `date`, `sum`, `status`, `customerId`, `sumPayed`, `approvedBy`) VALUES ('2', '2013-10-10', '2000', '1', '2', '2000', '3');
-INSERT INTO `fish_store`.`CustomerOrder` (`customerOrderId`, `date`, `sum`, `status`, `customerId`, `sumPayed`, `approvedBy`) VALUES ('3', '2014-10-10', '3000', '1', '3', '3000', '3');
+INSERT INTO `fish_store`.`CustomerOrder` (`customerOrderId`, `date`, `status`, `customerId`, `sumPayed`, `approvedBy`) VALUES ('1', '2012-10-10', '1', '1', '1000', '3');
+INSERT INTO `fish_store`.`CustomerOrder` (`customerOrderId`, `date`, `status`, `customerId`, `sumPayed`, `approvedBy`) VALUES ('2', '2013-10-10', '1', '2', '2000', '3');
+INSERT INTO `fish_store`.`CustomerOrder` (`customerOrderId`, `date`, `status`, `customerId`, `sumPayed`, `approvedBy`) VALUES ('3', '2014-10-10', '1', '3', '3000', '3');
 
 
 INSERT INTO `fish_store`.`CustomerOrderItem` (`customerOrderItemId`, `weight`, `fishBatchId`, `customerOrderId`, `sum`) VALUES ('1', '10', '1', '1', '1213');
