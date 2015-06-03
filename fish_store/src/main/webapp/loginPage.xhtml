@@ -6,11 +6,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" >
 
-<h:head>
-<title>Login page</title>
-</h:head>
-
-<h:body>
+<ui:composition template="/global/main.xhtml">
+<ui:define name="page-content">
+	Please, enter your credentials to access your account.<br/><br/>
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="2">
 			<h:outputText value="Login: " />
@@ -24,8 +22,9 @@
 
 		<p:separator />
 
-		<p:commandButton action="#{loginBean.applyLogin}" value="Sing in" />
+		<p:commandButton action="#{loginBean.login}" value="Sign in" />
 	</h:form>
+</ui:define>
 
-</h:body>
+</ui:composition>
 </html>

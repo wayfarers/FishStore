@@ -12,12 +12,32 @@ import org.genia.fishstore.services.EmployeeService;
 public class LoginBean {
 	private String login;
 	private String password;
-	private Boolean isStuff = false;
+	private Boolean isEmployee = false;
+	
+	@Inject
+	SessionDataBean sessionData;
 	
 	@Inject
 	CustomerService customerService;
 	@Inject
 	EmployeeService employeeService;
+	
+	public String login() {
+		if(isEmployee) {
+			sessionData.setLoggedInEmployee(employeeService.authentificate(login, password));
+			return "";
+		} else {
+			sessionData.setLoggedInCustomer(customerService.authentificate(login, password));
+			return "filter.xhtml";
+		}
+	}
+	
+	public String logout() {
+		sessionData.setLoggedInEmployee(null);
+		sessionData.setLoggedInCustomer(null);
+		
+		return "loggedOut.xhtml";
+	}
 	
 	public LoginBean() {
 	}
@@ -38,21 +58,5 @@ public class LoginBean {
 		this.password = password;
 	}
 
-	public Boolean getIsStuff() {
-		return isStuff;
-	}
-
-	public void setIsStuff(Boolean isStuff) {
-		this.isStuff = isStuff;
-	}
-
-	public String applyLogin() {
-		if(isStuff) {
-			int id = employeeService.authentificate(login, password).getId();
-			return "";
-		} else {
-			int id = customerService.authentificate(login, password).getId();
-			return "filter.xhtml";
-		}
-	}
+	
 }

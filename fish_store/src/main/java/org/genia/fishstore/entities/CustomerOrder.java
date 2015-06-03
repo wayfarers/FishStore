@@ -2,6 +2,7 @@ package org.genia.fishstore.entities;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -38,8 +39,39 @@ public class CustomerOrder {
 	private Customer customer;
 	
 	@OneToMany(mappedBy = "order")
-	private List<CustomerOrderItem> orderItems = new ArrayList<>();
+	private List<CustomerOrderItem> items = new ArrayList<>();
+	
+	public void addFishBatch(FishBatch fishBatch, int weight) {
+		CustomerOrderItem item = findItemForBatch(fishBatch.getId());
+		if (item != null) {
+			item.setWeight(weight);
+		} else {
+			item = new CustomerOrderItem();
+			item.setWeight(weight);
+			item.setFishBatch(fishBatch);
+			addItem(item);
+		}
+	}
+	
+	private CustomerOrderItem findItemForBatch(int fishBatchId) {
+		for (CustomerOrderItem customerOrderItem : items) {
+			if (customerOrderItem.getFishBatch().getId() == fishBatchId) {
+				return customerOrderItem;
+			}
+		}
+		
+		return null;
+	}
 
+	
+	public void removeFishBatch(int fishBatchId) {
+		Iterator<CustomerOrderItem> iterator = items.iterator();
+		while (iterator.hasNext()) {
+			if (iterator.next().getFishBatch().getId() == fishBatchId) {
+				iterator.remove();
+			}
+		}
+	}
 	
 	
 	@Override
@@ -49,11 +81,11 @@ public class CustomerOrder {
 	
 	
 	public List<CustomerOrderItem> getOrderItems() {
-		return orderItems;
+		return items;
 	}
 
 	public void setOrderItems(List<CustomerOrderItem> orderItems) {
-		this.orderItems = orderItems;
+		this.items = orderItems;
 	}
 	
 	public double getSumPayed() {
@@ -120,10 +152,15 @@ public class CustomerOrder {
 	
 	public double getTotalSum() {
 		double sum = 0;
-		for (CustomerOrderItem item : orderItems) {
+		for (CustomerOrderItem item : items) {
 			sum += item.getSum();
 		}
 		return sum;
+	}
+	
+	public void addItem(CustomerOrderItem item) {
+		item.setOrder(this);
+		items.add(item);
 	}
 	
 	

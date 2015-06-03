@@ -36,16 +36,16 @@ public class FishBatchDaoImpl extends GenericDaoImpl<FishBatch> implements FishB
 		List<String> conditions = new ArrayList<>();
 		
 		if (filter.getOnStockOnly()) {
-			conditions.add("coi.onSale = true");
+			conditions.add("fb.onSale = true");
 		}
 		if (filter.getMaxPrice() != null) {
-			conditions.add("coi.salePrice <= " + filter.getMaxPrice());
+			conditions.add("fb.salePrice <= " + filter.getMaxPrice());
 		}
 		if (filter.getFishType() != null) {
-			conditions.add("coi.fishType.name like " + "'%" + filter.getFishType() + "%'");
+			conditions.add("fb.fishType.name like " + "'%" + filter.getFishType() + "%'");
 		}
 		if (filter.getMaxAgeInDays() != null) {
-			conditions.add("coi.order.dateArrived >= :maxAgeDate");
+			conditions.add("fb.order.dateArrived >= :maxAgeDate");
 		}
 		
 		sqlFilter = " where " + StringUtils.join(conditions, " and ");

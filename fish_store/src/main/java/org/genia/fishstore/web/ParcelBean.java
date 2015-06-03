@@ -16,8 +16,6 @@ public class ParcelBean {
 	ParcelFilter filter;
 	PaginatedResult<FishBatch> result;
 	
-	public int id;
-	
 	@Inject
 	private FishBatchDao orderService; 	//temporary
 	

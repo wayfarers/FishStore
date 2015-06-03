@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<ui:composition template="/global/main.xhtml">
+	<ui:define name="page-subtitle">
+		Registration
+	</ui:define>
+	<ui:define name="page-content">
+		<h1>Registering new customer:</h1>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Name:" />
+				<h:inputText id="cName" value="#{customerRegBean.name}"></h:inputText>
+	
+				<h:outputText value="E-mail:" />
+				<h:inputText id="cEmail" value="#{customerRegBean.email}"></h:inputText>
+	
+				<h:outputText value="Login:" />
+				<h:inputText id="cLogin" value="#{customerRegBean.login}">
+				</h:inputText>
+	
+				<h:outputText value="Password:" />
+				<h:inputSecret value="#{customerRegBean.password}" />
+				
+			</h:panelGrid>
+			<h:commandButton value="Submit" action="#{customerRegBean.apply}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

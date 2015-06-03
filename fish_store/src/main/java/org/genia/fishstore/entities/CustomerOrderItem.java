@@ -26,7 +26,7 @@ public class CustomerOrderItem {
 	@ManyToOne
 	@JoinColumn(name = "customerOrderId")
 	private CustomerOrder order; 		//Is in needed?
-
+	
 
 	public int getId() {
 		return id;
@@ -42,14 +42,22 @@ public class CustomerOrderItem {
 
 	public void setWeight(int weight) {
 		this.weight = weight;
+		updateSum();
+	}
+	
+	private void updateSum() {
+		if (fishBatch != null) {
+			sum = weight * fishBatch.getSalePrice();
+		}
 	}
 
-	public FishBatch getCompanyOrderItem() {
+	public FishBatch getFishBatch() {
 		return fishBatch;
 	}
 
-	public void setCompanyOrderItem(FishBatch fishBatch) {
+	public void setFishBatch(FishBatch fishBatch) {
 		this.fishBatch = fishBatch;
+		updateSum();
 	}
 
 	public CustomerOrder getOrder() {
