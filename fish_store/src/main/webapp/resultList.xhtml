@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/global/main.xhtml">
 	<ui:define name="page-content">
@@ -34,10 +35,16 @@
 						<f:facet name="header">Date arrived</f:facet> 
 				#{parcel.order.dateArrived} 
 			</h:column>
-			<h:column>
+					<h:column>
 						<f:facet name="header">Quality</f:facet> 
 				#{parcel.quality} 
 			</h:column>
+					<h:column>
+						<f:facet name="header"></f:facet>
+						<p:commandButton value="Add to cart" icon="ui-icon-extlink"
+							actionListener="#{dfView.addToCart(parcel)}">
+						</p:commandButton>
+					</h:column>
 				</h:dataTable>
 			</h:panelGrid>
 		</h:form>

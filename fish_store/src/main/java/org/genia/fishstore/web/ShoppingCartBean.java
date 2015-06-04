@@ -5,7 +5,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.genia.fishstore.entities.CustomerOrder;
+import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.services.FishBatchService;
+import org.primefaces.context.RequestContext;
 
 @Named
 @SessionScoped
@@ -15,20 +17,47 @@ public class ShoppingCartBean {
 	FishBatchService fishBatchService;
 	
 	private CustomerOrder order;
-	//private List<CustomerOrderItem> items;
+	
+	private FishBatch fishBatchSelected;
+	
+
+	private int weightSelected;
 	
 	public ShoppingCartBean() {
 		order = new CustomerOrder();
-		//items = new ArrayList<>();
 	}
 	
-	public void addToCart(int fishBatchId, int weight) {
-		order.addFishBatch(fishBatchService.findById(fishBatchId), weight);
+	public void addToCart() {
+		order.addFishBatch(fishBatchSelected, weightSelected);
+		RequestContext.getCurrentInstance().closeDialog(fishBatchSelected);
 	}
 	
 	public void removeFromCart(int fishBatchId) {
 		order.removeFishBatch(fishBatchId);
 	}
-	
+
+	public CustomerOrder getOrder() {
+		return order;
+	}
+
+	public void setOrder(CustomerOrder order) {
+		this.order = order;
+	}
+
+	public int getWeightSelected() {
+		return weightSelected;
+	}
+
+	public void setWeightSelected(int weightSelected) {
+		this.weightSelected = weightSelected;
+	}
+
+	public FishBatch getFishBatchSelected() {
+		return fishBatchSelected;
+	}
+
+	public void setFishBatchSelected(FishBatch fishBatchSelected) {
+		this.fishBatchSelected = fishBatchSelected;
+	}
 	
 }

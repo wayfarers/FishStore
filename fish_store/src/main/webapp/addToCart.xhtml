@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cars</title>
+	<style type="text/css">
+.ui-widget {
+	font-size: 90%;
+}
+</style>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputText value="Fish name:" />
+			<h:outputText value="Weight:" />
+			<h:outputText value="" />
+
+			<h:outputText value="#{shoppingCartBean.fishBatchSelected.fishType.name}" />
+
+			<h:inputText id="weight" value="#{shoppingCartBean.weightSelected}">
+				<f:convertNumber integerOnly="true" />
+			</h:inputText>
+
+			<p:column headerText="addToCart">
+				<p:commandButton icon="ui-icon-search"
+					actionListener="#{shoppingCartBean.addToCart}" />
+			</p:column>
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+
+</html>
