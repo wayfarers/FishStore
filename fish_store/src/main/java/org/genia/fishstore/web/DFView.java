@@ -1,21 +1,22 @@
 package org.genia.fishstore.web;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
+import java.io.Serializable;
+
+import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
 import org.genia.fishstore.entities.FishBatch;
 import org.primefaces.context.RequestContext;
  
-@ManagedBean(name = "dfView")
-@SessionScoped
-public class DFView {
+@Named(value = "dfView")
+@ViewScoped
+public class DFView implements Serializable {
 	
-	@Inject
-	ShoppingCartBean cart;
+//	@Inject
+//	ShoppingCartBean cart;
          
     public void addToCart(FishBatch fishbatch) {
-    	cart.setFishBatchSelected(fishbatch);
+//    	cart.setFishBatchSelected(fishbatch);
         RequestContext.getCurrentInstance().openDialog("addToCart");
     }
      

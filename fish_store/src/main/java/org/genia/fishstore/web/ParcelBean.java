@@ -1,5 +1,7 @@
 package org.genia.fishstore.web;
 
+import java.io.Serializable;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,7 +14,7 @@ import org.springframework.context.annotation.Scope;
 
 @Named
 @Scope("session")
-public class ParcelBean {
+public class ParcelBean implements Serializable {
 	ParcelFilter filter;
 	PaginatedResult<FishBatch> result;
 	
