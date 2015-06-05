@@ -32,9 +32,12 @@
 				#{parcel.weightLeft} 
 			</h:column>
 					<h:column>
-						<f:facet name="header">Date arrived</f:facet> 
-				#{parcel.order.dateArrived} 
-			</h:column>
+						<f:facet name="header">Date arrived</f:facet>
+
+						<h:outputText value="#{parcel.order.dateArrived}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</h:column>
 					<h:column>
 						<f:facet name="header">Quality</f:facet> 
 				#{parcel.quality} 
