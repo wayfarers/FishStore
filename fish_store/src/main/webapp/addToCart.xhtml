@@ -4,32 +4,28 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title>Cars</title>
+	<title>Cart</title>
 	<style type="text/css">
-.ui-widget {
-	font-size: 90%;
-}
-</style>
+		.ui-widget { font-size: 90%; }
+	</style>
 </h:head>
 <h:body>
 	<h:form>
 		<h:panelGrid columns="3">
-			<h:outputText value="Fish name:" />
-			<h:outputText value="Weight:" />
-			<h:outputText value="" />
-
+			<h:outputText value="Fish name: " />
 			<h:outputText value="#{shoppingCartBean.fishBatchSelected.fishType.name}" />
+			<h:outputText value=" " />
+			<h:outputText value="Weight: " />
 
 			<h:inputText id="weight" value="#{shoppingCartBean.weightSelected}">
 				<f:convertNumber integerOnly="true" />
 			</h:inputText>
 
 			<p:column headerText="addToCart">
-				<p:commandButton icon="ui-icon-search"
+				<p:commandButton icon="ui-icon-arrowreturnthick-1-s"
 					actionListener="#{shoppingCartBean.addToCart}" />
 			</p:column>
-
-		</h:panelGrid>
+	</h:panelGrid>
 	</h:form>
 </h:body>
 

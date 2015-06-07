@@ -1,7 +1,5 @@
 package org.genia.fishstore.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -28,7 +26,21 @@ public class GenericDaoImpl<T> implements GenericDao<T>{
 
 	@Override
 	public void save(T entity) {
-		em.persist(entity);
+		if (hasEmptyId(entity)) {
+			// Its a new
+			em.persist(entity);
+		} else {
+			em.merge(entity);
+		}
+	}
+	
+	private boolean hasEmptyId(T entity) {
+		try {
+			// Use reflection to get an identifier
+			return entity.getClass().getMethod("getId").invoke(entity) == null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	@Override

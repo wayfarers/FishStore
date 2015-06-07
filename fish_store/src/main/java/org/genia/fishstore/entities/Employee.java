@@ -11,7 +11,7 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "employeeId")
-	private int id;
+	private Integer id;
 	private String name;
 	private String login;
 	private String password;
@@ -19,11 +19,11 @@ public class Employee {
 	private boolean suspended;
 	private String email;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

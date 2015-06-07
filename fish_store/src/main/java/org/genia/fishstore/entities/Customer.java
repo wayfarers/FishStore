@@ -20,7 +20,7 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "customerId")
-	private int id;
+	private Integer id;
 	private String name;
 	private String email;
 	private String login;
@@ -47,10 +47,10 @@ public class Customer {
 		return orders;
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

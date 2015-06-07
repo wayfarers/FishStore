@@ -13,7 +13,7 @@ public class FishBatch {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "fishBatchId")
-	private int id;
+	private Integer id;
 	private String quality;
 	private int weightOrdered;
 	private int weightArrived;
@@ -31,11 +31,11 @@ public class FishBatch {
 	@JoinColumn(name = "purchaseOrderId")
 	private PurchaseOrder order;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -5,9 +5,10 @@ import javax.inject.Named;
 
 import org.genia.fishstore.entities.Customer;
 import org.genia.fishstore.entities.Employee;
+import org.springframework.context.annotation.Scope;
 
 @Named
-@SessionScoped
+@Scope(value="session")
 public class SessionDataBean {
 	private Employee loggedInEmployee;
 	private Customer loggedInCustomer;

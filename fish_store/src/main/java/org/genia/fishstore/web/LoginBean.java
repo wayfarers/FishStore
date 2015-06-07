@@ -1,14 +1,14 @@
 package org.genia.fishstore.web;
 
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.genia.fishstore.services.CustomerService;
 import org.genia.fishstore.services.EmployeeService;
+import org.springframework.context.annotation.Scope;
 
 @Named
-@SessionScoped
+@Scope("session")
 public class LoginBean {
 	private String login;
 	private String password;
@@ -56,6 +56,14 @@ public class LoginBean {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Boolean getIsEmployee() {
+		return isEmployee;
+	}
+
+	public void setIsEmployee(Boolean isEmployee) {
+		this.isEmployee = isEmployee;
 	}
 
 	

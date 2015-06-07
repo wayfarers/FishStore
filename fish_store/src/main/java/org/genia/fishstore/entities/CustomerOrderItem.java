@@ -13,7 +13,7 @@ public class CustomerOrderItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "customerOrderItemId")
-	private int id;
+	private Integer id;
 	private int weight;
 	double sum;
 	
@@ -28,11 +28,11 @@ public class CustomerOrderItem {
 	private CustomerOrder order; 		//Is in needed?
 	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

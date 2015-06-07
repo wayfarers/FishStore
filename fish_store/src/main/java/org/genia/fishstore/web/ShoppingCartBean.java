@@ -1,6 +1,5 @@
 package org.genia.fishstore.web;
 
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -8,9 +7,11 @@ import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.services.FishBatchService;
 import org.primefaces.context.RequestContext;
+import org.springframework.context.annotation.Scope;
 
 @Named
-@SessionScoped
+@Scope("session")
+// TODO: Session scope does not work as expected.
 public class ShoppingCartBean {
 	
 	@Inject

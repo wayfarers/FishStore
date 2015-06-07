@@ -23,6 +23,11 @@
 			<h1>Welcome to FishStore!</h1>
 			<h:outputText value="Welcome, Guest!" rendered="#{sessionDataBean.loggedInCustomer == null}" />
 			<h:outputText value="Welcome, #{sessionDataBean.loggedInCustomer.name}!" rendered="#{sessionDataBean.loggedInCustomer != null}" />
+			<ui:fragment id="cartinfo" rendered="#{shoppingCartBean.order.totalItemsCount > 0}">
+			<div>
+				You have <h:outputText value="#{shoppingCartBean.order.totalItemsCount}"/> items in your cart!
+			</div>
+			</ui:fragment>
 		</div>
 		<h:form>
 		<nav class="navbar navbar-default">
@@ -51,7 +56,7 @@
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
-			            <li><a href="#">Action</a></li>
+			            <li><a href="employeeLogin.xhtml">Login for employees</a></li>
 			            <li><a href="#">Another action</a></li>
 			            <li><a href="#">Something else here</a></li>
 			            <li class="divider"></li>

@@ -21,7 +21,7 @@ public class CustomerOrder {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "customerOrderId")
-	private int id;
+	private Integer id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
@@ -40,6 +40,10 @@ public class CustomerOrder {
 	
 	@OneToMany(mappedBy = "order")
 	private List<CustomerOrderItem> items = new ArrayList<>();
+	
+	public int getTotalItemsCount() {
+		return items.size();
+	}
 	
 	public void addFishBatch(FishBatch fishBatch, int weight) {
 		CustomerOrderItem item = findItemForBatch(fishBatch.getId());
@@ -110,11 +114,11 @@ public class CustomerOrder {
 
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

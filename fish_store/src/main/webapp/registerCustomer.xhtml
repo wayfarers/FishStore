@@ -14,20 +14,20 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Name:" />
-				<h:inputText id="cName" value="#{customerRegBean.name}"></h:inputText>
+				<h:inputText id="cName" value="#{customerRegistrationBean.newCustomer.name}" required="true"></h:inputText>
 	
 				<h:outputText value="E-mail:" />
-				<h:inputText id="cEmail" value="#{customerRegBean.email}"></h:inputText>
+				<h:inputText id="cEmail" value="#{customerRegistrationBean.newCustomer.email}" required="true"></h:inputText>
 	
 				<h:outputText value="Login:" />
-				<h:inputText id="cLogin" value="#{customerRegBean.login}">
+				<h:inputText id="cLogin" value="#{customerRegistrationBean.newCustomer.login}" required="true">
 				</h:inputText>
 	
 				<h:outputText value="Password:" />
-				<h:inputSecret value="#{customerRegBean.password}" />
+				<h:inputSecret value="#{customerRegistrationBean.newCustomer.password}" required="true" />
 				
 			</h:panelGrid>
-			<h:commandButton value="Submit" action="#{customerRegBean.apply}" />
+			<h:commandButton value="Submit" action="#{customerRegistrationBean.apply}" />
 		</h:form>
 	</ui:define>
 </ui:composition>
