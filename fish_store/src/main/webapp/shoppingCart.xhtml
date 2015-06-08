@@ -12,7 +12,7 @@
 
 
 		<h:form>
-		
+
 			<h:panelGrid columns="1">
 
 				<h:dataTable value="#{shoppingCartBean.order.items}" var="item"
@@ -30,14 +30,20 @@
 				#{item.sum} 
 			</h:column>
 					<h:column>
-						<f:facet name="header"> </f:facet>
-						<p:commandButton value="Delete" action="#{shoppingCartBean.removeFromCart(item.fishBatch.id)}">
+						<f:facet name="header">
+						</f:facet>
+						<p:commandButton value="Delete"
+							action="#{shoppingCartBean.removeFromCart(item.fishBatch.id)}">
 						</p:commandButton>
 					</h:column>
 				</h:dataTable>
 			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<h:outputText value="Total:" />
+				<h:outputText value="#{shoppingCartBean.order.getTotalSum}" />
+			</h:panelGrid>
 		</h:form>
-		
+
 		<a href="filter.xhtml">Go back...</a>
 	</ui:define>
 </ui:composition>

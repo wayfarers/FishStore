@@ -43,6 +43,6 @@ public class ParcelBean implements Serializable {
 	
 	public String applyFilter() {
 		result = orderService.findByFilter(filter);
-		return "resultList";
+		return "resultList?faces-redirect=true";
 	}
 }

@@ -28,7 +28,7 @@ public class LoginBean {
 			return "";
 		} else {
 			sessionData.setLoggedInCustomer(customerService.authentificate(login, password));
-			return "filter.xhtml";
+			return "filter.xhtml?faces-redirect=true";
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class LoginBean {
 		sessionData.setLoggedInEmployee(null);
 		sessionData.setLoggedInCustomer(null);
 		
-		return "loggedOut.xhtml";
+		return "loggedOut.xhtml?faces-redirect=true";
 	}
 	
 	public LoginBean() {

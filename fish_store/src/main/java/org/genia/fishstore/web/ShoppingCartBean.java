@@ -34,7 +34,7 @@ public class ShoppingCartBean {
 	
 	public String removeFromCart(int fishBatchId) {
 		order.removeFishBatch(fishBatchId);
-		return "shoppingCart.xhtml";
+		return "shoppingCart.xhtml?faces-redirect=true";
 		
 	}
 

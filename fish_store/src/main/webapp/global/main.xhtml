@@ -25,7 +25,7 @@
 			<h:outputText value="Welcome, #{sessionDataBean.loggedInCustomer.name}!" rendered="#{sessionDataBean.loggedInCustomer != null}" />
 			<ui:fragment id="cartinfo" rendered="#{shoppingCartBean.order.totalItemsCount > 0}">
 			<div>
-				You have <h:outputText value="#{shoppingCartBean.order.totalItemsCount}"/> items in your cart!
+				You have <h:outputText value="#{shoppingCartBean.order.totalItemsCount}"/> item(s) in your cart!
 			</div>
 			</ui:fragment>
 		</div>
@@ -67,7 +67,7 @@
 			        </li>
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
-			        <li><a href="#">Link</a></li>
+			        <li><a href="shoppingCart.xhtml">Cart</a></li>
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">

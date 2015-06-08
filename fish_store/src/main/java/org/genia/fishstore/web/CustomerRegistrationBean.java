@@ -24,12 +24,12 @@ public class CustomerRegistrationBean {
 	public String apply() {
 		if(customerService.findByLogin(newCustomer.getLogin()) == null) {
 			//message, such login is already exists.
-			return "registerCustomer.xhtml";
+			return "registerCustomer.xhtml?faces-redirect=true";
 		}
 		newCustomer.setRegistrationDate(Calendar.getInstance().getTime());
 		customerService.save(newCustomer);
 		
-		return "filter.xhtml";
+		return "filter.xhtml?faces-redirect=true";
 	}
 	
 	
@@ -42,19 +42,4 @@ public class CustomerRegistrationBean {
 		this.newCustomer = newCustomer;
 	}
 
-//	public String getLogin() {
-//		return login;
-//	}
-//
-//	public void setLogin(String login) {
-//		this.login = login;
-//	}
-//
-//	public String getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
 }
