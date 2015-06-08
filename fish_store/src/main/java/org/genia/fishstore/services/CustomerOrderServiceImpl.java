@@ -27,7 +27,7 @@ public class CustomerOrderServiceImpl extends GenericServiceImpl<CustomerOrder> 
 	
 	@Override
 	public List<CustomerOrderItem> getOrderList(int orderId) {
-		return dao.findById(orderId).getOrderItems();
+		return dao.findById(orderId).getItems();
 	}
 
 	@Override

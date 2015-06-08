@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/global/main.xhtml">
+	<ui:define name="page-content">
+		<h1>Resulting parcels:</h1>
+
+
+		<h:form>
+		
+			<h:panelGrid columns="1">
+
+				<h:dataTable value="#{shoppingCartBean.order.items}" var="item"
+					styleClass="table table-striped">
+					<h:column>
+						<f:facet name="header">Fish</f:facet> 
+				#{item.fishBatch.fishType.name} 
+			</h:column>
+					<h:column>
+						<f:facet name="header">Weight</f:facet> 
+				#{item.weight} 
+			</h:column>
+					<h:column>
+						<f:facet name="header">Cost</f:facet> 
+				#{item.sum} 
+			</h:column>
+					<h:column>
+						<f:facet name="header"> </f:facet>
+						<p:commandButton value="Delete" action="#{shoppingCartBean.removeFromCart(item.fishBatch.id)}">
+						</p:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:panelGrid>
+		</h:form>
+		
+		<a href="filter.xhtml">Go back...</a>
+	</ui:define>
+</ui:composition>
+
+</html>

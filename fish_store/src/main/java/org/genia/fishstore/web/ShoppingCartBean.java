@@ -21,7 +21,6 @@ public class ShoppingCartBean {
 	
 	private FishBatch fishBatchSelected;
 	
-
 	private int weightSelected;
 	
 	public ShoppingCartBean() {
@@ -33,8 +32,10 @@ public class ShoppingCartBean {
 		RequestContext.getCurrentInstance().closeDialog(fishBatchSelected);
 	}
 	
-	public void removeFromCart(int fishBatchId) {
+	public String removeFromCart(int fishBatchId) {
 		order.removeFishBatch(fishBatchId);
+		return "shoppingCart.xhtml";
+		
 	}
 
 	public CustomerOrder getOrder() {

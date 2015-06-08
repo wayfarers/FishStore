@@ -84,11 +84,11 @@ public class CustomerOrder {
 	}
 	
 	
-	public List<CustomerOrderItem> getOrderItems() {
+	public List<CustomerOrderItem> getItems() {
 		return items;
 	}
 
-	public void setOrderItems(List<CustomerOrderItem> orderItems) {
+	public void setItems(List<CustomerOrderItem> orderItems) {
 		this.items = orderItems;
 	}
 	
@@ -100,19 +100,13 @@ public class CustomerOrder {
 		this.sumPayed = sumPayed;
 	}
 
-
-
 	public Employee getAccountant() {
 		return accountant;
 	}
 
-
-
 	public void setAccountant(Employee accountant) {
 		this.accountant = accountant;
 	}
-
-
 
 	public Integer getId() {
 		return id;
