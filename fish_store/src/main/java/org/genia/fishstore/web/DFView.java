@@ -41,10 +41,4 @@ public class DFView implements Serializable {
         RequestContext.getCurrentInstance().openDialog("addToCart", options, null);
     }
      
-//    public void onCarChosen(SelectEvent event) {
-//        Car car = (Car) event.getObject();
-//        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Car Selected", "Id:" + car.getId());
-//         
-//        FacesContext.getCurrentInstance().addMessage(null, message);
-//    }
 }

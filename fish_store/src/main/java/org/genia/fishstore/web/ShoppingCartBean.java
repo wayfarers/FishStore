@@ -73,8 +73,11 @@ public class ShoppingCartBean {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Submit error", "Please login to submit an order.");
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 		} else {
+			order.setCustomer(sessionData.getLoggedInCustomer());
 			customerOrderService.save(order);
 			order = new CustomerOrder();
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Submitting..", "Submit succesful!.");
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "filter.xhtml?faces-redirect=true";
 		}
 		

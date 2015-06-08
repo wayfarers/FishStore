@@ -1,6 +1,5 @@
 package org.genia.fishstore.web;
 
-import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
 import org.genia.fishstore.entities.Customer;
