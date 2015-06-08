@@ -40,8 +40,9 @@
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<h:outputText value="Total:" />
-				<h:outputText value="#{shoppingCartBean.order.getTotalSum}" />
+				<h:outputText value="#{shoppingCartBean.order.totalSum}" />
 			</h:panelGrid>
+			<h:commandButton value="Submit" action="#{shoppingCartBean.submitOrder}" />
 		</h:form>
 
 		<a href="filter.xhtml">Go back...</a>

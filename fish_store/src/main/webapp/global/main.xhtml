@@ -20,14 +20,19 @@
 
 	<h:body>
 		<div id="header">
-			<h1>Welcome to FishStore!</h1>
-			<h:outputText value="Welcome, Guest!" rendered="#{sessionDataBean.loggedInCustomer == null}" />
-			<h:outputText value="Welcome, #{sessionDataBean.loggedInCustomer.name}!" rendered="#{sessionDataBean.loggedInCustomer != null}" />
-			<ui:fragment id="cartinfo" rendered="#{shoppingCartBean.order.totalItemsCount > 0}">
-			<div>
-				You have <h:outputText value="#{shoppingCartBean.order.totalItemsCount}"/> item(s) in your cart!
-			</div>
-			</ui:fragment>
+			<h:panelGrid columns="2">
+			<h:graphicImage value="resources/logo_s.bmp" style="margin-right: 20px" />
+			<h:panelGroup>
+				<h1>	Welcome to FishStore!</h1>
+				<h:outputText value="Welcome, Guest!" rendered="#{sessionDataBean.loggedInCustomer == null}" />
+				<h:outputText value="Welcome, #{sessionDataBean.loggedInCustomer.name}!" rendered="#{sessionDataBean.loggedInCustomer != null}" />
+				<ui:fragment id="cartinfo" rendered="#{shoppingCartBean.order.totalItemsCount > 0}">
+					<div>
+						You have <h:outputText value="#{shoppingCartBean.order.totalItemsCount}"/> item(s) in your cart!
+					</div>
+				</ui:fragment>
+			</h:panelGroup>
+			</h:panelGrid>
 		</div>
 		<h:form>
 		<nav class="navbar navbar-default">

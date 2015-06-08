@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class CustomerOrder {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
-	private OrderStatus status;
+	private OrderStatus status = OrderStatus.NONE;
 	private String comment;
 	private double sumPayed;
 	
@@ -38,7 +39,7 @@ public class CustomerOrder {
 	@JoinColumn(name = "customerId")
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
 	private List<CustomerOrderItem> items = new ArrayList<>();
 	
 	public int getTotalItemsCount() {
