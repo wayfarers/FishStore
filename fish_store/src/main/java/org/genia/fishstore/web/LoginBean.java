@@ -23,9 +23,10 @@ public class LoginBean {
 	EmployeeService employeeService;
 	
 	public String login() {
+		System.out.println(isEmployee);
 		if(isEmployee) {
 			sessionData.setLoggedInEmployee(employeeService.authentificate(login, password));
-			return "";
+			return "securityOfficerPage.xhtml?faces-redirect=true";
 		} else {
 			sessionData.setLoggedInCustomer(customerService.authentificate(login, password));
 			return "filter.xhtml?faces-redirect=true";

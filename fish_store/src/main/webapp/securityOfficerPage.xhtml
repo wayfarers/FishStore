@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/global/main.xhtml">
+	<ui:define name="page-subtitle">
+		Search for fish parcels.
+	</ui:define>
+	<ui:define name="page-content">
+		<h1>Employees list:</h1>
+		#{securityOfficerBean.refreshEmployees()}
+		<h:form>
+			<h:dataTable value="#{securityOfficerBean.employees}"
+				var="employee" styleClass="table table-striped">
+				<h:column>
+					<f:facet name="header">Name</f:facet> 
+				#{employee.name} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Login</f:facet> 
+				#{employee.login} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet> 
+				#{employee.email} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">Role</f:facet> 
+				#{employee.role} 
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Status</f:facet> 
+				#{employee.suspended} 
+			</h:column>
+				<h:column>
+					<f:facet name="header">Action</f:facet>
+					<p:commandButton value="Edit" icon="ui-icon-extlink"
+						actionListener="#{securityOfficerBean.editEmployee(employee)}">
+					</p:commandButton>
+				</h:column>
+			</h:dataTable>
+			<h:commandButton value="Submit" action="#{parcelBean.applyFilter}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

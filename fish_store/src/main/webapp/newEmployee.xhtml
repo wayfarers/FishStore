@@ -1,11 +1,45 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
-<body>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Create new employee account</title>
+	<style type="text/css">
+	.ui-widget {
+	font-size: 90%;
+	}
+	</style>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Name:" />
+			<h:inputText id="name" value="#{securityOfficerBean.employee.name}"></h:inputText>
 
-</body>
+			<h:outputText value="Login:" />
+			<h:inputText id="login" value="#{securityOfficerBean.employee.login}"></h:inputText>
+
+			<h:outputText value="Password:" />
+			<h:inputText id="pass" value="#{securityOfficerBean.employee.password}"></h:inputText>
+
+			<h:outputText value="Email" />
+			<h:inputText id="email" value="#{securityOfficerBean.employee.email}"></h:inputText>
+
+			<h:outputText value="Role:" />
+			<h:selectOneMenu value="#{securityOfficerBean.employee.role}">
+				<f:selectItem itemValue="1" itemLabel="General manager"
+					checked="true" />
+				<f:selectItem itemValue="2" itemLabel="Cold store manager" />
+				<f:selectItem itemValue="3" itemLabel="Accountant" />
+				<f:selectItem itemValue="4" itemLabel="Security officer" />
+			</h:selectOneMenu>
+
+			<h:outputText value="Suspended:" />
+			<h:selectBooleanCheckbox value="#{securityOfficerBean.employee.suspended}" />
+
+		</h:panelGrid>
+		<h:commandButton value="Submit" action="#{securityOfficerBean.saveEmployee}" />
+	</h:form>
+</h:body>
 </html>
