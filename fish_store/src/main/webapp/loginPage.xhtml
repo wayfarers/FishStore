@@ -8,6 +8,8 @@
 
 <ui:composition template="/global/main.xhtml">
 <ui:define name="page-content">
+	<h1>Customer login</h1>
+	
 	Please, enter your credentials to access your account.<br/><br/>
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="2">
@@ -17,12 +19,13 @@
 			<p:password id="pass" value="#{loginBean.password}" />
 
 		</h:panelGrid>
+		<a href="employeeLogin.xhtml">Go to employee login</a>
 
 		<p:spacer height="10" />
 
 		<p:separator />
 
-		<p:commandButton action="#{loginBean.login}" value="Sign in" />
+		<p:commandButton action="#{loginBean.loginCustomer}" value="Sign in" />
 		<a href="registerCustomer.xhtml">Register</a>
 	</h:form>
 </ui:define>

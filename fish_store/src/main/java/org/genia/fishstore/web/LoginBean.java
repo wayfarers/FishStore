@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Scope;
 public class LoginBean {
 	private String login;
 	private String password;
-	private Boolean isEmployee = false;
 	
 	@Inject
 	SessionDataBean sessionData;
@@ -22,15 +21,14 @@ public class LoginBean {
 	@Inject
 	EmployeeService employeeService;
 	
-	public String login() {
-		System.out.println(isEmployee);
-		if(isEmployee) {
-			sessionData.setLoggedInEmployee(employeeService.authentificate(login, password));
-			return "securityOfficerPage.xhtml?faces-redirect=true";
-		} else {
-			sessionData.setLoggedInCustomer(customerService.authentificate(login, password));
-			return "filter.xhtml?faces-redirect=true";
-		}
+	public String loginCustomer() {
+		sessionData.setLoggedInCustomer(customerService.authentificate(login, password));
+		return "filter.xhtml?faces-redirect=true";
+	}
+	
+	public String loginEmployee() {
+		sessionData.setLoggedInEmployee(employeeService.authentificate(login, password));
+		return "securityOfficerPage.xhtml?faces-redirect=true";
 	}
 	
 	public String logout() {
@@ -58,14 +56,5 @@ public class LoginBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Boolean getIsEmployee() {
-		return isEmployee;
-	}
-
-	public void setIsEmployee(Boolean isEmployee) {
-		this.isEmployee = isEmployee;
-	}
-
 	
 }

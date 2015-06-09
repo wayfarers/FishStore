@@ -6,10 +6,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" >
 
-<ui:composition template="/global/main.xhtml">
+<ui:composition template="/global/admin-template.xhtml">
 <ui:define name="page-content">
+	<h1>Employee login</h1>
 	Please, enter your credentials to access your account.<br/><br/>
-	#{loginBean.isEmployee = true}
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="2">
 			<h:outputText value="Login: " />
@@ -18,12 +18,13 @@
 			<p:password id="pass" value="#{loginBean.password}" />
 
 		</h:panelGrid>
+		<a href="loginPage.xhtml">Go to customer login</a>
 
 		<p:spacer height="10" />
 
 		<p:separator />
 
-		<p:commandButton action="#{loginBean.login}" value="Sign in" />
+		<p:commandButton action="#{loginBean.loginEmployee}" value="Sign in" />
 	</h:form>
 </ui:define>
 

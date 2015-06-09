@@ -52,7 +52,11 @@ public class CustomerOrderDaoImpl extends GenericDaoImpl<CustomerOrder> implemen
 			conditions.add("ord.sum <> ord.sumPayed");
 		}
 
-		sqlFilter = " where " + StringUtils.join(conditions, " and ");
+		if (conditions.size() == 0) {
+			sqlFilter = "";
+		} else {
+			sqlFilter = " where " + StringUtils.join(conditions, " and ");
+		}
 		
 		long resultCount = em.createQuery(countSql + sqlFilter, long.class).getSingleResult();
 		

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Scope;
 
 @Named
 @Scope("session")
-// TODO: Session scope does not work as expected.
+// TODO: When adding an item to cart, (1) show a growl, (2) make sure the top info is updated.
 public class ShoppingCartBean {
 	
 	@Inject

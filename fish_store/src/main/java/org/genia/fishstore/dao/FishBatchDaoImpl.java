@@ -41,14 +41,18 @@ public class FishBatchDaoImpl extends GenericDaoImpl<FishBatch> implements FishB
 		if (filter.getMaxPrice() != null) {
 			conditions.add("fb.salePrice <= " + filter.getMaxPrice());
 		}
-		if (filter.getFishType() != null) {
+		if (filter.getFishType() != null && !filter.getFishType().equals("")) {
 			conditions.add("fb.fishType.name like " + "'%" + filter.getFishType() + "%'");
 		}
 		if (filter.getMaxAgeInDays() != null) {
 			conditions.add("fb.order.dateArrived >= :maxAgeDate");
 		}
 		
-		sqlFilter = " where " + StringUtils.join(conditions, " and ");
+		if (conditions.size() == 0) {
+			sqlFilter = "";
+		} else {
+			sqlFilter = " where " + StringUtils.join(conditions, " and ");
+		}
 		
 		TypedQuery<FishBatch> query = em.createQuery(sql + sqlFilter, FishBatch.class);
 		TypedQuery<Long> countQuery = em.createQuery(countSql + sqlFilter, long.class);

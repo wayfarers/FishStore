@@ -35,16 +35,25 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee> implements Employe
 		List<String> conditions = new ArrayList<>();
 		
 		if (filter.getRole() != null) {
-			conditions.add("emp.role = " + filter.getRole().getValue());
+			conditions.add("emp.role = :role");
 		}
 		if (filter.getLogin() !=  null) {
 			conditions.add("emp.login like" + "'%" + filter.getLogin() + "%'");
 		}
 		
-		sqlFilter = " where " + StringUtils.join(conditions);
+		if (conditions.size() == 0) {
+			sqlFilter = "";
+		} else {
+			sqlFilter = " where " + StringUtils.join(conditions, " and ");
+		}
+		
 		long resultCount = em.createQuery(countSql + sqlFilter, long.class).getSingleResult();
 		
 		TypedQuery<Employee> query = em.createQuery(sql + sqlFilter, Employee.class);
+		
+		if (filter.getRole() != null) {
+			query.setParameter("role", filter.getRole());
+		}
 		
 		if (filter.getPaginator() != null) {
 			filter.getPaginator().updateQueryPageInfo(query);

@@ -8,10 +8,14 @@
 
 <ui:composition template="/global/main.xhtml">
 	<ui:define name="page-content">
-		<h1>Resulting parcels:</h1>
+		<h1>Shopping cart</h1>
 
+		<ui:fragment rendered="#{shoppingCartBean.order.items.size() == 0}">
+			We are sorry to say, but your shopping cart is empty.<br/>
+			Why don't you go and  <a href="filter.xhtml">search for some fish</a>?
+		</ui:fragment>
 
-		<h:form>
+		<h:form rendered="#{shoppingCartBean.order.items.size() > 0}">
 
 			<h:panelGrid columns="1">
 
@@ -42,10 +46,11 @@
 				<h:outputText value="Total:" />
 				<h:outputText value="#{shoppingCartBean.order.totalSum}" />
 			</h:panelGrid>
-			<h:commandButton value="Submit" action="#{shoppingCartBean.submitOrder}" />
+			<h:commandButton value="Submit the order" action="#{shoppingCartBean.submitOrder}" />
+			<a href="filter.xhtml">Continue shopping...</a>
 		</h:form>
 
-		<a href="filter.xhtml">Go back...</a>
+		
 	</ui:define>
 </ui:composition>
 

@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Scope;
 public class SecurityOfficerBean {
 	
 	Employee employee;
-	List<Employee> employees;
 	EmployeeFilter filter;
 	
 	@Inject
@@ -25,10 +24,6 @@ public class SecurityOfficerBean {
 	public SecurityOfficerBean() {
 		employee = new Employee();
 		filter = new EmployeeFilter();
-	}
-	
-	public void refreshEmployees() {
-		employees = getEmployees();
 	}
 	
 	public List<Employee> getEmployees() {
