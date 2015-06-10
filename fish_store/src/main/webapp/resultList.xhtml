@@ -12,9 +12,9 @@
 
 
 		<h:form>
-		
+			
 			<h:panelGrid columns="1">
-
+			
 				<h:dataTable value="#{parcelBean.result.resultList}" var="parcel"
 					styleClass="table table-striped">
 					<h:column>
@@ -47,7 +47,6 @@
 					<h:column>
 						
 						<f:facet name="header">Select</f:facet>
-						
 						<p:commandButton value="Add to cart" icon="ui-icon-extlink" actionListener="#{dfView.addToCart(parcel)}">
 							<p:ajax update=":cartinfo" event="dialogReturn"/>
 						</p:commandButton>

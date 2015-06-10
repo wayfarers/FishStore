@@ -27,7 +27,7 @@ public class ShoppingCartBean {
 	
 	private FishBatch fishBatchSelected;
 	
-	private int weightSelected;
+	private Integer weightSelected;
 	
 	public ShoppingCartBean() {
 		order = new CustomerOrder();
@@ -44,30 +44,6 @@ public class ShoppingCartBean {
 		
 	}
 
-	public CustomerOrder getOrder() {
-		return order;
-	}
-
-	public void setOrder(CustomerOrder order) {
-		this.order = order;
-	}
-
-	public int getWeightSelected() {
-		return weightSelected;
-	}
-
-	public void setWeightSelected(int weightSelected) {
-		this.weightSelected = weightSelected;
-	}
-
-	public FishBatch getFishBatchSelected() {
-		return fishBatchSelected;
-	}
-
-	public void setFishBatchSelected(FishBatch fishBatchSelected) {
-		this.fishBatchSelected = fishBatchSelected;
-	}
-	
 	public String submitOrder() {
 		if (sessionData.getLoggedInCustomer() == null) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Submit error", "Please login to submit an order.");
@@ -82,5 +58,29 @@ public class ShoppingCartBean {
 		}
 		
 		return null;
+	}
+	
+	public CustomerOrder getOrder() {
+		return order;
+	}
+
+	public void setOrder(CustomerOrder order) {
+		this.order = order;
+	}
+
+	public Integer getWeightSelected() {
+		return weightSelected;
+	}
+
+	public void setWeightSelected(Integer weightSelected) {
+		this.weightSelected = weightSelected;
+	}
+
+	public FishBatch getFishBatchSelected() {
+		return fishBatchSelected;
+	}
+
+	public void setFishBatchSelected(FishBatch fishBatchSelected) {
+		this.fishBatchSelected = fishBatchSelected;
 	}
 }
