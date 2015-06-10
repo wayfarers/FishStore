@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/global/main.xhtml">
+	<ui:define name="page-content">
+		<h1>Resulting parcels:</h1>
+
+
+		<h:form>
+			
+			<h:panelGrid columns="1">
+			
+				<h:dataTable value="#{reportBean.reportList}" var="line"
+					styleClass="table table-striped">
+					<h:column>
+						<f:facet name="header">Type</f:facet> 
+				#{line.date} 
+			</h:column>
+					<h:column>
+						<f:facet name="header">Income</f:facet>
+						<h:outputText value="#{line.income}">
+						</h:outputText>
+					</h:column>
+					
+					<h:column>
+						
+						<f:facet name="header">Select</f:facet>
+						<p:commandButton value="Add to cart" icon="ui-icon-extlink" actionListener="#{dfView.addToCart(parcel)}">
+							<p:ajax update=":cartinfo" event="dialogReturn"/>
+						</p:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:panelGrid>
+		</h:form>
+		
+		<a href="filter.xhtml">Go back...</a>
+	</ui:define>
+</ui:composition>
+
+</html>
