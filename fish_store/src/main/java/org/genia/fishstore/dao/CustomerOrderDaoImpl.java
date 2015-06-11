@@ -39,19 +39,21 @@ public class CustomerOrderDaoImpl extends GenericDaoImpl<CustomerOrder> implemen
 		
 		List<String> conditions = new ArrayList<>();
 		
-		if (filter.getFromDate() != null) {
-			conditions.add("ord.date >= :fromDate");
+		if (filter != null) {
+			if (filter.getFromDate() != null) {
+				conditions.add("ord.date >= :fromDate");
+			}
+			if (filter.getTillDate() != null) {
+				conditions.add("ord.date <= :tillDate");
+			}
+			if (filter.getStatus() != null) {
+				conditions.add("ord.status = " + filter.getStatus().getValue());
+			}
+			if (filter.isUnPayed()) {
+				conditions.add("ord.sum <> ord.sumPayed");
+			}
 		}
-		if (filter.getTillDate() != null) {
-			conditions.add("ord.date <= :tillDate");
-		}
-		if (filter.getStatus() != null) {
-			conditions.add("ord.status = " + filter.getStatus().getValue());
-		}
-		if (filter.isUnPayed()) {
-			conditions.add("ord.sum <> ord.sumPayed");
-		}
-
+		
 		if (conditions.size() == 0) {
 			sqlFilter = "";
 		} else {
@@ -62,14 +64,16 @@ public class CustomerOrderDaoImpl extends GenericDaoImpl<CustomerOrder> implemen
 		
 		TypedQuery<CustomerOrder> query = em.createQuery(sql + sqlFilter, CustomerOrder.class);
 		
-		if (filter.getFromDate() != null) {
-			query.setParameter("fromDate", filter.getFromDate());
-		}
-		if (filter.getTillDate() != null) {
-			query.setParameter("tillDate", filter.getTillDate());
-		}
-		if (filter.getPaginator() != null) {
-			filter.getPaginator().updateQueryPageInfo(query);
+		if (filter != null) {
+			if (filter.getFromDate() != null) {
+				query.setParameter("fromDate", filter.getFromDate());
+			}
+			if (filter.getTillDate() != null) {
+				query.setParameter("tillDate", filter.getTillDate());
+			}
+			if (filter.getPaginator() != null) {
+				filter.getPaginator().updateQueryPageInfo(query);
+			}
 		}
 		
 		return new PaginatedResult<CustomerOrder>(resultCount, query.getResultList());

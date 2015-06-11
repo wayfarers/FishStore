@@ -28,6 +28,7 @@ public class FishBatchDaoImpl extends GenericDaoImpl<FishBatch> implements FishB
 	
 	@Override
 	public PaginatedResult<FishBatch> findByFilter(ParcelFilter filter) {
+		
 		String sql = "select fb from FishBatch fb";
 		String countSql = "select count(fb.id) from FishBatch fb";
 		String sqlFilter;
@@ -35,40 +36,43 @@ public class FishBatchDaoImpl extends GenericDaoImpl<FishBatch> implements FishB
 		
 		List<String> conditions = new ArrayList<>();
 		
-		if (filter.getOnStockOnly()) {
-			conditions.add("fb.onSale = true");
+		if (filter != null) {
+			if (filter.getOnStockOnly()) {
+				conditions.add("fb.onSale = true");
+			}
+			if (filter.getMaxPrice() != null) {
+				conditions.add("fb.salePrice <= " + filter.getMaxPrice());
+			}
+			if (filter.getFishType() != null && !filter.getFishType().equals("")) {
+				conditions.add("fb.fishType.name like " + "'%" + filter.getFishType() + "%'");
+			}
+			if (filter.getMaxAgeInDays() != null) {
+				conditions.add("fb.order.dateArrived >= :maxAgeDate");
+			}
+
 		}
-		if (filter.getMaxPrice() != null) {
-			conditions.add("fb.salePrice <= " + filter.getMaxPrice());
-		}
-		if (filter.getFishType() != null && !filter.getFishType().equals("")) {
-			conditions.add("fb.fishType.name like " + "'%" + filter.getFishType() + "%'");
-		}
-		if (filter.getMaxAgeInDays() != null) {
-			conditions.add("fb.order.dateArrived >= :maxAgeDate");
-		}
-		
 		if (conditions.size() == 0) {
 			sqlFilter = "";
 		} else {
 			sqlFilter = " where " + StringUtils.join(conditions, " and ");
 		}
-		
+
 		TypedQuery<FishBatch> query = em.createQuery(sql + sqlFilter, FishBatch.class);
 		TypedQuery<Long> countQuery = em.createQuery(countSql + sqlFilter, long.class);
 		
-		if (filter.getMaxAgeInDays() != null) {
-			Calendar calendar = Calendar.getInstance();
-			calendar.add(Calendar.DAY_OF_YEAR, -filter.getMaxAgeInDays());
-			Date maxAgeDate = calendar.getTime();
-			query.setParameter("maxAgeDate", maxAgeDate);
-			countQuery.setParameter("maxAgeDate", maxAgeDate);
+		if (filter != null) {
+			if (filter.getMaxAgeInDays() != null) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.add(Calendar.DAY_OF_YEAR, -filter.getMaxAgeInDays());
+				Date maxAgeDate = calendar.getTime();
+				query.setParameter("maxAgeDate", maxAgeDate);
+				countQuery.setParameter("maxAgeDate", maxAgeDate);
+			}
+
+			if (filter.getPaginator() != null) {
+				filter.getPaginator().updateQueryPageInfo(query);
+			}
 		}
-		
-		if (filter.getPaginator() != null) {
-			filter.getPaginator().updateQueryPageInfo(query);
-		}
-		
 		resultCount = countQuery.getSingleResult();
 		return new PaginatedResult<> (resultCount, query.getResultList());
 	}
