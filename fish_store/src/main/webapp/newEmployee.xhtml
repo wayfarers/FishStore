@@ -28,8 +28,7 @@
 
 			<h:outputText value="Role:" />
 			<h:selectOneMenu value="#{securityOfficerBean.employee.role}">
-				<f:selectItem itemValue="1" itemLabel="General manager"
-					checked="true" />
+				<f:selectItem itemValue="1" itemLabel="General manager" />
 				<f:selectItem itemValue="2" itemLabel="Cold store manager" />
 				<f:selectItem itemValue="3" itemLabel="Accountant" />
 				<f:selectItem itemValue="4" itemLabel="Security officer" />
@@ -37,9 +36,8 @@
 
 			<h:outputText value="Suspended:" />
 			<h:selectBooleanCheckbox value="#{securityOfficerBean.employee.suspended}" />
-
+		<p:commandButton value="Save" actionListener="#{securityOfficerBean.saveEmployee()}" />
 		</h:panelGrid>
-		<h:commandButton value="Save" action="#{securityOfficerBean.saveEmployee}" />
 	</h:form>
 </h:body>
 </html>
