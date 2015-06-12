@@ -27,4 +27,8 @@ public class BossBean {
 	public List<PurchaseOrder> getPurchaseOrders() {
 		return purchaseService.findAll();
 	}
+	
+	public List<FishBatch> getItems(int orderId) {
+		return purchaseService.getOrderItems(orderId);
+	}
 }

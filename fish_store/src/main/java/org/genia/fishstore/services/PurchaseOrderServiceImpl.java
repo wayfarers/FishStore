@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.genia.fishstore.dao.PurchaseOrderDao;
+import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.PurchaseOrder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,11 @@ public class PurchaseOrderServiceImpl extends GenericServiceImpl<PurchaseOrder> 
 	@Override
 	public List<PurchaseOrder> findAll() {
 		return dao.getOrders();
+	}
+
+	@Override
+	public List<FishBatch> getOrderItems(int orderId) {
+		return dao.getOrderItems(orderId);
 	}
 
 }

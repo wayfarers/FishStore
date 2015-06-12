@@ -2,11 +2,13 @@ package org.genia.fishstore.services;
 
 import java.util.List;
 
+import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.PurchaseOrder;
 
 public interface PurchaseOrderService extends GenericService<PurchaseOrder> {
 	
 	public List<PurchaseOrder> findAll();
+	public List<FishBatch> getOrderItems(int orderId);
 }
 
 // TODO: Fish profile page
