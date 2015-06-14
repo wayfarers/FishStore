@@ -1,6 +1,8 @@
 package org.genia.fishstore.web;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -9,6 +11,7 @@ import org.genia.fishstore.ParcelFilter;
 import org.genia.fishstore.dao.FishBatchDao;
 import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.PaginatedResult;
+import org.genia.fishstore.services.FishBatchService;
 import org.springframework.context.annotation.Scope;
 
 
@@ -20,6 +23,9 @@ public class ParcelBean implements Serializable {
 	
 	@Inject
 	private FishBatchDao orderService; 	//temporary
+	
+	@Inject
+	FishBatchService fishBatchService;
 	
 	public ParcelBean() {
 		filter = new ParcelFilter();
@@ -41,8 +47,21 @@ public class ParcelBean implements Serializable {
 		this.result = result;
 	}
 	
-	public String applyFilter() {
+	// TODO: Show indicators (spinners) for all Ajax requests
+	// TODO: Implement "No results found" notification
+	public void applyFilter() {
+		System.out.println(Thread.currentThread().getName());
 		result = orderService.findByFilter(filter);
-		return "resultList?faces-redirect=true";
+	}
+	
+	public List<String> completeText(String query) {
+		List<String> allFishTypes = fishBatchService.getFishNames();
+		List<String> filteredNames = new ArrayList<>();
+		for (String name : allFishTypes) {
+			if (name.toLowerCase().contains(query)) {
+				filteredNames.add(name);
+			}
+		}
+		return filteredNames;
 	}
 }

@@ -1,10 +1,13 @@
 package org.genia.fishstore.services;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.genia.fishstore.ParcelFilter;
 import org.genia.fishstore.dao.FishBatchDao;
 import org.genia.fishstore.entities.FishBatch;
+import org.genia.fishstore.entities.FishType;
 import org.genia.fishstore.entities.PaginatedResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,4 +29,13 @@ public class FishBatchServiceImpl extends GenericServiceImpl<FishBatch> implemen
 		return dao.findByFilter(filter);
 	}
 
+	@Override
+	public List<String> getFishNames() {
+		return dao.getFishNames();
+	}
+
+	@Override
+	public List<FishType> getFishList() {
+		return dao.getFishList();
+	}
 }

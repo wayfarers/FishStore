@@ -3,34 +3,89 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 	
 <ui:composition template="/global/main.xhtml">
 	<ui:define name="page-subtitle">
 		Search for fish parcels.
 	</ui:define>
 	<ui:define name="page-content">
-		<h1>Filter options:</h1>
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputText value="Fish name:" />
-				<h:inputText id="fName" value="#{parcelBean.filter.fishType}"></h:inputText>
-	
-				<h:outputText value="Max price:" />
-				<h:inputText id="price" value="#{parcelBean.filter.maxPrice}">
-					<f:convertNumber integerOnly="true" />
-				</h:inputText>
-	
-				<h:outputText value="Max age in days:" />
-				<h:inputText id="age" value="#{parcelBean.filter.maxAgeInDays}">
-					<f:convertNumber integerOnly="true" />
-				</h:inputText>
-	
-				<h:outputText value="On stock only:" />
-				<h:selectBooleanCheckbox value="#{parcelBean.filter.onStockOnly}" />
-			</h:panelGrid>
-			<h:commandButton value="Submit" action="#{parcelBean.applyFilter}" />
-		</h:form>
+		<table class="columns">
+			<tr>
+				<td>
+					<h1>Filter options:</h1> 
+					<h:form>
+						
+						<p:panelGrid columns="2">
+							<h:outputText value="Fish name:" />
+							<p:autoComplete id="fName" value="#{parcelBean.filter.fishType}"
+								completeMethod="#{parcelBean.completeText}" />
+
+							<h:outputText value="Max price:" />
+							<p:inputText id="price" value="#{parcelBean.filter.maxPrice}">
+								<f:convertNumber integerOnly="true" />
+							</p:inputText>
+
+							<h:outputText value="Max age in days:" />
+							<p:inputText id="age" value="#{parcelBean.filter.maxAgeInDays}">
+								<f:convertNumber integerOnly="true" />
+							</p:inputText>
+
+							<h:outputText value="On stock only:" />
+							<p:selectBooleanCheckbox value="#{parcelBean.filter.onStockOnly}" />
+						</p:panelGrid>
+						<p:commandButton value="Submit" action="#{parcelBean.applyFilter}"
+							update=":results" />
+					</h:form>
+				</td>
+				<td>
+					<h1>Results</h1>
+					<h:form id="results">
+						<h:panelGrid columns="1">
+						
+							<h:dataTable value="#{parcelBean.result.resultList}" var="parcel"
+								styleClass="table table-striped table-hover">
+								<h:column>
+									<f:facet name="header">Id</f:facet> 
+									#{parcel.id} 
+								</h:column>
+								<h:column>
+									<f:facet name="header">Name</f:facet> 
+									#{parcel.fishType.name} 
+								</h:column>
+								<h:column>
+									<f:facet name="header">Price</f:facet> 
+									#{parcel.salePrice} 
+								</h:column>
+								<h:column>
+									<f:facet name="header">Left</f:facet> 
+									#{parcel.weightLeft} 
+								</h:column>
+								<h:column>
+									<f:facet name="header">Date arrived</f:facet>
+			
+									<h:outputText value="#{parcel.order.dateArrived}">
+										<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Quality</f:facet> 
+									#{parcel.quality} 
+								</h:column>
+								<h:column>
+									<f:facet name="header">Select</f:facet>
+									<p:commandButton value="Add to cart" icon="ui-icon-extlink" actionListener="#{dfView.addToCart(parcel)}">
+										<p:ajax update=":cartinfo" event="dialogReturn"/>
+									</p:commandButton>
+								</h:column>
+							</h:dataTable>
+						</h:panelGrid>
+					</h:form>
+				</td>
+			</tr>
+		</table>
+		
 	</ui:define>
 </ui:composition>
 </html>

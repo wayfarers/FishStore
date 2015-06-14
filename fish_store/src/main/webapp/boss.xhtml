@@ -19,11 +19,15 @@
 				</p:column>
 
 				<p:column headerText="Date ordered">
-					<h:outputText value="#{order.dateOrdered}" />
+					<h:outputText value="#{order.dateOrdered}">
+						<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Date arrived">
-					<h:outputText value="#{order.dateArrived}" />
+					<h:outputText value="#{order.dateArrived}">
+						<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Accepted to store by">
@@ -32,13 +36,13 @@
 				
 				<p:column headerText="Action">
 					<p:commandButton value="View details/Edit" icon="ui-icon-extlink"
-						actionListener="#{***}">
+						action="#{bossBean.editOrder(order)}">
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
 			<p:commandButton value="Add new"
-				action="#{***}" />
+				action="#{bossBean.newOrder}" style="margin-top:20px"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

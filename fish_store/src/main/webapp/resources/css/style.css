@@ -2,28 +2,6 @@
 
 BODY {padding: 0px; margin: 0px;}
 
-.merchantTable {
-	border-collapse: collapse;
-	border: 1px solid #000000;
-}
-
-.merchantTableHeader {
-	text-align: center;
-	background: none repeat scroll 0 0 #B5B5B5;
-	border-bottom: 1px solid #000000;
-	padding: 2px;
-}
-
-.merchantTableOddRow {
-	text-align: center;
-	background: none repeat scroll 0 0 #FFFFFFF;
-}
-
-.merchantTableEvenRow {
-	text-align: center;
-	background: none repeat scroll 0 0 #D3D3D3;
-}
-
 #header {background-color: #EEE; padding: 15px 30px; background-position:center;}
 #header H1 {margin: 0px; padding: 0px; font-family: Georgia;}
 
@@ -33,3 +11,9 @@ BODY {padding: 0px; margin: 0px;}
 
 #footer {text-align: center; border-top: 1px solid #EEE; margin-top: 20px; color: #444;}
 
+TABLE.columns TD {vertical-align: top !important; padding-right: 20px;}
+
+.noBorders tr, .noBorders td {
+    background: none !important;
+    border: none !important;
+}

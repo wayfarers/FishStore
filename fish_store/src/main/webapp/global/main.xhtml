@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <f:view>
 	<h:head>
 		<f:facet name="first">
@@ -33,11 +34,11 @@
 				</ui:fragment>
 				
 				<h:outputText value="Welcome, #{sessionDataBean.loggedInCustomer.name}!" rendered="#{sessionDataBean.loggedInCustomer != null}" />
-				<ui:fragment id="cartinfo" rendered="#{shoppingCartBean.order.totalItemsCount > 0}">
+				<h:panelGroup id="cartinfo" rendered="#{shoppingCartBean.order.totalItemsCount > 0}">
 					<div>
 						You have <h:outputText value="#{shoppingCartBean.order.totalItemsCount}"/> item(s) in <a href="shoppingCart.xhtml">your cart</a>.
 					</div>
-				</ui:fragment>
+				</h:panelGroup>
 			</h:panelGroup>
 			</h:panelGrid>
 		</div>
@@ -88,6 +89,13 @@
 
 		<div id="page-content">
 			<ui:insert name="page-content" />
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage value="resources/ajax-loader.gif" />
+			</p:dialog>
 		</div>
 
 		<div id="footer">Fish Store Inc. :: All rights reserved :: (c) 2015</div>

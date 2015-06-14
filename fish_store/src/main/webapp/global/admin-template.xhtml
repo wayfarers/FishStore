@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <f:view>
 	<h:head>
 		<f:facet name="first">
@@ -77,6 +78,13 @@
 
 		<div id="page-content">
 			<ui:insert name="page-content" />
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage value="resources/ajax-loader.gif" />
+			</p:dialog>
 		</div>
 
 		<div id="footer">Fish Store Inc. :: All rights reserved :: (c) 2015</div>

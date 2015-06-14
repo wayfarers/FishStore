@@ -1,5 +1,6 @@
 package org.genia.fishstore.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -28,6 +29,10 @@ public class PurchaseOrder {
 	@ManyToOne
 	@JoinColumn(name = "acceptedToStoreBy")
 	private Employee coldStoreManager;
+	
+	public PurchaseOrder() {
+		dateOrdered = Calendar.getInstance().getTime();
+	}
 
 	public Integer getId() {
 		return id;

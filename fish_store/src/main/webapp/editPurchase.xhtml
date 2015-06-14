@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/global/admin-template.xhtml">
+	<ui:define name="page-subtitle">
+		Search for fish parcels.
+	</ui:define>
+	<ui:define name="page-content">
+		<h1>Order details:</h1>
+		<h:form>
+			<p:dataTable id="itemList" var="item" value="#{bossBean.orderItems}"
+				editable="true" editMode="cell" widgetVar="cellCars">
+				<f:facet name="header">Edit order</f:facet>
+
+				<!-- <p:column headerText="Fish name">
+              <p:cellEditor>
+                  <f:facet name="output"><h:outputText value="#{item.fishType.name}" /></f:facet>
+                  <f:facet name="input"><p:inputText id="modelInput" value="#{car.id}" style="width:96%"/></f:facet> 
+              </p:cellEditor>
+          </p:column>  -->
+
+				<p:column headerText="Fish name">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.fishType.name}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:selectOneMenu value="#{item.fishType}" style="width:100%" >
+								<f:selectItems  value="#{bossBean.fishList}" var="fish" itemLabel="#{fish.name}" itemValue="#{fish}" />
+							</h:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Quality">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.quality}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.quality}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Weight ordered">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.weightOrdered}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.weightOrdered}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Weight arrived">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.weightArrived}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.weightArrived}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Weight left">
+					<h:outputText value="#{item.weightLeft}" />
+				</p:column>
+
+				<!-- <p:column headerText="Write off">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{item.writtenOff}" /></f:facet>
+               <f:facet name="input">
+                   <h:selectOneMenu value="#{item.writtenOff}" style="width:100%">
+                       <f:selectItems value="#{dtEditView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
+                   </h:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+           </p:column>
+           
+           <p:column headerText="On sale">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{item.onSale}" /></f:facet>
+               <f:facet name="input">
+                   <h:selectOneMenu value="#{item.onSale}" style="width:100%">
+                       <f:selectItems value="#{dtEditView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
+                   </h:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+           </p:column> -->
+
+				<p:column headerText="Sale price">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.salePrice}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.salePrice}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Cost">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.cost}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.cost}" style="width:96%" label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+			</p:dataTable>
+			<p:panelGrid columns="3" styleClass="noBorders" style="margin-top:20px; horizontal-align:middle" >
+				<p:commandButton value="Save changes" icon="ui-icon-extlink"
+					action="#{bossBean.saveChanges}" />
+				<p:button value="Back to orders" outcome="boss" />
+				<p:commandButton value="Add row"
+					actionListener="#{bossBean.addItem}" update="itemList"/>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
