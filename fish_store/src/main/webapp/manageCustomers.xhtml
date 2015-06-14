@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/global/admin-template.xhtml">
+	<ui:define name="page-subtitle">
+		Search for fish parcels.
+	</ui:define>
+	<ui:define name="page-content">
+		<h1>Customers list:</h1>
+		<h:form>
+			<h:dataTable value="#{customerBean.customers}"
+				var="customer" styleClass="table table-striped">
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{customer.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Login</f:facet> 
+					<h:outputText value="#{customer.login}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Prepayment right, %</f:facet> 
+					<h:inputText value="#{customer.prepaymentRights}" /> 
+				</h:column>
+				<h:column>
+				<f:facet name="header">Action</f:facet>
+					<h:commandButton value="Save" action="#{customerBean.saveCustomer(customer)}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

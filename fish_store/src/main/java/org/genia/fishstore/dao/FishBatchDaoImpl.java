@@ -10,7 +10,6 @@ import javax.persistence.TypedQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.genia.fishstore.ParcelFilter;
 import org.genia.fishstore.entities.FishBatch;
-import org.genia.fishstore.entities.FishType;
 import org.genia.fishstore.entities.PaginatedResult;
 import org.springframework.stereotype.Repository;
 
@@ -76,14 +75,5 @@ public class FishBatchDaoImpl extends GenericDaoImpl<FishBatch> implements FishB
 		}
 		resultCount = countQuery.getSingleResult();
 		return new PaginatedResult<> (resultCount, query.getResultList());
-	}
-
-	@Override
-	public List<String> getFishNames() {
-		return em.createQuery("select ft.name from FishType ft", String.class).getResultList();
-	}
-	
-	public List<FishType> getFishList() {
-		return em.createQuery("select ft from FishType ft", FishType.class).getResultList();
 	}
 }

@@ -8,10 +8,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.genia.fishstore.ParcelFilter;
-import org.genia.fishstore.dao.FishBatchDao;
 import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.PaginatedResult;
 import org.genia.fishstore.services.FishBatchService;
+import org.genia.fishstore.services.FishTypeService;
 import org.springframework.context.annotation.Scope;
 
 
@@ -22,7 +22,7 @@ public class ParcelBean implements Serializable {
 	PaginatedResult<FishBatch> result;
 	
 	@Inject
-	private FishBatchDao orderService; 	//temporary
+	FishTypeService fishTypeService;
 	
 	@Inject
 	FishBatchService fishBatchService;
@@ -47,15 +47,14 @@ public class ParcelBean implements Serializable {
 		this.result = result;
 	}
 	
-	// TODO: Show indicators (spinners) for all Ajax requests
 	// TODO: Implement "No results found" notification
 	public void applyFilter() {
 		System.out.println(Thread.currentThread().getName());
-		result = orderService.findByFilter(filter);
+		result = fishBatchService.findByFilter(filter);
 	}
 	
 	public List<String> completeText(String query) {
-		List<String> allFishTypes = fishBatchService.getFishNames();
+		List<String> allFishTypes = fishTypeService.getFishNames();
 		List<String> filteredNames = new ArrayList<>();
 		for (String name : allFishTypes) {
 			if (name.toLowerCase().contains(query)) {

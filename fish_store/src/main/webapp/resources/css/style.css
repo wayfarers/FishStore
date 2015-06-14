@@ -7,13 +7,21 @@ BODY {padding: 0px; margin: 0px;}
 
 #page-content H1 {font-family: Arial; font-size: 14pt;}
 
-#page-content {padding: 10px 30px;}
+#page-content {padding: 10px 17px;}
 
 #footer {text-align: center; border-top: 1px solid #EEE; margin-top: 20px; color: #444;}
 
 TABLE.columns TD {vertical-align: top !important; padding-right: 20px;}
 
+.ui-datatable.nofullwidth TABLE {width: auto !important;}
+
 .noBorders tr, .noBorders td {
     background: none !important;
     border: none !important;
 }
+
+ #page-content, .navbar .container-fluid {width: 1024px; margin: auto; }
+ 
+ 
+.navbar .container-fluid, NAV.navbar .navbar-collapse {padding-left: 0px !important; }
+ 

@@ -10,6 +10,7 @@ import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.FishType;
 import org.genia.fishstore.entities.PurchaseOrder;
 import org.genia.fishstore.services.FishBatchService;
+import org.genia.fishstore.services.FishTypeService;
 import org.genia.fishstore.services.PurchaseOrderService;
 import org.springframework.context.annotation.Scope;
 
@@ -24,6 +25,8 @@ public class BossBean {
 	FishBatchService fishBatchService;
 	@Inject
 	PurchaseOrderService purchaseService;
+	@Inject
+	FishTypeService fishTypeService;
 	
 	List<FishBatch> orderItems;
 	
@@ -74,7 +77,7 @@ public class BossBean {
 	}
 	
 	public List<FishType> getFishList() {
-		fishList = fishBatchService.getFishList();
+		fishList = fishTypeService.getFishList();
 		return fishList;
 	}
 }

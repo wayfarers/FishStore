@@ -34,11 +34,12 @@ public class DFView implements Serializable {
 	// http://stackoverflow.com/questions/7363704/jsf2-logs-with-tomcat
 	// This is required to understand whats going on behind...
 	public void addToCart(FishBatch fishbatch) {
-    	cart.setFishBatchSelected(fishbatch);
-    	Map<String, Object> options = new HashMap<String, Object>();
-    	options.put("contentHeight", 80);
-    	options.put("contentWidth", 400);
-        RequestContext.getCurrentInstance().openDialog("addToCart", options, null);
+		System.out.println("method invoked");
+    	//cart.setFishBatchSelected(fishbatch);
+//    	Map<String, Object> options = new HashMap<String, Object>();
+//    	options.put("contentHeight", 80);
+//    	options.put("contentWidth", 400);
+//        RequestContext.getCurrentInstance().openDialog("addToCart", options, null);
     }
      
 }

@@ -14,27 +14,26 @@
 		<h1>Order details:</h1>
 		<h:form>
 			<p:dataTable id="itemList" var="item" value="#{bossBean.orderItems}"
-				editable="true" editMode="cell" widgetVar="cellCars">
-				<f:facet name="header">Edit order</f:facet>
+				editable="true" editMode="cell" widgetVar="cellCars" styleClass="nofullwidth">
 
 				<!-- <p:column headerText="Fish name">
-              <p:cellEditor>
-                  <f:facet name="output"><h:outputText value="#{item.fishType.name}" /></f:facet>
-                  <f:facet name="input"><p:inputText id="modelInput" value="#{car.id}" style="width:96%"/></f:facet> 
-              </p:cellEditor>
-          </p:column>  -->
-
-				<p:column headerText="Fish name">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{item.fishType.name}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:selectOneMenu value="#{item.fishType}" style="width:100%" >
-								<f:selectItems  value="#{bossBean.fishList}" var="fish" itemLabel="#{fish.name}" itemValue="#{fish}" />
+							<h:selectOneMenu value="#{item.fishType}" style="width:100%" converter="omnifaces.SelectItemsConverter">
+								<f:selectItems  value="#{bossBean.fishList}" var="fishType" itemLabel="#{fishType.name}" itemValue="#{fishType}" />
 							</h:selectOneMenu>
 						</f:facet>
 					</p:cellEditor>
+				</p:column> -->
+
+				<p:column headerText="Fish name">
+					<h:selectOneMenu value="#{item.fishType}" style="width:100%" converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{bossBean.fishList}" var="fishType"
+							itemLabel="#{fishType.name}" itemValue="#{fishType}" />
+					</h:selectOneMenu>
 				</p:column>
 
 				<p:column headerText="Quality">
@@ -49,10 +48,10 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Weight ordered">
+				<p:column headerText="Weight ordered" style="text-align: right;">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{item.weightOrdered}" />
+							<h:outputText  value="#{item.weightOrdered} kg" />
 						</f:facet>
 						<f:facet name="input">
 							<p:inputText value="#{item.weightOrdered}" style="width:96%"
@@ -64,7 +63,7 @@
 				<p:column headerText="Weight arrived">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{item.weightArrived}" />
+							<h:outputText value="#{item.weightArrived} kg" />
 						</f:facet>
 						<f:facet name="input">
 							<p:inputText value="#{item.weightArrived}" style="width:96%"
@@ -99,6 +98,7 @@
            </p:cellEditor>
            </p:column> -->
 
+
 				<p:column headerText="Sale price">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -120,6 +120,17 @@
 							<p:inputText value="#{item.cost}" style="width:96%" label="Year" />
 						</f:facet>
 					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="On sale">
+							<h:selectOneMenu value="#{item.onSale}" style="width:100%">
+								<f:selectItem itemLabel="On sale" itemValue="true" />
+								<f:selectItem itemLabel="Not on sale" itemValue="false" />
+							</h:selectOneMenu>
+				</p:column>
+				
+				<p:column headerText="Write off">
+						<h:selectBooleanCheckbox value="#{item.writtenOff}" />
 				</p:column>
 
 			</p:dataTable>

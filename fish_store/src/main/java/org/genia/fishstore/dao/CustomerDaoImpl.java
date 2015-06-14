@@ -1,5 +1,7 @@
 package org.genia.fishstore.dao;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
@@ -25,5 +27,10 @@ public class CustomerDaoImpl extends GenericDaoImpl<Customer> implements
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+
+	@Override
+	public List<Customer> findAll() {
+		return em.createQuery("select cust from Customer cust", Customer.class).getResultList();
 	}
 }

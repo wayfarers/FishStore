@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.genia.fishstore.ParcelFilter;
 import org.genia.fishstore.entities.FishBatch;
-import org.genia.fishstore.entities.FishType;
 import org.genia.fishstore.entities.PaginatedResult;
 
 
@@ -13,6 +12,5 @@ public interface FishBatchDao extends GenericDao<FishBatch> {
 	public List<FishBatch> getAvailableItems();
 	public PaginatedResult<FishBatch> findByFilter(ParcelFilter filter);
 	
-	public List<String> getFishNames();
-	public List<FishType> getFishList();
+	
 }

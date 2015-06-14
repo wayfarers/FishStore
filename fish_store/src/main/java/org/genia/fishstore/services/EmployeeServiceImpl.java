@@ -38,6 +38,6 @@ public class EmployeeServiceImpl extends GenericServiceImpl<Employee> implements
 		if (employee != null && employee.getPassword().equals(password)) {
 			return employee;
 		}
-		return null;
+		throw new UnsupportedOperationException("Invalid username or password");
 	}
 }

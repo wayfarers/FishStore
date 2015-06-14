@@ -1,5 +1,7 @@
 package org.genia.fishstore.services;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.genia.fishstore.dao.CustomerDao;
@@ -31,5 +33,10 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer> implements
 			return customer;
 		}
 		return null;
+	}
+
+	@Override
+	public List<Customer> findAll() {
+		return dao.findAll();
 	}
 }

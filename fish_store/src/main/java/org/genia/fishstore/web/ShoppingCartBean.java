@@ -35,7 +35,7 @@ public class ShoppingCartBean {
 	
 	public void addToCart() {
 		order.addFishBatch(fishBatchSelected, weightSelected);
-		RequestContext.getCurrentInstance().closeDialog(fishBatchSelected);
+//		RequestContext.getCurrentInstance().closeDialog(fishBatchSelected);
 	}
 	
 	public String removeFromCart(int fishBatchId) {
@@ -80,7 +80,7 @@ public class ShoppingCartBean {
 		return fishBatchSelected;
 	}
 
-	public void setFishBatchSelected(FishBatch fishBatchSelected) {
-		this.fishBatchSelected = fishBatchSelected;
+	public void setFishBatchSelected(FishBatch fishBatchId) {
+		this.fishBatchSelected = fishBatchId;//fishBatchService.findById(fishBatchId);
 	}
 }

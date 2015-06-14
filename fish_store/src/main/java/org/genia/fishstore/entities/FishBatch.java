@@ -95,7 +95,7 @@ public class FishBatch {
 		this.salePrice = salePrice;
 	}
 
-	public boolean isOnSale() {
+	public boolean getOnSale() {
 		return onSale;
 	}
 

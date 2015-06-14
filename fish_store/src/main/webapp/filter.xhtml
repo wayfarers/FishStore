@@ -11,13 +11,13 @@
 		Search for fish parcels.
 	</ui:define>
 	<ui:define name="page-content">
+	<h:form>
 		<table class="columns">
 			<tr>
 				<td>
 					<h1>Filter options:</h1> 
-					<h:form>
 						
-						<p:panelGrid columns="2">
+						<p:panelGrid columns="2" styleClass="noBorders">
 							<h:outputText value="Fish name:" />
 							<p:autoComplete id="fName" value="#{parcelBean.filter.fishType}"
 								completeMethod="#{parcelBean.completeText}" />
@@ -31,18 +31,18 @@
 							<p:inputText id="age" value="#{parcelBean.filter.maxAgeInDays}">
 								<f:convertNumber integerOnly="true" />
 							</p:inputText>
-
-							<h:outputText value="On stock only:" />
-							<p:selectBooleanCheckbox value="#{parcelBean.filter.onStockOnly}" />
+							
+							<h:panelGroup rendered="#{sessionDataBean.loggedInEmployee != null}">
+								<h:outputText value="On stock only:" />
+								<p:selectBooleanCheckbox value="#{parcelBean.filter.onStockOnly}" />
+							</h:panelGroup>
 						</p:panelGrid>
 						<p:commandButton value="Submit" action="#{parcelBean.applyFilter}"
-							update=":results" />
-					</h:form>
+							update="results" />
 				</td>
 				<td>
 					<h1>Results</h1>
-					<h:form id="results">
-						<h:panelGrid columns="1">
+						<h:panelGrid columns="1" id="results">
 						
 							<h:dataTable value="#{parcelBean.result.resultList}" var="parcel"
 								styleClass="table table-striped table-hover">
@@ -73,19 +73,35 @@
 									<f:facet name="header">Quality</f:facet> 
 									#{parcel.quality} 
 								</h:column>
-								<h:column>
-									<f:facet name="header">Select</f:facet>
-									<p:commandButton value="Add to cart" icon="ui-icon-extlink" actionListener="#{dfView.addToCart(parcel)}">
-										<p:ajax update=":cartinfo" event="dialogReturn"/>
-									</p:commandButton>
-								</h:column>
+								<p:column headerText="Select">
+									<p:commandButton value="Add to cart" oncomplete="PF('add_dlg').show();" actionListener="#{shoppingCartBean.setFishBatchSelected(parcel)}" />
+								</p:column>
 							</h:dataTable>
 						</h:panelGrid>
-					</h:form>
-				</td>
+						<p:remoteCommand name="updateDialog" update="cart-dialog" />
+						<p:dialog onShow="updateDialog()" header="Add to cart" widgetVar="add_dlg" modal="true">
+						<h:panelGrid columns="3" id="cart-dialog">
+								<h:outputText value="Fish name: " />
+								<h:outputText value="#{shoppingCartBean.fishBatchSelected.fishType.name}" />
+								<h:outputText value=" " />
+								<h:outputText value="Weight: " />
+
+								<h:inputText id="weight"
+									value="#{shoppingCartBean.weightSelected}">
+									<f:convertNumber integerOnly="true" />
+								</h:inputText>
+
+								<p:column headerText="addToCart">
+									<p:commandButton icon="ui-icon-arrowreturnthick-1-s"
+										actionListener="#{shoppingCartBean.addToCart}"
+										oncomplete="PF('add_dlg').hide()" update=":cartinfo" />
+								</p:column>
+							</h:panelGrid>
+						</p:dialog>
+				</td> 
 			</tr>
 		</table>
-		
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>
