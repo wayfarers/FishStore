@@ -13,23 +13,24 @@
 	<ui:define name="page-content">
 		<h1>Customers list:</h1>
 		<h:form>
-			<h:dataTable value="#{customerBean.customers}"
-				var="customer" styleClass="table table-striped">
+			<h:dataTable value="#{customerBean.customers}" var="cust"
+				styleClass="table table-striped">
 				<h:column>
 					<f:facet name="header">Name</f:facet>
-					<h:outputText value="#{customer.name}" />
+					<h:outputText value="#{cust.name}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Login</f:facet> 
-					<h:outputText value="#{customer.login}" />
+					<f:facet name="header">Login</f:facet>
+					<h:outputText value="#{cust.login}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Prepayment right, %</f:facet> 
-					<h:inputText value="#{customer.prepaymentRights}" /> 
+					<f:facet name="header">Prepayment right, %</f:facet>
+					<h:inputText value="#{cust.prepaymentRights}" binding="#{pr}"/>
 				</h:column>
 				<h:column>
-				<f:facet name="header">Action</f:facet>
-					<h:commandButton value="Save" action="#{customerBean.saveCustomer(customer)}" />
+					<f:facet name="header">Action</f:facet>
+					<h:commandButton value="Save"
+						action="#{customerBean.saveCustomer(cust.id, pr.value)}" />
 				</h:column>
 			</h:dataTable>
 		</h:form>

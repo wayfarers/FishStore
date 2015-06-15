@@ -39,10 +39,11 @@
 						action="#{bossBean.editOrder(order)}">
 					</p:commandButton>
 				</p:column>
+				
 			</p:dataTable>
 
 			<p:commandButton value="Add new"
-				action="#{bossBean.newOrder}" style="margin-top:20px"/>
+				action="#{bossBean.newOrder}" style="margin-top:20px" render="#{sessionDataBean.currentRole == 'GENERAL_MANAGER'}"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

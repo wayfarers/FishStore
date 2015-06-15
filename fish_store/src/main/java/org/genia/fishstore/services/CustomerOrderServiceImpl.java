@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.genia.fishstore.CustomerOrderFilter;
 import org.genia.fishstore.dao.CustomerOrderDao;
 import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.entities.CustomerOrderItem;
 import org.genia.fishstore.entities.FishType;
 import org.genia.fishstore.entities.IncomeReport;
+import org.genia.fishstore.entities.PaginatedResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,5 +40,11 @@ public class CustomerOrderServiceImpl extends GenericServiceImpl<CustomerOrder> 
 	@Override
 	public IncomeReport<FishType> generateReportByFishTypes() {
 		return dao.generateReportByFishTypes();
+	}
+
+	@Override
+	public PaginatedResult<CustomerOrder> findByFilter(
+			CustomerOrderFilter filter) {
+		return dao.findByFilter(filter);
 	}
 }

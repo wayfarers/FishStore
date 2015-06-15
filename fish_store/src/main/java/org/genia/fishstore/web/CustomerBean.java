@@ -18,17 +18,23 @@ public class CustomerBean {
 	
 	private List<Customer> customers;
 	
-	
 	public List<Customer> getCustomers() {
-		customers = customerService.findAll();
-		return customers;
+		
+		return customerService.findAll();
 	}
 	
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
 	}
 
-	public void saveCustomer(Customer customer) {
+//	public void saveCustomer(Customer customer) {
+//		customerService.save(customer);
+//		System.out.println("invoked saving");
+//	}
+	
+	public void saveCustomer(int id, String pr) {
+		Customer customer = customerService.findById(id);
+		customer.setPrepaymentRights(Integer.valueOf(pr));
 		customerService.save(customer);
 		System.out.println("invoked saving");
 	}
