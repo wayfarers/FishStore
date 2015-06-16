@@ -27,7 +27,10 @@ public class ColdStoreBean {
 		return fishBatchService.findByFilter(null).getResultList();
 	}
 	
-	public void accept(FishBatch fishBatch) {
+	public void accept(PurchaseOrder order) {
 	}
 	
+	public List<PurchaseOrder> getPurchaseOrders() {
+		return purchaseOrderService.findAll();
+	}
 }
