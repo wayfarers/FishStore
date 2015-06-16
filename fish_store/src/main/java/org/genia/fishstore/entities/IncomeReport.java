@@ -14,23 +14,13 @@ public class IncomeReport<T> {
 		this.lines = lines;
 	}
 
-	public Map<T, Double> earnings;
 	
 	
-	public void addEarning(T grouping, double value) {
-		earnings.put(grouping, value);
-	}
-	
-	public void getEarning(T period) {
-		earnings.get(period);
-	}
-	
-	public double getTotalEarnings() {
+	public double getTotalIncome() {
 		Double totals = 0.0;
-		for (T t : earnings.keySet()) {
-			totals += earnings.get(t);
+		for (ReportLine line : lines) {
+			totals += line.getIncome();
 		}
-		
 		return totals;
 	}
  }

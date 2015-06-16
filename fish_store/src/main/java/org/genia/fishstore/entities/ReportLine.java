@@ -2,20 +2,20 @@ package org.genia.fishstore.entities;
 
 
 public class ReportLine<T> {
-	T date;
+	T type;
 	Double income;
 	
-	public ReportLine(T date, Double income) {
-		this.date = date;
+	public ReportLine(T type, Double income) {
+		this.type = type;
 		this.income = income;
 	}
 
-	public T getDate() {
-		return date;
+	public T getType() {
+		return type;
 	}
 
-	public void setDate(T date) {
-		this.date = date;
+	public void setType(T type) {
+		this.type = type;
 	}
 
 	public Double getIncome() {
@@ -28,6 +28,6 @@ public class ReportLine<T> {
 
 	@Override
 	public String toString() {
-		return "" + date + " - " + income;
+		return "" + type + " - " + income;
 	}
 }

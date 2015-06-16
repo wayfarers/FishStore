@@ -1,11 +1,12 @@
 package org.genia.fishstore.web;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.genia.fishstore.entities.ReportLine;
+import org.genia.fishstore.entities.FishType;
+import org.genia.fishstore.entities.IncomeReport;
 import org.genia.fishstore.services.CustomerOrderService;
 import org.springframework.context.annotation.Scope;
 
@@ -13,16 +14,33 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class ReportBean {
 	
-	List<ReportLine> reportList;
+	private IncomeReport<Date> dateReport;
+	private IncomeReport<FishType> fishReport;
 	
 	@Inject
 	CustomerOrderService customerOrderService;
 	
-	public List<ReportLine> reportByDates() {
-		return customerOrderService.generateReportByDates().getLines();
+	public void generateReportByDates() {
+		dateReport = customerOrderService.generateReportByDates();
 	}
 	
-	public List<ReportLine> reportByFishTypes() {
-		return customerOrderService.generateReportByFishTypes().getLines();
+	public void generateReportByFishes() {
+		fishReport = customerOrderService.generateReportByFishTypes();
+	}
+
+	public IncomeReport<Date> getDateReport() {
+		return dateReport;
+	}
+
+	public void setDateReport(IncomeReport<Date> dateReport) {
+		this.dateReport = dateReport;
+	}
+
+	public IncomeReport<FishType> getFishReport() {
+		return fishReport;
+	}
+
+	public void setFishReport(IncomeReport<FishType> fishReport) {
+		this.fishReport = fishReport;
 	}
 }
