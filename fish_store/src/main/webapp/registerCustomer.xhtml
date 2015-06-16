@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 	
 <ui:composition template="/global/main.xhtml">
 	<ui:define name="page-subtitle">
@@ -13,7 +14,7 @@
 		<h1>Registering new customer:</h1>
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputText value="Name:" />
+				<h:outputText value="Name: " />
 				<h:inputText id="cName" value="#{customerRegistrationBean.newCustomer.name}" required="true"></h:inputText>
 	
 				<h:outputText value="E-mail:" />
@@ -27,7 +28,10 @@
 				<h:inputSecret value="#{customerRegistrationBean.newCustomer.password}" required="true" />
 				
 			</h:panelGrid>
-			<h:commandButton value="Submit" action="#{customerRegistrationBean.apply}" />
+			<p:commandButton value="Submit" action="#{customerRegistrationBean.apply}"/>
+			<p:dialog header="Registration successful!" widgetVar="reg_ok" modal="true">
+				<p:commandButton value="Go to login page" action="loginPage.xhtml" />
+			</p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

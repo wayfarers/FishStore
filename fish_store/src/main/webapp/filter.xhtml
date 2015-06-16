@@ -87,14 +87,17 @@
 								<h:outputText value="Weight: " />
 
 								<h:inputText id="weight"
-									value="#{shoppingCartBean.weightSelected}">
+									value="#{shoppingCartBean.weightSelected}"
+									validatorMessage="#{msgs.dayLongRange}" >
 									<f:convertNumber integerOnly="true" />
+									<f:validateLongRange maximum="#{shoppingCartBean.fishBatchSelected.weightLeft}" />
 								</h:inputText>
+								<h:message for="weight" style="color:red" />
 
 								<p:column headerText="addToCart">
 									<p:commandButton icon="ui-icon-arrowreturnthick-1-s"
 										actionListener="#{shoppingCartBean.addToCart}"
-										oncomplete="PF('add_dlg').hide()" update=":cartinfo" />
+										oncomplete="if (args &amp;&amp; !args.validationFailed) PF('add_dlg').hide()" update=":cartinfo, cart-dialog" />
 								</p:column>
 							</h:panelGrid>
 						</p:dialog>
