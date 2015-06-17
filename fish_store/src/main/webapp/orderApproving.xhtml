@@ -11,7 +11,7 @@
 		Search for fish parcels.
 	</ui:define>
 	<ui:define name="page-content">
-		<h:form>
+		<h:form id="mainForm">
 			<h1>Customer orders</h1>
 			<h:panelGrid columns="1" id="results">
 
@@ -28,12 +28,12 @@
 						</h:outputText>
 					</h:column>
 					<h:column>
-						<f:facet name="header">Total sum</f:facet> 
-						<h:outputText value="#{order.totalSum}" />
+						<f:facet name="header">Total amount</f:facet> 
+						<h:outputText value="$#{order.totalSum}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">Sum payed</f:facet> 
-						<h:outputText value="#{order.sumPayed}" />
+						<f:facet name="header">Amount payed</f:facet> 
+						<h:outputText value="$#{order.sumPayed}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Approved by</f:facet>
@@ -46,32 +46,58 @@
 					</h:column>
 					
 					<p:column headerText="Action">
-						<p:commandButton value="Edit"
+						<p:commandButton value="Edit" update=":mainForm:dlg"
 							action="#{accountantBean.setSelectedOrder(order)}" />
 					</p:column>
 					
 					<p:column headerText="Action">
-						<p:commandButton value="Approve"
+						<p:commandButton value="Approve" rendered="#{order.status == 'AWAITING_APPROVAL'}"
 							action="#{accountantBean.approve(order)}" update="cOrders" />
 					</p:column>
 				</h:dataTable>
 			</h:panelGrid>
 			
 			
-			<p:remoteCommand name="updateDialog" update="sum_info" />
-			<p:dialog onShow="updateDialog()" header="Add to cart"
+			<p:dialog id="dlg" header="Edit payed sum"
 				widgetVar="edit_dlg" modal="true">
 				
 				<h:panelGrid columns="3" id="sum_info">
-					<h:outputText value="Sum payed: " />
-					<h:inputText id="sumPayed" value="#{accountantBean.selectedOrder.sumPayed}" />
+					<h:outputText value="Amount paid: " />
+					<ui:fragment>
+					<h:inputText styleClass="short" id="sumPayed" value="#{accountantBean.selectedOrder.sumPayed}" />
+					$
+					</ui:fragment>
 
-					<p:commandButton icon="ui-icon-arrowreturnthick-1-s"
-						actionListener="#{accountantBean.saveOrder()}"
-						onsuccess="PF('add_dlg').hide()" />
+					
 				</h:panelGrid>
+				<br/>
+				<p:commandButton icon="ui-icon-arrowreturnthick-1-s" value="Update payment"
+					update="cOrders"
+						actionListener="#{accountantBean.saveOrder()}"
+						onsuccess="PF('edit_dlg').hide()" />
 			</p:dialog>
 		</h:form>
+		<h:form>
+			<p:dialog id="dlg" header="Edit payed sum"
+				widgetVar="edit_dlg" modal="true">
+				
+				<h:panelGrid columns="3" id="sum_info">
+					<h:outputText value="Amount paid: " />
+					<ui:fragment>
+					<h:inputText styleClass="short" id="sumPayed" value="#{accountantBean.selectedOrder.sumPayed}" />
+					$
+					</ui:fragment>
+
+					
+				</h:panelGrid>
+				<br/>
+				<p:commandButton icon="ui-icon-arrowreturnthick-1-s" value="Update payment"
+					update=":mainForm:cOrders"
+						actionListener="#{accountantBean.saveOrder()}"
+						onsuccess="PF('edit_dlg').hide()" />
+			</p:dialog>
+		</h:form>
+		
 	</ui:define>
 </ui:composition>
 </html>

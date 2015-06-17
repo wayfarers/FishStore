@@ -40,7 +40,6 @@ public class SecurityOfficerBean {
 	
 	public void saveEmployee() {
 		employeeService.save(employee);
-		RequestContext.getCurrentInstance().closeDialog(employee);
 	}
 	
 	public void editEmployee(Employee employee) {

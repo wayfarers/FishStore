@@ -34,15 +34,17 @@
 				</ui:fragment>
 				
 				<h:outputText value="Welcome, #{sessionDataBean.loggedInCustomer.name}!" rendered="#{sessionDataBean.loggedInCustomer != null}" />
-				<h:panelGroup id="cartinfo" rendered="#{shoppingCartBean.order.totalItemsCount > 0}">
-					<div>
-						You have <h:outputText value="#{shoppingCartBean.order.totalItemsCount}"/> item(s) in <a href="shoppingCart.xhtml">your cart</a>.
-					</div>
+				<h:panelGroup id="cartinfo" >
+					<h:panelGroup rendered="#{shoppingCartBean.order.totalItemsCount > 0}">
+						<div>
+							You have <h:outputText value="#{shoppingCartBean.order.totalItemsCount}"/> item(s) in <a href="shoppingCart.xhtml">your cart</a>.
+						</div>
+					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
 			</h:panelGrid>
 		</div>
-		<h:form>
+		<h:form id="navbar">
 		<nav class="navbar navbar-default">
 			  <div class="container-fluid">
 			    <!-- Brand and toggle get grouped for better mobile display -->

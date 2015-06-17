@@ -32,9 +32,7 @@ public class CustomerBean {
 //		System.out.println("invoked saving");
 //	}
 	
-	public void saveCustomer(int id, String pr) {
-		Customer customer = customerService.findById(id);
-		customer.setPrepaymentRights(Integer.valueOf(pr));
+	public void saveCustomer(Customer customer) {
 		customerService.save(customer);
 		System.out.println("invoked saving");
 	}

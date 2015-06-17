@@ -11,7 +11,7 @@
 		Search for fish parcels.
 	</ui:define>
 	<ui:define name="page-content">
-	<h:form>
+	<h:form id="mainForm">
 		<table class="columns">
 			<tr>
 				<td>
@@ -69,37 +69,51 @@
 									#{parcel.quality} 
 								</h:column>
 								<p:column headerText="Select">
-									<p:commandButton value="Add to cart" oncomplete="PF('add_dlg').show();" actionListener="#{shoppingCartBean.setFishBatchSelected(parcel)}" />
+									<p:commandButton value="Add to cart" oncomplete="PF('add_dlg').show();" 
+									actionListener="#{shoppingCartBean.setFishBatchSelected(parcel)}"
+									update=":dlgForm:dlg" />
 								</p:column>
 							</h:dataTable>
 						</h:panelGrid>
-						<p:remoteCommand name="updateDialog" update="cart-dialog, weight" />
-						<p:dialog id="dlg" onShow="updateDialog()" header="Add to cart" widgetVar="add_dlg" modal="true">
-						<h:panelGrid columns="3" id="cart-dialog">
-								<h:outputText value="Fish name: " />
-								<h:outputText value="#{shoppingCartBean.fishBatchSelected.fishType.name}" />
-								<h:outputText value=" " />
-								<h:outputText value="Weight: " />
-
-								<p:inputText id="weight"
-									value="#{shoppingCartBean.weightSelected}"
-									validatorMessage="#{msgs.overWeight}" placeholder="">
-									<f:convertNumber integerOnly="true" />
-									<f:validateLongRange maximum="#{shoppingCartBean.fishBatchSelected.weightLeft}" />
-								</p:inputText>
-								<h:message for="weight" style="color:red" />
-
-								<p:column headerText="addToCart">
-									<p:commandButton icon="ui-icon-arrowreturnthick-1-s" value="Put to cart"
-										actionListener="#{shoppingCartBean.addToCart}"
-										oncomplete="if (args &amp;&amp; !args.validationFailed) PF('add_dlg').hide()" update=":cartinfo, cart-dialog" />
-								</p:column>
-							</h:panelGrid>
-						</p:dialog>
+						
 				</td> 
 			</tr>
 		</table>
 		</h:form>
+		<h:form id="dlgForm">
+		<p:dialog id="dlg" header="Add to cart" widgetVar="add_dlg" modal="true" resizable="false">
+		<h:panelGrid columns="3" id="cart-dialog" styleClass="columns">
+				<h:outputText value="Fish name: " />
+				<h:outputText value="#{shoppingCartBean.fishBatchSelected.fishType.name}" />
+				<h:outputText value=" " />
+				<h:outputText value="Weight: " />
+
+				<ui:fragment>
+				<p:inputText id="weight"
+					value="#{shoppingCartBean.weightSelected}"
+					placeholder="" styleClass="short">
+					<f:convertNumber integerOnly="true" />
+					<f:validateLongRange minimum="1" maximum="#{shoppingCartBean.fishBatchSelected.weightLeft}" />
+					
+				</p:inputText>
+				kg
+				<br/>
+				<h:message for="weight" style="color:red" />
+				</ui:fragment>
+				
+				<br/>
+				<p:column headerText="addToCart">
+					
+				</p:column>
+			</h:panelGrid>
+			<br/>
+			<p:commandButton icon="ui-icon-arrowreturnthick-1-s" value="Put to cart"
+						actionListener="#{shoppingCartBean.addToCart}"
+						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('add_dlg').hide()" update=":cartinfo, cart-dialog, :navbar" />
+			<p:commandButton value="Cancel" onclick="PF('add_dlg').hide(); return false;" />
+		</p:dialog>
+		</h:form>
+		
 	</ui:define>
 </ui:composition>
 </html>

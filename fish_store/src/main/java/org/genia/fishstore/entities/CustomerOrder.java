@@ -27,7 +27,7 @@ public class CustomerOrder {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
-	private OrderStatus status = OrderStatus.NONE;
+	private OrderStatus status = OrderStatus.AWAITING_APPROVAL;
 	private String comment;
 	private double sumPayed;
 	

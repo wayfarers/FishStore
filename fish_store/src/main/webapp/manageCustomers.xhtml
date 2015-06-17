@@ -25,12 +25,12 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Prepayment right, %</f:facet>
-					<h:inputText value="#{cust.prepaymentRights}" binding="#{pr}"/>
+					<h:inputText value="#{cust.prepaymentRights}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Action</f:facet>
 					<h:commandButton value="Save"
-						action="#{customerBean.saveCustomer(cust.id, pr.value)}" />
+						action="#{customerBean.saveCustomer(cust)}" />
 				</h:column>
 			</h:dataTable>
 		</h:form>

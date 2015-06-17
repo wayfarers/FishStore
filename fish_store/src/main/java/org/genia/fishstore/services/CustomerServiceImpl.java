@@ -31,7 +31,7 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer> implements
 	public Customer authentificate(String login, String password) {
 		try {
 			Customer customer = dao.findByLogin(login);
-			if (customer.getPassword().equals(password)) {
+			if (customer != null && customer.getPassword().equals(password)) {
 				return customer;
 			}
 			throw new UnsupportedOperationException("Invalid username or password");
