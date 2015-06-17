@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/global/admin-template.xhtml">
+	<ui:define name="page-subtitle">
+		Search for fish parcels.
+	</ui:define>
+	<ui:define name="page-content">
+		<h1>Order details:</h1>
+		<h:form>
+			<p:dataTable id="itemList" var="item" value="#{coldStoreBean.orderItems}"
+				editable="true" editMode="cell" widgetVar="cellItems" styleClass="nofullwidth">
+
+				<p:column headerText="Fish name">
+					<h:selectOneMenu value="#{item.fishType}" style="width:100%" converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{coldStoreBean.fishList}" var="fishType"
+							itemLabel="#{fishType.name}" itemValue="#{fishType}" />
+					</h:selectOneMenu>
+				</p:column>
+
+				<p:column headerText="Quality">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.quality}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.quality}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Weight ordered" style="text-align: right;">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText  value="#{item.weightOrdered} kg" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.weightOrdered}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Weight arrived">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{item.weightArrived} kg" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{item.weightArrived}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="On sale">
+							<h:outputText value="On sale" rendered="#{item.onSale}"/>
+							<h:outputText value="Not on sale" rendered="#{!item.onSale}"/>
+							
+				</p:column>
+				
+				<p:column headerText="Write off">
+						<h:selectBooleanCheckbox value="#{item.writtenOff}" />
+				</p:column>
+
+			</p:dataTable>
+			<p:panelGrid columns="3" styleClass="noBorders" style="margin-top:20px; horizontal-align:middle" >
+				<p:commandButton value="Save changes" icon="ui-icon-extlink"
+					action="#{coldStoreBean.saveChanges}" />
+				<p:button value="Back to orders" outcome="coldStore" />
+				<p:commandButton value="Add row"
+					actionListener="#{coldStoreBean.addItem}" update="itemList"/>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

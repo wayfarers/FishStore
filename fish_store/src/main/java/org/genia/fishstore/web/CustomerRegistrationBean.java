@@ -3,6 +3,7 @@ package org.genia.fishstore.web;
 import java.util.Calendar;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,10 +26,8 @@ public class CustomerRegistrationBean {
 	
 	public String apply() {
 		if(customerService.findByLogin(newCustomer.getLogin()) != null) {
-			//message, such login is already exists.
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Registration failed", "We are sorry, but login " + newCustomer.getLogin() + " is already used.");
-			RequestContext.getCurrentInstance().showMessageInDialog(message);
-			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "We are sorry, but login '" + newCustomer.getLogin() + "' is already used.", null));
+			return null;
 		}
 		newCustomer.setRegistrationDate(Calendar.getInstance().getTime());
 		customerService.save(newCustomer);

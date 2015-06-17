@@ -27,11 +27,11 @@
 			</h:column>
 					<h:column>
 						<f:facet name="header">Weight</f:facet> 
-				#{item.weight} 
+				#{item.weight} kg
 			</h:column>
 					<h:column>
 						<f:facet name="header">Cost</f:facet> 
-				#{item.sum} 
+				$#{item.sum} 
 			</h:column>
 					<h:column>
 						<f:facet name="header">
@@ -42,10 +42,9 @@
 					</h:column>
 				</h:dataTable>
 			</h:panelGrid>
-			<h:panelGrid columns="2">
-				<h:outputText value="Total:" />
-				<h:outputText value="#{shoppingCartBean.order.totalSum}" />
-			</h:panelGrid>
+				<h:outputText value="Total amount: " />
+				<b><h:outputText value="$#{shoppingCartBean.order.totalSum}" /></b>
+		<br/><br/>
 			<h:commandButton value="Submit the order" action="#{shoppingCartBean.submitOrder}" />
 			<a href="filter.xhtml">Continue shopping...</a>
 		</h:form>

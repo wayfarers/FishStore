@@ -47,26 +47,21 @@
 							<h:dataTable value="#{parcelBean.result.resultList}" var="parcel"
 								styleClass="table table-striped table-hover">
 								<h:column>
-									<f:facet name="header">Id</f:facet> 
-									#{parcel.id} 
-								</h:column>
-								<h:column>
 									<f:facet name="header">Name</f:facet> 
 									#{parcel.fishType.name} 
 								</h:column>
 								<h:column>
 									<f:facet name="header">Price</f:facet> 
-									#{parcel.salePrice} 
+									$#{parcel.salePrice} 
 								</h:column>
 								<h:column>
-									<f:facet name="header">Left</f:facet> 
-									#{parcel.weightLeft} 
+									<f:facet name="header">Weight available</f:facet> 
+									#{parcel.weightLeft} kg
 								</h:column>
 								<h:column>
 									<f:facet name="header">Date arrived</f:facet>
 			
-									<h:outputText value="#{parcel.order.dateArrived}">
-										<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+									<h:outputText value="#{parcel.age}">
 									</h:outputText>
 								</h:column>
 								<h:column>
@@ -78,24 +73,24 @@
 								</p:column>
 							</h:dataTable>
 						</h:panelGrid>
-						<p:remoteCommand name="updateDialog" update="cart-dialog" />
-						<p:dialog onShow="updateDialog()" header="Add to cart" widgetVar="add_dlg" modal="true">
+						<p:remoteCommand name="updateDialog" update="cart-dialog, weight" />
+						<p:dialog id="dlg" onShow="updateDialog()" header="Add to cart" widgetVar="add_dlg" modal="true">
 						<h:panelGrid columns="3" id="cart-dialog">
 								<h:outputText value="Fish name: " />
 								<h:outputText value="#{shoppingCartBean.fishBatchSelected.fishType.name}" />
 								<h:outputText value=" " />
 								<h:outputText value="Weight: " />
 
-								<h:inputText id="weight"
+								<p:inputText id="weight"
 									value="#{shoppingCartBean.weightSelected}"
-									validatorMessage="#{msgs.dayLongRange}" >
+									validatorMessage="#{msgs.overWeight}" placeholder="">
 									<f:convertNumber integerOnly="true" />
 									<f:validateLongRange maximum="#{shoppingCartBean.fishBatchSelected.weightLeft}" />
-								</h:inputText>
+								</p:inputText>
 								<h:message for="weight" style="color:red" />
 
 								<p:column headerText="addToCart">
-									<p:commandButton icon="ui-icon-arrowreturnthick-1-s"
+									<p:commandButton icon="ui-icon-arrowreturnthick-1-s" value="Put to cart"
 										actionListener="#{shoppingCartBean.addToCart}"
 										oncomplete="if (args &amp;&amp; !args.validationFailed) PF('add_dlg').hide()" update=":cartinfo, cart-dialog" />
 								</p:column>

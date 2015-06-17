@@ -11,10 +11,11 @@
 		Search for fish parcels.
 	</ui:define>
 	<ui:define name="page-content">
-		<h1>Company orders:</h1>
+		<h1>Purchase orders:</h1>
+		You can view purchase orders and accept to the cold store.<br/><br/>
 		<h:form>
 			<p:dataTable var="order" value="#{coldStoreBean.purchaseOrders}">
-				<p:column headerText="Id">
+				<p:column headerText="Purchase Order No.">
 					<h:outputText value="#{order.id}" />
 				</p:column>
 

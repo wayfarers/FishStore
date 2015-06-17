@@ -4,7 +4,7 @@ import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
 
-@Named
+@Named("msgs")
 @Scope("request")
 public class MessageBean {
 	private final String fieldRequired = "This field could not be empty";

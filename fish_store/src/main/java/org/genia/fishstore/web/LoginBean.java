@@ -1,6 +1,7 @@
 package org.genia.fishstore.web;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -24,17 +25,33 @@ public class LoginBean {
 	EmployeeService employeeService;
 	
 	public String loginCustomer() {
-		sessionData.setLoggedInCustomer(customerService.authentificate(login, password));
-		return "filter.xhtml?faces-redirect=true";
+		try {
+			sessionData.setLoggedInCustomer(customerService.authentificate(login, password));
+			return "filter.xhtml?faces-redirect=true";
+		} catch (UnsupportedOperationException e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username or password", null));
+			return null;
+		}
 	}
 	
 	public String loginEmployee() {
 		try {
 			sessionData.setLoggedInEmployee(employeeService.authentificate(login, password));
-			return "securityOfficerPage.xhtml?faces-redirect=true";
+			switch (sessionData.getLoggedInEmployee().getRole()) {
+			case GENERAL_MANAGER:
+				return "boss.xhtml?faces-redirect=true";
+			case COLD_STORE_MANAGER:
+				return "coldStore.xhtml?faces-redirect=true";
+			case ACCOUNTANT:
+				return "orderApproving.xhtml?faces-redirect=true";
+			case SECURITY_OFFICER:
+				return "securityOfficerPage.xhtml?faces-redirect=true";
+			default:
+				return null;
+			}
+			
 		} catch (UnsupportedOperationException e) {
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Authentification error", "Invalid username or password");
-			RequestContext.getCurrentInstance().showMessageInDialog(message);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username or password", null));
 			return null;
 		}
 	}

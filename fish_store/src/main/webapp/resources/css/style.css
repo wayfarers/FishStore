@@ -11,7 +11,7 @@ BODY {padding: 0px; margin: 0px;}
 
 #footer {text-align: center; border-top: 1px solid #EEE; margin-top: 20px; color: #444;}
 
-TABLE.columns TD {vertical-align: top !important; padding-right: 20px;}
+TABLE.columns TD {vertical-align: top !important; padding-right: 20px; padding-bottom: 5px;}
 
 .ui-datatable.nofullwidth TABLE {width: auto !important;}
 
@@ -24,4 +24,6 @@ TABLE.columns TD {vertical-align: top !important; padding-right: 20px;}
  
  
 .navbar .container-fluid, NAV.navbar .navbar-collapse {padding-left: 0px !important; }
- 
+
+
+#page-content H1 {border-bottom: 1px solid #666; margin-bottom: 30px;} 

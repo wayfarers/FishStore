@@ -13,37 +13,78 @@
 	<ui:define name="page-content">
 		<h1>Employees list:</h1>
 		<h:form>
-			<h:dataTable value="#{securityOfficerBean.employees}"
-				var="employee" styleClass="table table-striped">
+			<h:dataTable value="#{securityOfficerBean.employees}" var="employee"
+				styleClass="table table-striped">
 				<h:column>
-					<f:facet name="header">Name</f:facet> 
-				#{employee.name} 
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{employee.name}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Login</f:facet> 
-				#{employee.login} 
+					<f:facet name="header">Login</f:facet>
+					<h:outputText value="#{employee.login}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Email</f:facet> 
-				#{employee.email} 
+					<f:facet name="header">Email</f:facet>
+					<h:outputText value="#{employee.email}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Role</f:facet> 
-				#{employee.role} 
+					<f:facet name="header">Role</f:facet>
+					<h:outputText value="#{employee.role}" />
 				</h:column>
-
 				<h:column>
-					<f:facet name="header">Status</f:facet> 
-				#{employee.suspended} 
-			</h:column>
-				<h:column>
+					<f:facet name="header">Status</f:facet>
+					<h:outputText value="Active" rendered="#{!employee.suspended}" />
+					<h:outputText value="Suspended" rendered="#{employee.suspended}" />
+				</h:column>
+				<p:column>
 					<f:facet name="header">Action</f:facet>
-					<p:commandButton value="Edit" icon="ui-icon-extlink"
-						actionListener="#{securityOfficerBean.editEmployee(employee)}">
-					</p:commandButton>
-				</h:column>
+					<p:commandButton value="Edit" icon="ui-icon-extlink" actionListener="#{securityOfficerBean.editEmployee(employee)}" oncomplete="PF('edit_dlg').show();" />
+				</p:column>
 			</h:dataTable>
-			<h:commandButton value="Add new employee" action="#{parcelBean.applyFilter}" />
+			
+			
+			<h:commandButton value="Add new employee"  actionListener="#{securityOfficerBean.addNew()}" />
+
+			<p:remoteCommand name="updateDialog" update="editEmployee" />
+			<p:dialog onShow="updateDialog()" header="Add to cart"
+				widgetVar="edit_dlg" modal="true">
+				<h:panelGrid columns="2" id="editEmployee">
+					<h:outputText value="Name:" />
+					<h:inputText id="name" value="#{securityOfficerBean.employee.name}"></h:inputText>
+
+					<h:outputText value="Login:" />
+					<h:inputText id="login"
+						value="#{securityOfficerBean.employee.login}"></h:inputText>
+
+					<h:outputText value="Password:" />
+					<h:inputText id="pass"
+						value="#{securityOfficerBean.employee.password}"></h:inputText>
+
+					<h:outputText value="Email" />
+					<h:inputText id="email"
+						value="#{securityOfficerBean.employee.email}"></h:inputText>
+
+					<h:outputText value="Role:" />
+					<h:selectOneMenu value="#{securityOfficerBean.employee.role}">
+						<f:selectItem itemValue="0" itemLabel="General manager" />
+						<f:selectItem itemValue="1" itemLabel="Cold store manager" />
+						<f:selectItem itemValue="2" itemLabel="Accountant" />
+						<f:selectItem itemValue="3" itemLabel="Security officer" />
+					</h:selectOneMenu>
+
+					<h:outputText value="Suspended:" />
+					<h:selectBooleanCheckbox
+						value="#{securityOfficerBean.employee.suspended}" />
+						
+					<h:outputText value="Login:" />
+					<h:outputText id="login2"
+						value="#{securityOfficerBean.employee.login}" />
+						
+					<p:commandButton value="Save"
+						actionListener="#{securityOfficerBean.saveEmployee()}" />
+				</h:panelGrid>
+			</p:dialog>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -4,15 +4,20 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 	
 <ui:composition template="/global/main.xhtml">
 	<ui:define name="page-subtitle">
 		Registration
 	</ui:define>
+	<h:messages />
 	<ui:define name="page-content">
-		<h1>Registering new customer:</h1>
-		<h:form>
+		<h1>Registering new customer</h1>
+		
+		<h:form autocomplete="off" id="loginForm">
+			<p:messages styleClass="errorMessage" autoUpdate="true"/>
+			
 			<h:panelGrid columns="2">
 				<h:outputText value="Name: " />
 				<h:inputText id="cName" value="#{customerRegistrationBean.newCustomer.name}" required="true"></h:inputText>
@@ -21,14 +26,15 @@
 				<h:inputText id="cEmail" value="#{customerRegistrationBean.newCustomer.email}" required="true"></h:inputText>
 	
 				<h:outputText value="Login:" />
-				<h:inputText id="cLogin" value="#{customerRegistrationBean.newCustomer.login}" required="true">
+				<h:inputText id="cLogin" value="#{customerRegistrationBean.newCustomer.login}" required="true" autocomplete="off">
 				</h:inputText>
 	
-				<h:outputText value="Password:" />
-				<h:inputSecret value="#{customerRegistrationBean.newCustomer.password}" required="true" />
+				<h:outputText value="Password:" autocomplete="off"/>
+				<h:inputSecret value="#{customerRegistrationBean.newCustomer.password}" required="true"  autocomplete="off" />
 				
 			</h:panelGrid>
-			<p:commandButton value="Submit" action="#{customerRegistrationBean.apply}"/>
+			<br/>
+			<p:commandButton value="Register" action="#{customerRegistrationBean.apply}"/>
 			<p:dialog header="Registration successful!" widgetVar="reg_ok" modal="true">
 				<p:commandButton value="Go to login page" action="loginPage.xhtml" />
 			</p:dialog>

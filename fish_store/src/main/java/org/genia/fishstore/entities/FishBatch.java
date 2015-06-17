@@ -1,5 +1,7 @@
 package org.genia.fishstore.entities;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,6 +43,10 @@ public class FishBatch {
 
 	public String getQuality() {
 		return quality;
+	}
+	
+	public Long getAge() {
+		return (Calendar.getInstance().getTimeInMillis() - order.getDateArrived().getTime()) / 1000 / 60 / 60 / 24;
 	}
 
 	public void setQuality(String quality) {

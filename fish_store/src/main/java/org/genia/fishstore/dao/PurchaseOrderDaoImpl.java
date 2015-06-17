@@ -16,7 +16,7 @@ public class PurchaseOrderDaoImpl extends GenericDaoImpl<PurchaseOrder> implemen
 	//TODO is it needed?
 	@Override
 	public List<FishBatch> getOrderItems(int orderId) {
-		return em.createQuery("select fb from FishBatch fb where fb.id = :orderId", FishBatch.class)
+		return em.createQuery("select fb from FishBatch fb where fb.order.id = :orderId", FishBatch.class)
 				.setParameter("orderId", orderId)
 				.getResultList();
 	}

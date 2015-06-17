@@ -28,7 +28,7 @@ public class BossBean {
 	@Inject
 	FishTypeService fishTypeService;
 	
-	List<FishBatch> orderItems;
+	private List<FishBatch> orderItems;
 	
 	public List<FishBatch> getFishBatches() {
 		return fishBatchService.findByFilter(null).getResultList();
@@ -57,7 +57,11 @@ public class BossBean {
 	}
 	
 	public void saveChanges() {
+		purchaseService.save(currentOrder);
+		
+		
 		for (FishBatch fishBatch : orderItems) {
+			fishBatch.setOrder(currentOrder);
 			fishBatchService.save(fishBatch);
 		}
 	}
@@ -72,7 +76,6 @@ public class BossBean {
 	
 	public void addItem() {
 		FishBatch newItem = new FishBatch();
-		newItem.setOrder(currentOrder);
 		orderItems.add(newItem);
 	}
 	

@@ -64,7 +64,7 @@ public class Employee {
 		this.role = role;
 	}
 
-	public boolean isSuspended() {
+	public boolean getSuspended() {
 		return suspended;
 	}
 

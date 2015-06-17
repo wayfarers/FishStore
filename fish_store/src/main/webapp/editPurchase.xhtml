@@ -16,19 +16,6 @@
 			<p:dataTable id="itemList" var="item" value="#{bossBean.orderItems}"
 				editable="true" editMode="cell" widgetVar="cellCars" styleClass="nofullwidth">
 
-				<!-- <p:column headerText="Fish name">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{item.fishType.name}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:selectOneMenu value="#{item.fishType}" style="width:100%" converter="omnifaces.SelectItemsConverter">
-								<f:selectItems  value="#{bossBean.fishList}" var="fishType" itemLabel="#{fishType.name}" itemValue="#{fishType}" />
-							</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column> -->
-
 				<p:column headerText="Fish name">
 					<h:selectOneMenu value="#{item.fishType}" style="width:100%" converter="omnifaces.SelectItemsConverter">
 						<f:selectItems value="#{bossBean.fishList}" var="fishType"

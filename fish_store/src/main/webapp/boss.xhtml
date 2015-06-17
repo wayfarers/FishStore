@@ -11,10 +11,10 @@
 		Search for fish parcels.
 	</ui:define>
 	<ui:define name="page-content">
-		<h1>Company orders:</h1>
+		<h1>Purchase orders:</h1>
 		<h:form>
 			<p:dataTable var="order" value="#{bossBean.purchaseOrders}">
-				<p:column headerText="Id">
+				<p:column headerText="Purchase Order No.">
 					<h:outputText value="#{order.id}" />
 				</p:column>
 

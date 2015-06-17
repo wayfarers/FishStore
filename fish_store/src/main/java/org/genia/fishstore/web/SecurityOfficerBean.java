@@ -1,8 +1,6 @@
 package org.genia.fishstore.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +15,7 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class SecurityOfficerBean {
 	
-	Employee employee;
+	private Employee employee;
 	EmployeeFilter filter;
 	
 	@Inject
@@ -47,10 +45,13 @@ public class SecurityOfficerBean {
 	
 	public void editEmployee(Employee employee) {
 		this.employee = employee;
-		Map<String, Object> options = new HashMap<String, Object>();
-    	options.put("contentHeight", 250);
-    	options.put("contentWidth", 400);
-        RequestContext.getCurrentInstance().openDialog("newEmployee", options, null);
+//		RequestContext.getCurrentInstance().execute("updateDialog()");
+//		RequestContext.getCurrentInstance().execute("edit_dlg.show();");
+		
+//		Map<String, Object> options = new HashMap<String, Object>();
+//    	options.put("contentHeight", 250);
+//    	options.put("contentWidth", 400);
+//        RequestContext.getCurrentInstance().openDialog("newEmployee", options, null);
 	}
 
 	public Employee getEmployee() {
@@ -67,5 +68,9 @@ public class SecurityOfficerBean {
 
 	public void setFilter(EmployeeFilter filter) {
 		this.filter = filter;
+	}
+	
+	public void addNew() {
+		
 	}
 }

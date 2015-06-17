@@ -1,6 +1,7 @@
 package org.genia.fishstore.services;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 
 import org.genia.fishstore.EmployeeFilter;
 import org.genia.fishstore.dao.EmployeeDao;
@@ -34,10 +35,14 @@ public class EmployeeServiceImpl extends GenericServiceImpl<Employee> implements
 
 	@Override
 	public Employee authentificate(String login, String password) {
-		Employee employee = dao.findByLogin(login);
-		if (employee != null && employee.getPassword().equals(password)) {
-			return employee;
+		try {
+			Employee employee = dao.findByLogin(login);
+			if (employee.getPassword().equals(password) && !employee.getSuspended()) {
+				return employee;
+			}
+			throw new UnsupportedOperationException("Invalid username or password");
+		} catch (NoResultException e) {
+			throw new UnsupportedOperationException("Invalid username or password");
 		}
-		throw new UnsupportedOperationException("Invalid username or password");
 	}
 }

@@ -29,6 +29,7 @@ public class ParcelBean implements Serializable {
 	
 	public ParcelBean() {
 		filter = new ParcelFilter();
+		filter.setOnStockOnly(true);
 	}
 
 	public ParcelFilter getFilter() {
