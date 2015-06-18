@@ -1,6 +1,7 @@
 package org.genia.fishstore.entities;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -41,6 +42,10 @@ public class CustomerOrder {
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
 	private List<CustomerOrderItem> items = new ArrayList<>();
+	
+	public CustomerOrder() {
+		date = Calendar.getInstance().getTime();
+	}
 	
 	public int getTotalItemsCount() {
 		return items.size();

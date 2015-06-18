@@ -54,7 +54,7 @@ public class ShoppingCartBean {
 			order = new CustomerOrder();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Submitting..", "Submit succesful!.");
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
-			return "filter.xhtml?faces-redirect=true";
+			return "customerOrders.xhtml?faces-redirect=true";
 		}
 		
 		return null;

@@ -31,9 +31,9 @@ public class CustomerRegistrationBean {
 		}
 		newCustomer.setRegistrationDate(Calendar.getInstance().getTime());
 		customerService.save(newCustomer);
-		RequestContext.getCurrentInstance().execute("PF('reg_ok').show()");
+//		RequestContext.getCurrentInstance().execute("PF('reg_ok').show()");
 		
-		return null;//"filter.xhtml?faces-redirect=true";
+		return "registerSuccessed.xhtml?faces-redirect=true";//"filter.xhtml?faces-redirect=true";
 	}
 	
 	
