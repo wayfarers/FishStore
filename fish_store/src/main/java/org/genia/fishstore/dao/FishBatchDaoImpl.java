@@ -40,13 +40,13 @@ public class FishBatchDaoImpl extends GenericDaoImpl<FishBatch> implements FishB
 			if (filter.getOnStockOnly()) {
 				conditions.add("fb.onSale = true");
 			}
-			if (filter.getMaxPrice() != null) {
+			if (filter.getMaxPrice() != null && filter.getMaxPrice() != 0) {
 				conditions.add("fb.salePrice <= " + filter.getMaxPrice());
 			}
 			if (filter.getFishType() != null && !filter.getFishType().equals("")) {
 				conditions.add("fb.fishType.name like " + "'%" + filter.getFishType() + "%'");
 			}
-			if (filter.getMaxAgeInDays() != null) {
+			if (filter.getMaxAgeInDays() != null && filter.getMaxAgeInDays() != 0) {
 				conditions.add("fb.order.dateArrived >= :maxAgeDate");
 			}
 
