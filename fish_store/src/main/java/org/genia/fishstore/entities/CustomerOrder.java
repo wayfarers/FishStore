@@ -157,6 +157,14 @@ public class CustomerOrder {
 		return sum;
 	}
 	
+	public int getTotalWeight() {
+		int weight = 0;
+		for (CustomerOrderItem item : items) {
+			weight += item.getWeight();
+		}
+		return weight;
+	}
+	
 	public void addItem(CustomerOrderItem item) {
 		item.setOrder(this);
 		items.add(item);
