@@ -16,4 +16,5 @@ public interface CustomerOrderService extends GenericService<CustomerOrder>{
 	public IncomeReport<Date> generateReportByDates();
 	public IncomeReport<FishType> generateReportByFishTypes();
 	public PaginatedResult<CustomerOrder> findByFilter(CustomerOrderFilter filter);
+	public void approveOrder(CustomerOrder order);
 }

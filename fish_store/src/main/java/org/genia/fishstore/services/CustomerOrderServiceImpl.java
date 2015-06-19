@@ -47,4 +47,10 @@ public class CustomerOrderServiceImpl extends GenericServiceImpl<CustomerOrder> 
 			CustomerOrderFilter filter) {
 		return dao.findByFilter(filter);
 	}
+
+	@Override
+	public void approveOrder(CustomerOrder order) {
+		// TODO Auto-generated method stub
+		
+	}
 }
