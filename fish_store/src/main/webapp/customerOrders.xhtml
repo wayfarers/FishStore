@@ -17,7 +17,7 @@
 
 				<h:outputText value="You have no orders yet" rendered="#{customerOrdersBean.orders == null}"/>
 				<h:dataTable value="#{customerOrdersBean.orders}" var="order"
-					styleClass="table table-striped table-hover" rendered="#{customerOrdersBean.orders != null}">
+					styleClass="table table-striped table-hover" rendered="#{customerOrdersBean.orders != null}" >
 					<h:column>
 						<f:facet name="header">Order No.</f:facet>
 						<h:outputText value="#{order.id}" />

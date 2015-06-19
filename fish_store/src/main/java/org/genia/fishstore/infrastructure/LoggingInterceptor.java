@@ -1,5 +1,7 @@
 package org.genia.fishstore.infrastructure;
 
+import java.util.Calendar;
+
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
@@ -15,6 +17,8 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class LoggingInterceptor implements PhaseListener {
 	private static final long serialVersionUID = 1L;
+	
+	ThreadLocal<Long> timeStarted = new ThreadLocal<>();
 
 	@Override
     public PhaseId getPhaseId() {
@@ -23,14 +27,17 @@ public class LoggingInterceptor implements PhaseListener {
 
     @Override
     public void beforePhase(PhaseEvent event) {
+    	timeStarted.set(Calendar.getInstance().getTimeInMillis());
     	SessionDataBean session = event.getFacesContext().getApplication().evaluateExpressionGet(event.getFacesContext(), "#{sessionDataBean}", SessionDataBean.class);
-        System.out.println(event.getFacesContext().getViewRoot().getViewId() + " " + 
+        System.out.println("IN " + event.getFacesContext().getViewRoot().getViewId() + " " + 
         		(session.getLoggedInEmployee() != null ? "Logged in as " + session.getLoggedInEmployee().getLogin() : "not loggen in"));
     }
 
     @Override
     public void afterPhase(PhaseEvent event) {
         // Do your job here which should run after the render response phase.
+    	long timeElapsed = Calendar.getInstance().getTimeInMillis() - timeStarted.get();
+    	System.out.println("OUT " + event.getFacesContext().getViewRoot().getViewId() + " in " + timeElapsed + "ms.");
     }
 
 }

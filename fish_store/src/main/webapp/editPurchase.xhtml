@@ -47,44 +47,13 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Weight arrived">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{item.weightArrived} kg" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{item.weightArrived}" style="width:96%"
-								label="Year" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Weight arrived" style="text-align: right;">
+					<h:outputText value="#{item.weightArrived} kg" />
 				</p:column>
 
 				<p:column headerText="Weight left">
 					<h:outputText value="#{item.weightLeft}" />
 				</p:column>
-
-				<!-- <p:column headerText="Write off">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{item.writtenOff}" /></f:facet>
-               <f:facet name="input">
-                   <h:selectOneMenu value="#{item.writtenOff}" style="width:100%">
-                       <f:selectItems value="#{dtEditView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
-                   </h:selectOneMenu>
-               </f:facet>
-           </p:cellEditor>
-           </p:column>
-           
-           <p:column headerText="On sale">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{item.onSale}" /></f:facet>
-               <f:facet name="input">
-                   <h:selectOneMenu value="#{item.onSale}" style="width:100%">
-                       <f:selectItems value="#{dtEditView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
-                   </h:selectOneMenu>
-               </f:facet>
-           </p:cellEditor>
-           </p:column> -->
-
 
 				<p:column headerText="Sale price">
 					<p:cellEditor>
@@ -110,14 +79,18 @@
 				</p:column>
 
 				<p:column headerText="On sale">
-							<h:selectOneMenu value="#{item.onSale}" style="width:100%">
+							<h:selectOneMenu value="#{item.onSale}" style="width:100%" disabled="#{item.writtenOff}>
 								<f:selectItem itemLabel="On sale" itemValue="true" />
 								<f:selectItem itemLabel="Not on sale" itemValue="false" />
 							</h:selectOneMenu>
 				</p:column>
 				
 				<p:column headerText="Write off">
-						<h:selectBooleanCheckbox value="#{item.writtenOff}" />
+						<h:selectBooleanCheckbox value="#{item.writeOff}" disabled="#{item.writtenOff}"/>
+				</p:column>
+				
+				<p:column headerText="Written off">
+						<h:selectBooleanCheckbox value="#{item.writtenOff}" disabled="true"/>
 				</p:column>
 
 			</p:dataTable>

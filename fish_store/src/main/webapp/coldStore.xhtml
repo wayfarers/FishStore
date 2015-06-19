@@ -14,8 +14,8 @@
 		<h1>Purchase orders:</h1>
 		You can view purchase orders and accept to the cold store.<br/><br/>
 		<h:form>
-			<p:dataTable var="order" value="#{coldStoreBean.purchaseOrders}">
-				<p:column headerText="Purchase Order No.">
+			<p:dataTable var="order" value="#{coldStoreBean.purchaseOrders}" style="width: 80%">
+				<p:column headerText="Order No.">
 					<h:outputText value="#{order.id}" />
 				</p:column>
 
@@ -35,9 +35,12 @@
 					<h:outputText value="#{order.coldStoreManager.name}" />
 				</p:column>
 				
-				<p:column headerText="Action">
-					<p:commandButton value="Accept" icon="ui-icon-extlink"
-						action="#{coldStoreBean.accept(order)}">
+				<p:column headerText="Action" >
+					<p:commandButton value="Accept"
+						action="#{coldStoreBean.accept(order)}" rendered="#{order.coldStoreManager == null}">
+					</p:commandButton>
+					<p:commandButton value="Manage"
+						action="#{coldStoreBean.manage(order)}" rendered="#{order.coldStoreManager != null}">
 					</p:commandButton>
 				</p:column>
 				

@@ -33,11 +33,19 @@ public class ColdStoreBean {
 	
 	private List<FishBatch> orderItems;
 	
-	
-	public String accept(PurchaseOrder order) {
+	private void prepareDetails(PurchaseOrder order) {
 		selectedOrder = order;
 		orderItems = purchaseOrderService.getOrderItems(order.getId());
+	}
+	
+	public String accept(PurchaseOrder order) {
+		prepareDetails(order);
 		return "acceptOnStore.xhtml?faces-redirect=true";
+	}
+	
+	public String manage(PurchaseOrder order) {
+		prepareDetails(order);
+		return "managePurchases.xhtml?faces-redirect=true";
 	}
 	
 	public List<PurchaseOrder> getPurchaseOrders() {
@@ -85,5 +93,9 @@ public class ColdStoreBean {
 	public List<FishType> getFishList() {
 		fishList = fishTypeService.getFishList();
 		return fishList;
+	}
+	
+	public void writeOff(FishBatch batch) {
+		fishBatchService.writeOff(batch);
 	}
 }

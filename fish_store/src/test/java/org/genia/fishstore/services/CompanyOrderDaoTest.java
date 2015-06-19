@@ -3,6 +3,8 @@ package org.genia.fishstore.services;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.genia.fishstore.dao.PurchaseOrderDao;
 import org.genia.fishstore.entities.FishBatch;

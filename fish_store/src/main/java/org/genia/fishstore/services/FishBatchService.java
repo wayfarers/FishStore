@@ -7,5 +7,6 @@ import org.genia.fishstore.entities.PaginatedResult;
 public interface FishBatchService extends GenericService<FishBatch> {
 	// TODO: Implement query useful for a customer. Order does not make sense for him.
 	public PaginatedResult<FishBatch> findByFilter(ParcelFilter filter);
+	public void writeOff(FishBatch batch);
 	
 }

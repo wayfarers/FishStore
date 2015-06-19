@@ -5,7 +5,8 @@ package org.genia.fishstore.dao;
 public interface GenericDao <T> {
 	public T findById(int id);
 	public void save(T entity);
-	public void removeById(int id); 
+	public void removeById(int id);
+	public T getFreshCopy(T entity); 
 	
 	// TODO: Implement a generic findAll(@Nullable PageInfo pageInfo);
 //	public List<T> findAll();

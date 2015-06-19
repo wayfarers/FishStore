@@ -51,16 +51,7 @@ public class AccountantBean {
 		RequestContext.getCurrentInstance().execute("PF('edit_dlg').hide()");
 	}
 	
-	@Transactional
 	public void approve(CustomerOrder order) {
-		for (CustomerOrderItem item : order.getItems()) {
-			int weightLeft = item.getFishBatch().getWeightLeft();
-			if(item.getFishBatch().getWeightLeft() >= item.getWeight()) {
-//				item.getFishBatch().set
-			}
-		}
-		order.setAccountant(sessionData.getLoggedInEmployee());
-		order.setStatus(OrderStatus.APPROVED_FOR_SHIPPMENT);
-		customerOrderService.save(order);
+		customerOrderService.approveOrder(order, sessionData.getLoggedInEmployee());
 	}
 }

@@ -21,6 +21,7 @@ public class FishBatch {
 	private int weightArrived;
 	private int weightLeft;
 	private double cost;
+	private boolean writeOff;
 	private boolean writtenOff;
 	private double salePrice;
 	private boolean onSale;
@@ -123,5 +124,13 @@ public class FishBatch {
 
 	public void setOrder(PurchaseOrder order) {
 		this.order = order;
+	}
+
+	public boolean isWriteOff() {
+		return writeOff;
+	}
+
+	public void setWriteOff(boolean writeOff) {
+		this.writeOff = writeOff;
 	}
 }

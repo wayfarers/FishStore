@@ -1,5 +1,7 @@
 package org.genia.fishstore.dao;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -31,6 +33,25 @@ public class GenericDaoImpl<T> implements GenericDao<T>{
 			em.persist(entity);
 		} else {
 			em.merge(entity);
+		}
+	}
+	
+	/**
+	 * Get the object that belongs to current persistence context.
+	 */
+	public T getFreshCopy(T entity) {
+		if (entity == null) {
+			return null;
+		}
+		
+		if (em.contains(entity)) {
+			return entity;
+		} else {
+			try {
+				return findById((int) entity.getClass().getMethod("getId").invoke(entity));
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 	

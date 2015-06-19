@@ -52,7 +52,7 @@
 					
 					<p:column headerText="Action">
 						<p:commandButton value="Approve" rendered="#{order.status == 'AWAITING_APPROVAL'}"
-							action="#{accountantBean.approve(order)}" update="cOrders" />
+							action="#{accountantBean.approve(order)}" update="cOrders" disabled="#{order.totalSum * order.customer.prepaymentRights / 100 != order.sumPayed}"/>
 					</p:column>
 				</h:dataTable>
 			</h:panelGrid>
@@ -87,8 +87,6 @@
 					<h:inputText styleClass="short" id="sumPayed" value="#{accountantBean.selectedOrder.sumPayed}" />
 					$
 					</ui:fragment>
-
-					
 				</h:panelGrid>
 				<br/>
 				<p:commandButton icon="ui-icon-arrowreturnthick-1-s" value="Update payment"

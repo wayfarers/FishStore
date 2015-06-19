@@ -6,6 +6,7 @@ import java.util.List;
 import org.genia.fishstore.CustomerOrderFilter;
 import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.entities.CustomerOrderItem;
+import org.genia.fishstore.entities.Employee;
 import org.genia.fishstore.entities.FishType;
 import org.genia.fishstore.entities.IncomeReport;
 import org.genia.fishstore.entities.PaginatedResult;
@@ -16,5 +17,6 @@ public interface CustomerOrderService extends GenericService<CustomerOrder>{
 	public IncomeReport<Date> generateReportByDates();
 	public IncomeReport<FishType> generateReportByFishTypes();
 	public PaginatedResult<CustomerOrder> findByFilter(CustomerOrderFilter filter);
-	public void approveOrder(CustomerOrder order);
+	public List<CustomerOrder> getCustomerOrders(int customerId);
+	void approveOrder(CustomerOrder order, Employee approvedBy);
 }

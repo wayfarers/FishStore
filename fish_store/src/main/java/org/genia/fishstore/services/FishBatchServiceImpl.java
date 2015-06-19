@@ -25,4 +25,13 @@ public class FishBatchServiceImpl extends GenericServiceImpl<FishBatch> implemen
 	public PaginatedResult<FishBatch> findByFilter(ParcelFilter filter) {
 		return dao.findByFilter(filter);
 	}
+
+	@Override
+	public void writeOff(FishBatch batch) {
+		batch = dao.getFreshCopy(batch);
+		batch.setOnSale(false);
+		batch.setWeightLeft(0);
+		batch.setWriteOff(true);
+		batch.setWrittenOff(true);
+	}
 }
