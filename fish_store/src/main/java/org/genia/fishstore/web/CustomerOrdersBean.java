@@ -14,12 +14,14 @@ import org.springframework.context.annotation.Scope;
 public class CustomerOrdersBean {
 
 	@Inject
+	SessionDataBean sessionData;
+	@Inject
 	CustomerOrderService customerOrderService;
 	
 	private CustomerOrder currentOrder;
 	
 	public List<CustomerOrder> getOrders() {
-		return customerOrderService.findByFilter(null).getResultList();
+		return sessionData.getLoggedInCustomer().getOrders();
 	}
 	
 	public String orderDetails(CustomerOrder order) {
