@@ -21,9 +21,9 @@ public class AdminBean {
 		
 		switch (sessionData.getLoggedInEmployee().getRole()) {
 		case GENERAL_MANAGER:
-			return "boss.xhtml";
+			return "admin/boss.xhtml";
 		case SECURITY_OFFICER:
-			return "securityOfficerPage.html";
+			return "admin/securityOfficerPage.html";
 		default:
 			throw new UnsupportedOperationException(
 					"No home page for role " + sessionData.getLoggedInEmployee().getRole() + " yet");

@@ -83,7 +83,7 @@
 			        	<li><h:commandLink action="#{loginBean.logout}" value="Logout" /></li>
 			        </ui:fragment>
 			        <ui:fragment rendered="#{sessionDataBean.loggedInCustomer != null}">
-			        	<li><a href="customerOrders.xhtml">My orders</a></li>
+			        	<li><a href="customer/customerOrders.xhtml">My orders</a></li>
 			        </ui:fragment>
 			        <li><a href="shoppingCart.xhtml">Cart (#{shoppingCartBean.order.items.size()})</a></li>
 			      </ul>

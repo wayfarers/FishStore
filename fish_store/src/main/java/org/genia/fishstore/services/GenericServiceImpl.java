@@ -27,7 +27,7 @@ public class GenericServiceImpl<T> implements GenericService<T> {
 	}
 
 	@Override
-	public T refresh(T entity) {
+	public T getFreshCopy(T entity) {
 		return dao.getFreshCopy(entity);
 	}
 }

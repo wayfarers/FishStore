@@ -13,12 +13,12 @@
 	<ui:define name="page-content">
 		<h1>Order details:</h1>
 		<h:form>
-			<p:dataTable id="itemList" var="item" value="#{bossBean.orderItems}"
-				editable="true" editMode="cell" widgetVar="cellCars" styleClass="nofullwidth">
+			<p:dataTable id="itemList" var="item" value="#{coldStoreBean.orderItems}"
+				editable="true" editMode="cell" widgetVar="cellItems" styleClass="nofullwidth">
 
 				<p:column headerText="Fish name">
 					<h:selectOneMenu value="#{item.fishType}" style="width:100%" converter="omnifaces.SelectItemsConverter">
-						<f:selectItems value="#{bossBean.fishList}" var="fishType"
+						<f:selectItems value="#{coldStoreBean.fishList}" var="fishType"
 							itemLabel="#{fishType.name}" itemValue="#{fishType}" />
 					</h:selectOneMenu>
 				</p:column>
@@ -47,59 +47,30 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Weight arrived" style="text-align: right;">
-					<h:outputText value="#{item.weightArrived} kg" />
-				</p:column>
-
-				<p:column headerText="Weight left">
-					<h:outputText value="#{item.weightLeft}" />
-				</p:column>
-
-				<p:column headerText="Sale price">
+				<p:column headerText="Weight arrived">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{item.salePrice}" />
+							<h:outputText value="#{item.weightArrived} kg" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{item.salePrice}" style="width:96%"
+							<p:inputText value="#{item.weightArrived}" style="width:96%"
 								label="Year" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Cost">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{item.cost}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{item.cost}" style="width:96%" label="Year" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
 				<p:column headerText="On sale">
-							<h:selectOneMenu value="#{item.onSale}" style="width:100%" disabled="#{item.writtenOff}>
-								<f:selectItem itemLabel="On sale" itemValue="true" />
-								<f:selectItem itemLabel="Not on sale" itemValue="false" />
-							</h:selectOneMenu>
+					<h:outputText value="On sale" rendered="#{item.onSale}" />
+					<h:outputText value="Not on sale" rendered="#{!item.onSale}" />
 				</p:column>
 				
-				<p:column headerText="Write off">
-						<h:selectBooleanCheckbox value="#{item.writeOff}" disabled="#{item.writtenOff}"/>
-				</p:column>
-				
-				<p:column headerText="Written off">
-						<h:selectBooleanCheckbox value="#{item.writtenOff}" disabled="true"/>
-				</p:column>
-
 			</p:dataTable>
 			<p:panelGrid columns="3" styleClass="noBorders" style="margin-top:20px; horizontal-align:middle" >
 				<p:commandButton value="Save changes" icon="ui-icon-extlink"
-					action="#{bossBean.saveChanges}" />
-				<p:button value="Back to orders" outcome="boss" />
+					action="#{coldStoreBean.saveChanges}" />
+				<p:button value="Back to orders" outcome="admin/coldStore" />
 				<p:commandButton value="Add row"
-					actionListener="#{bossBean.addItem}" update="itemList"/>
+					actionListener="#{coldStoreBean.addItem}" update="itemList"/>
 			</p:panelGrid>
 		</h:form>
 	</ui:define>

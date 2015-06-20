@@ -39,13 +39,13 @@ public class LoginBean {
 			sessionData.setLoggedInEmployee(employeeService.authentificate(login, password));
 			switch (sessionData.getLoggedInEmployee().getRole()) {
 			case GENERAL_MANAGER:
-				return "boss.xhtml?faces-redirect=true";
+				return "admin/boss.xhtml?faces-redirect=true";
 			case COLD_STORE_MANAGER:
-				return "coldStore.xhtml?faces-redirect=true";
+				return "admin/coldStore.xhtml?faces-redirect=true";
 			case ACCOUNTANT:
-				return "orderApproving.xhtml?faces-redirect=true";
+				return "admin/orderApproving.xhtml?faces-redirect=true";
 			case SECURITY_OFFICER:
-				return "securityOfficerPage.xhtml?faces-redirect=true";
+				return "admin/securityOfficerPage.xhtml?faces-redirect=true";
 			default:
 				return null;
 			}

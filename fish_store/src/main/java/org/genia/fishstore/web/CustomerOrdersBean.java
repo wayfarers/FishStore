@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.services.CustomerOrderService;
@@ -29,7 +27,7 @@ public class CustomerOrdersBean {
 	
 	public String orderDetails(CustomerOrder order) {
 		currentOrder = order;
-		return "orderDetails.xhtml?faces-redirect=true";
+		return "customer/orderDetails.xhtml?faces-redirect=true";
 	}
 
 	public CustomerOrder getCurrentOrder() {

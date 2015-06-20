@@ -63,17 +63,17 @@
 			      </ul>
 			      <ul class="nav navbar-nav">
 			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'SECURITY_OFFICER'}">
-			        	<li><a href="securityOfficerPage.xhtml">Manage employees</a></li>
+			        	<li><a href="admin/securityOfficerPage.xhtml">Manage employees</a></li>
 			        </ui:fragment>
 			      </ul>
 			      <ul class="nav navbar-nav">
 			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'GENERAL_MANAGER'}">
-			        	<li><a href="manageCustomers.xhtml">Manage customers</a></li>
+			        	<li><a href="admin/manageCustomers.xhtml">Manage customers</a></li>
 			        </ui:fragment>
 			      </ul>
 			      <ul class="nav navbar-nav">
 			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'GENERAL_MANAGER'}">
-			        	<li><a href="boss.xhtml">Manage orders</a></li>
+			        	<li><a href="admin/boss.xhtml">Manage orders</a></li>
 			        </ui:fragment>
 			      </ul>
 			      
