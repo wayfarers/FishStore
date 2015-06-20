@@ -66,7 +66,7 @@ public class LoggingInterceptor implements PhaseListener {
 				case "securityOfficerPage":
 				case "newEmployee":
 					if (loggedInEmployee != null
-							&& loggedInEmployee.getRole() == Role.ACCOUNTANT) {
+							&& loggedInEmployee.getRole() == Role.SECURITY_OFFICER) {
 						return;
 					}
 				}
