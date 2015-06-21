@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/global/admin-template.xhtml">
+	<ui:define name="page-subtitle">
+		Search for fish parcels.
+	</ui:define>
+	<ui:define name="page-content">
+		<h1>Fish on store</h1>
+		The fish remaining in the cold store.
+		 
+
+		<br/><br/>
+		<h:form>
+			<p:dataTable id="itemList" var="item" value="#{restOnStockBean.orderItems}"
+				editable="true" editMode="cell" widgetVar="cellItems" styleClass="nofullwidth">
+				
+				<p:column headerText="Item #">
+					<h:outputText value="#{item.id}" />
+				</p:column>
+				<p:column headerText="Fish name">
+					<h:outputText value="#{item.fishType.name}" />
+				</p:column>
+
+				<p:column headerText="Quality">
+					<h:outputText value="#{item.quality}" />
+				</p:column>
+
+				<p:column headerText="Weight ordered" style="text-align: right;">
+					<h:outputText  value="#{item.weightOrdered} kg" />
+				</p:column>
+
+				<p:column headerText="Weight arrived">
+					<h:outputText value="#{item.weightArrived} kg" />
+				</p:column>
+				
+				<p:column headerText="Left on store">
+					<h:outputText value="#{item.weightLeft} kg" />
+				</p:column>
+
+				<p:column headerText="On sale">
+					<h:outputText value="On sale" rendered="#{item.onSale}"/>
+					<h:outputText value="Not on sale" rendered="#{!item.onSale}"/>
+				</p:column>
+				
+				<p:column headerText="Write off requested">
+					<h:selectBooleanCheckbox value="#{item.writeOff}" disabled="true"/>
+				</p:column>
+				
+				<p:column headerText="Written off">
+					<h:outputText value="Written off" rendered="#{item.writtenOff}"/>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

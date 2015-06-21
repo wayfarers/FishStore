@@ -52,4 +52,6 @@ TABLE.columns TD {vertical-align: top !important; padding-right: 20px; padding-b
 
 #page-content H1 {border-bottom: 1px solid #666; margin-bottom: 30px;}
 
-.short {width: 80px;} 
+.short {width: 80px;}
+
+.right {text-align: right;} 

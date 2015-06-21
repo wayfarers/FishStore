@@ -54,6 +54,7 @@ public class LoggingInterceptor implements PhaseListener {
 				case "coldStore":
 				case "acceptOnStore":
 				case "managePurchases":
+				case "restOnStock":
 					if (loggedInEmployee != null
 							&& loggedInEmployee.getRole() == Role.COLD_STORE_MANAGER) {
 						return;

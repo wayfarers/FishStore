@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/global/main.xhtml">
+<ui:composition template="/global/admin-template.xhtml">
 	<ui:define name="page-content">
 		<h1>Report by dates:</h1>
 
@@ -26,27 +26,27 @@
 				<tr>
 					<td>
 						<h1>Report by dates</h1> 
-						<h:panelGrid id="dateRep" columns="2">
+						<p:panelGrid id="dateRep" columns="2">
 							<h:dataTable value="#{reportBean.dateReport.lines}" var="line"
 								styleClass="table table-striped">
-								<h:column>
+								<p:column>
 									<f:facet name="header">Date</f:facet>
 										<h:outputText value="#{line.type}"><f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 									</h:outputText>
 									
 
-								</h:column>
-								<h:column>
+								</p:column>
+								<p:column style="text-align: right;">
 									<f:facet name="header">Income</f:facet>
-									<h:outputText value="#{line.income}">
+									<h:outputText value="$#{line.income}">
 									</h:outputText>
-								</h:column>
+								</p:column>
 								<p:row>
 									<p:column style="text-align:right" footerText="Totals: " />
 									<p:column footerText="#{reportBean.dateReport.totalIncome}" />
 								</p:row>
 							</h:dataTable>
-						</h:panelGrid>
+						</p:panelGrid>
 					</td>
 					<td>
 						<h1>Report by fish types</h1> 
@@ -57,9 +57,9 @@
 									<f:facet name="header">Fish name</f:facet>
 									<h:outputText value="#{line.type.name} " />
 								</h:column>
-								<h:column>
+								<h:column  style="text-align: right">
 									<f:facet name="header">Income</f:facet>
-									<h:outputText value="#{line.income}">
+									<h:outputText value="$#{line.income}">
 									</h:outputText>
 								</h:column>
 								<p:row>

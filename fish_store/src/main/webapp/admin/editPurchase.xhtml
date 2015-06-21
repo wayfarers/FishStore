@@ -12,7 +12,8 @@
 	</ui:define>
 	<ui:define name="page-content">
 		<h1>Order details:</h1>
-		<h:form>
+		<h:form id="mainForm">
+			<p:messages id="msg" styleClass="errorMessage" autoUpdate="true"/>
 			<p:dataTable id="itemList" var="item" value="#{bossBean.orderItems}"
 				editable="true" editMode="cell" widgetVar="cellCars" styleClass="nofullwidth">
 
@@ -30,7 +31,7 @@
 						</f:facet>
 						<f:facet name="input">
 							<p:inputText value="#{item.quality}" style="width:96%"
-								label="Year" />
+								label="Year"/>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -42,7 +43,7 @@
 						</f:facet>
 						<f:facet name="input">
 							<p:inputText value="#{item.weightOrdered}" style="width:96%"
-								label="Year" />
+								label="Year" converterMessage="Please input integer only." />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -62,7 +63,7 @@
 						</f:facet>
 						<f:facet name="input">
 							<p:inputText value="#{item.salePrice}" style="width:96%"
-								label="Year" />
+								label="Year" converterMessage="Please enter number, use point for fractional numbers."/>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -73,7 +74,8 @@
 							<h:outputText value="#{item.cost}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{item.cost}" style="width:96%" label="Year" />
+							<p:inputText value="#{item.cost}" style="width:96%" label="Year"
+							converterMessage="Please enter number, use point for fractional numbers. "/>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>

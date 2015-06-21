@@ -12,7 +12,8 @@
 	</ui:define>
 	<ui:define name="page-content">
 		<h1>Order details:</h1>
-		<h:form>
+		<h:form id="mainForm">
+		<p:messages styleClass="errorMessage" autoUpdate="true"/>
 			<p:dataTable id="itemList" var="item" value="#{coldStoreBean.orderItems}"
 				editable="true" editMode="cell" widgetVar="cellItems" styleClass="nofullwidth">
 
@@ -40,7 +41,8 @@
 							<h:outputText  value="#{item.weightOrdered} kg" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{item.weightOrdered}" style="width:96%"> </p:inputText>
+							<p:inputText id="ordered" value="#{item.weightOrdered}" style="width:96%"
+							converterMessage="Please input integer only."> </p:inputText>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -51,7 +53,8 @@
 							<h:outputText value="#{item.weightArrived} kg" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{item.weightArrived}" style="width:96%" />
+							<p:inputText id="arrived" value="#{item.weightArrived}" style="width:96%" 
+							converterMessage="Please input integer only."/>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>

@@ -24,7 +24,7 @@ public class CustomerOrderDaoImpl extends GenericDaoImpl<CustomerOrder> implemen
 
 	@Override
 	public List<CustomerOrder> getCustomerOrders(int customerId) {
-		return em.createQuery("select co from CustomerOrder co where co.id = :id", CustomerOrder.class)
+		return em.createQuery("select co from CustomerOrder co where co.customer.id = :id", CustomerOrder.class)
 		.setParameter("id", customerId)
 		.getResultList();
 		

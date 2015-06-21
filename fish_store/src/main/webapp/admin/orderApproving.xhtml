@@ -46,7 +46,7 @@
 					</h:column>
 					
 					<p:column headerText="Action">
-						<p:commandButton value="Edit" update=":mainForm:dlg"
+						<p:commandButton value="Edit" update=":dlgForm:dlg"
 							action="#{accountantBean.setSelectedOrder(order)}" />
 					</p:column>
 					
@@ -57,27 +57,8 @@
 				</h:dataTable>
 			</h:panelGrid>
 			
-			
-			<p:dialog id="dlg" header="Edit payed sum"
-				widgetVar="edit_dlg" modal="true">
-				
-				<h:panelGrid columns="3" id="sum_info">
-					<h:outputText value="Amount paid: " />
-					<ui:fragment>
-					<h:inputText styleClass="short" id="sumPayed" value="#{accountantBean.selectedOrder.sumPayed}" />
-					$
-					</ui:fragment>
-
-					
-				</h:panelGrid>
-				<br/>
-				<p:commandButton icon="ui-icon-arrowreturnthick-1-s" value="Update payment"
-					update="cOrders"
-						actionListener="#{accountantBean.saveOrder()}"
-						onsuccess="PF('edit_dlg').hide()" />
-			</p:dialog>
 		</h:form>
-		<h:form>
+		<h:form id="dlgForm">
 			<p:dialog id="dlg" header="Edit payed sum"
 				widgetVar="edit_dlg" modal="true">
 				

@@ -2,6 +2,7 @@ package org.genia.fishstore.web;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,21 +19,22 @@ public class CustomerBean {
 	
 	private List<Customer> customers;
 	
+	@PostConstruct
+	private void init() {
+		customers = customerService.findAll();
+	}
+	
 	public List<Customer> getCustomers() {
 		
-		return customerService.findAll();
+		return customers;
 	}
 	
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
 	}
 
-//	public void saveCustomer(Customer customer) {
-//		customerService.save(customer);
-//		System.out.println("invoked saving");
-//	}
-	
 	public void saveCustomer(Customer customer) {
 		customerService.save(customer);
+//		customer = customerService.getFreshCopy(customer);
 	}
 }

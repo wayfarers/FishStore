@@ -78,10 +78,19 @@
 			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'GENERAL_MANAGER'}">
 			        	<li><a href="admin/boss.xhtml">Manage orders</a></li>
 			        </ui:fragment>
+			      </ul><ul class="nav navbar-nav">
+			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'GENERAL_MANAGER'}">
+			        	<li><a href="admin/report.xhtml">Reports</a></li>
+			        </ui:fragment>
 			      </ul>
 			      <ul class="nav navbar-nav">
 			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'COLD_STORE_MANAGER'}">
 			        	<li><a href="admin/coldStore.xhtml">Purchase orders</a></li>
+			        </ui:fragment>
+			      </ul>
+			      <ul class="nav navbar-nav">
+			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'COLD_STORE_MANAGER'}">
+			        	<li><a href="admin/restOnStock.xhtml">Fish on store</a></li>
 			        </ui:fragment>
 			      </ul>
 			      

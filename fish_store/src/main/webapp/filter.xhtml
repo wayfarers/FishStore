@@ -33,10 +33,6 @@
 								converterMessage="Please enter integer only.">
 							</p:inputText>
 							
-							<h:panelGroup rendered="#{sessionDataBean.loggedInEmployee != null}">
-								<h:outputText value="On stock only:" />
-								<p:selectBooleanCheckbox value="#{parcelBean.filter.onStockOnly}" />
-							</h:panelGroup>
 						</p:panelGrid>
 						<h:message id="msg1" for="price" style="color:red" /> <br/>
 						<h:message id="msg2" for="age" style="color:red" /> <br/>
@@ -62,9 +58,9 @@
 									#{parcel.weightLeft} kg
 								</h:column>
 								<h:column>
-									<f:facet name="header">Date arrived</f:facet>
+									<f:facet name="header">Age</f:facet>
 			
-									<h:outputText value="#{parcel.age}">
+									<h:outputText value="#{parcel.age} days" >
 									</h:outputText>
 								</h:column>
 								<h:column>

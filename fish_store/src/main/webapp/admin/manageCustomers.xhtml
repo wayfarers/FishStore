@@ -13,26 +13,34 @@
 	<ui:define name="page-content">
 		<h1>Customers list:</h1>
 		<h:form>
-			<h:dataTable value="#{customerBean.customers}" var="cust"
+			<p:messages id="msg" styleClass="errorMessage" autoUpdate="true"/>
+			<p:dataTable value="#{customerBean.customers}" var="cust"
 				styleClass="table table-striped">
-				<h:column>
+				<p:column>
 					<f:facet name="header">Name</f:facet>
 					<h:outputText value="#{cust.name}" />
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Login</f:facet>
 					<h:outputText value="#{cust.login}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Prepayment right, %</f:facet>
-					<h:inputText value="#{cust.prepaymentRights}"/>
-				</h:column>
-				<h:column>
+				</p:column>
+				
+				<p:column headerText="Prepayment right, %">
+							<p:inputText value="#{cust.prepaymentRights}" style="width:96%"
+								converterMessage="Please input integer only."
+								validatorMessage="Input value must be between 0 and 100">
+								<f:validateLongRange minimum="0" maximum="100"/>
+							</p:inputText>
+				</p:column>
+				
+				
+				
+				<p:column>
 					<f:facet name="header">Action</f:facet>
 					<h:commandButton value="Save"
 						action="#{customerBean.saveCustomer(cust)}" />
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>
