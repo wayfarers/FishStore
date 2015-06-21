@@ -4,8 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://primefaces.org/ui">
 	
 <ui:composition template="/global/main.xhtml">
 	<ui:define name="page-subtitle">
@@ -18,26 +17,26 @@
 		<h:form autocomplete="off" id="loginForm">
 			<p:messages styleClass="errorMessage" autoUpdate="true"/>
 			
-			<h:panelGrid columns="2">
-				<h:outputText value="Name: " />
-				<h:inputText id="cName" value="#{customerRegistrationBean.newCustomer.name}" required="true"></h:inputText>
+			<p:panelGrid columns="2" styleClass="columns, noBorders">
+				<h:outputText value="* Name: " />
+				<p:inputText id="cName" value="#{customerRegistrationBean.newCustomer.name}" required="true"
+					requiredMessage="Name is required." />
 	
-				<h:outputText value="E-mail:" />
-				<h:inputText id="cEmail" value="#{customerRegistrationBean.newCustomer.email}" required="true"></h:inputText>
+				<h:outputText value="* E-mail: " />
+				<p:inputText id="cEmail" value="#{customerRegistrationBean.newCustomer.email}" required="true" 
+					requiredMessage="E-mail is required." />
 	
-				<h:outputText value="Login:" />
-				<h:inputText id="cLogin" value="#{customerRegistrationBean.newCustomer.login}" required="true" autocomplete="off">
-				</h:inputText>
+				<h:outputText value="* Login: " />
+				<p:inputText id="cLogin" value="#{customerRegistrationBean.newCustomer.login}" required="true" autocomplete="off" 
+					requiredMessage="Login is required." />
 	
-				<h:outputText value="Password:" autocomplete="off"/>
-				<h:inputSecret value="#{customerRegistrationBean.newCustomer.password}" required="true"  autocomplete="off" />
+				<h:outputText value="* Password: " autocomplete="off"/>
+				<p:password id="pass" value="#{customerRegistrationBean.newCustomer.password}" required="true"  autocomplete="off" 
+					requiredMessage="Password is required." />
 				
-			</h:panelGrid>
+			</p:panelGrid>
 			<br/>
-			<p:commandButton value="Register" action="#{customerRegistrationBean.apply}"/>
-			<p:dialog header="Registration successful!" widgetVar="reg_ok" modal="true">
-				<p:commandButton value="Go to login page" action="loginPage.xhtml" />
-			</p:dialog>
+			<p:commandButton value="Register" action="#{customerRegistrationBean.apply}" update="loginForm"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

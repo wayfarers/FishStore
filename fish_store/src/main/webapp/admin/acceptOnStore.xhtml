@@ -29,8 +29,7 @@
 							<h:outputText value="#{item.quality}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{item.quality}" style="width:96%"
-								label="Year" />
+							<p:inputText value="#{item.quality}" style="width:96%" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -41,8 +40,7 @@
 							<h:outputText  value="#{item.weightOrdered} kg" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{item.weightOrdered}" style="width:96%"
-								label="Year" />
+							<p:inputText value="#{item.weightOrdered}" style="width:96%"> </p:inputText>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -53,8 +51,7 @@
 							<h:outputText value="#{item.weightArrived} kg" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{item.weightArrived}" style="width:96%"
-								label="Year" />
+							<p:inputText value="#{item.weightArrived}" style="width:96%" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -68,7 +65,7 @@
 			<p:panelGrid columns="3" styleClass="noBorders" style="margin-top:20px; horizontal-align:middle" >
 				<p:commandButton value="Save changes" icon="ui-icon-extlink"
 					action="#{coldStoreBean.saveChanges}" />
-				<p:button value="Back to orders" outcome="admin/coldStore" />
+				<p:button value="Back to orders" outcome="/admin/coldStore" />
 				<p:commandButton value="Add row"
 					actionListener="#{coldStoreBean.addItem}" update="itemList"/>
 			</p:panelGrid>

@@ -21,13 +21,12 @@ public class CustomerOrdersBean {
 	private CustomerOrder currentOrder;
 	
 	public List<CustomerOrder> getOrders() {
-		System.out.println("*getting orders*");
 		return sessionData.getLoggedInCustomer().getOrders();
 	}
 	
 	public String orderDetails(CustomerOrder order) {
 		currentOrder = order;
-		return "customer/orderDetails.xhtml?faces-redirect=true";
+		return "/customer/orderDetails.xhtml?faces-redirect=true";
 	}
 
 	public CustomerOrder getCurrentOrder() {

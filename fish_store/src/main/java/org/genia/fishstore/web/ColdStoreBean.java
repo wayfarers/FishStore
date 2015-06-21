@@ -40,12 +40,12 @@ public class ColdStoreBean {
 	
 	public String accept(PurchaseOrder order) {
 		prepareDetails(order);
-		return "admin/acceptOnStore.xhtml?faces-redirect=true";
+		return "/admin/acceptOnStore.xhtml?faces-redirect=true";
 	}
 	
 	public String manage(PurchaseOrder order) {
 		prepareDetails(order);
-		return "admin/managePurchases.xhtml?faces-redirect=true";
+		return "/admin/managePurchases.xhtml?faces-redirect=true";
 	}
 	
 	public List<PurchaseOrder> getPurchaseOrders() {

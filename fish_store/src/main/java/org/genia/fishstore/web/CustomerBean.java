@@ -34,6 +34,5 @@ public class CustomerBean {
 	
 	public void saveCustomer(Customer customer) {
 		customerService.save(customer);
-		System.out.println("invoked saving");
 	}
 }

@@ -1,9 +1,32 @@
 @CHARSET "UTF-8";
 
-BODY {padding: 0px; margin: 0px;}
+BODY, HTML {height: 100%;}
+BODY {padding: 0px; margin: 0px; 
+	
+}
 
-#header {background-color: #EEE; padding: 15px 30px; background-position:center;}
-#header H1 {margin: 0px; padding: 0px; font-family: Georgia;}
+#background {
+	width: 100%; height: 100%; position: absolute;
+	left: 0px;
+	top: 0px;
+	background: url(../img/wave-bg.jpg);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-alpha: 0.5;
+	opacity: 0.3;
+	z-index: -100;
+}
+
+.hometron {
+	background-color: rgba(29, 100, 193, 0.1);
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	padding: 30px;
+	border-radius: 40px;
+}
+
+#header {background-color: #F1F1F1; padding: 0px 30px; background-position:center;}
+#header H1 {margin: 0px; padding: 0px; font-family: Cambria; color: #777;}
 
 #page-content H1 {font-family: Arial; font-size: 14pt;}
 
@@ -21,6 +44,7 @@ TABLE.columns TD {vertical-align: top !important; padding-right: 20px; padding-b
 }
 
  #page-content, .navbar .container-fluid {width: 1024px; margin: auto; }
+  #page-content {background-color: rgba(255, 255, 255, 0.7) }
  
  
 .navbar .container-fluid, NAV.navbar .navbar-collapse {padding-left: 0px !important; }

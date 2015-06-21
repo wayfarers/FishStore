@@ -45,7 +45,7 @@ public class BossBean {
 	public String editOrder(PurchaseOrder order) {
 		currentOrder = order;
 		orderItems = getItems(order.getId());
-		return "admin/editPurchase.xhtml?faces-redirect=true";
+		return "/admin/editPurchase.xhtml?faces-redirect=true";
 	}
 
 	public List<FishBatch> getOrderItems() {
@@ -71,7 +71,7 @@ public class BossBean {
 		orderItems = new ArrayList<>();
 		orderItems.add(new FishBatch());
 		
-		return "admin/editPurchase.xhtml?faces-redirect=true";
+		return "/admin/editPurchase.xhtml?faces-redirect=true";
 	}
 	
 	public void addItem() {

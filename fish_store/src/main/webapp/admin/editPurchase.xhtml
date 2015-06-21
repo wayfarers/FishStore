@@ -79,7 +79,7 @@
 				</p:column>
 
 				<p:column headerText="On sale">
-							<h:selectOneMenu value="#{item.onSale}" style="width:100%" disabled="#{item.writtenOff}>
+							<h:selectOneMenu value="#{item.onSale}" style="width:100%" disabled="#{item.writtenOff}">
 								<f:selectItem itemLabel="On sale" itemValue="true" />
 								<f:selectItem itemLabel="Not on sale" itemValue="false" />
 							</h:selectOneMenu>
@@ -97,7 +97,7 @@
 			<p:panelGrid columns="3" styleClass="noBorders" style="margin-top:20px; horizontal-align:middle" >
 				<p:commandButton value="Save changes" icon="ui-icon-extlink"
 					action="#{bossBean.saveChanges}" />
-				<p:button value="Back to orders" outcome="admin/boss" />
+				<p:button value="Back to orders" outcome="/admin/boss" />
 				<p:commandButton value="Add row"
 					actionListener="#{bossBean.addItem}" update="itemList"/>
 			</p:panelGrid>

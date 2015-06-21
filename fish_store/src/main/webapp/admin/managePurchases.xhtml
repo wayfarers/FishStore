@@ -12,6 +12,21 @@
 	</ui:define>
 	<ui:define name="page-content">
 		<h1>Order details:</h1>
+		You are viewing <b>Purchase Order ##{coldStoreBean.selectedOrder.id}</b> ordered on
+		<b> 
+		<h:outputText value="#{coldStoreBean.selectedOrder.dateOrdered}">
+			<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+		</h:outputText>
+		</b>
+		<br/>
+		Accepted to store on 
+		<b>
+		<h:outputText value="#{coldStoreBean.selectedOrder.dateArrived}">
+			<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+		</h:outputText>
+		</b>
+		by <b>#{coldStoreBean.selectedOrder.coldStoreManager.name}</b>.
+		<br/><br/>
 		<h:form>
 			<p:dataTable id="itemList" var="item" value="#{coldStoreBean.orderItems}"
 				editable="true" editMode="cell" widgetVar="cellItems" styleClass="nofullwidth">
@@ -31,13 +46,17 @@
 				<p:column headerText="Weight arrived">
 					<h:outputText value="#{item.weightArrived} kg" />
 				</p:column>
+				
+				<p:column headerText="Left on store">
+					<h:outputText value="#{item.weightLeft} kg" />
+				</p:column>
 
 				<p:column headerText="On sale">
 					<h:outputText value="On sale" rendered="#{item.onSale}"/>
 					<h:outputText value="Not on sale" rendered="#{!item.onSale}"/>
 				</p:column>
 				
-				<p:column headerText="Write off">
+				<p:column headerText="Write off requested">
 					<h:selectBooleanCheckbox value="#{item.writeOff}" disabled="true"/>
 				</p:column>
 				
@@ -51,7 +70,7 @@
 			<p:panelGrid columns="3" styleClass="noBorders" style="margin-top:20px; horizontal-align:middle" >
 				<p:commandButton value="Save changes" icon="ui-icon-extlink"
 					action="#{coldStoreBean.saveChanges}" />
-				<p:button value="Back to orders" outcome="admin/coldStore" />
+				<p:button value="Back to orders" outcome="/admin/coldStore" />
 			</p:panelGrid>
 		</h:form>
 	</ui:define>

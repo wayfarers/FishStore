@@ -44,13 +44,6 @@ public class SecurityOfficerBean {
 	
 	public void editEmployee(Employee employee) {
 		this.employee = employee;
-//		RequestContext.getCurrentInstance().execute("updateDialog()");
-//		RequestContext.getCurrentInstance().execute("edit_dlg.show();");
-		
-//		Map<String, Object> options = new HashMap<String, Object>();
-//    	options.put("contentHeight", 250);
-//    	options.put("contentWidth", 400);
-//        RequestContext.getCurrentInstance().openDialog("newEmployee", options, null);
 	}
 
 	public Employee getEmployee() {
@@ -70,6 +63,6 @@ public class SecurityOfficerBean {
 	}
 	
 	public void addNew() {
-		
+//		TODO: implement this method
 	}
 }

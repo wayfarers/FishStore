@@ -11,11 +11,13 @@
 	<h:head>
 		<f:facet name="first">
 			<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+			<base href="#{request.requestURL.substring(0, request.requestURL.length() - request.requestURI.length())}#{request.contextPath}/" />
+			
 			<script type="text/javascript" src="resources/jquery-2.1.4.min.js"></script>
 			<script type="text/javascript"
 				src="resources/bootstrap/js/bootstrap.min.js"></script>
 			<!--<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>-->
-			<h:outputStylesheet library="css" name="style.css" />
+			<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 			<h:outputStylesheet library="bootstrap/css" name="bootstrap.css" />
 			<h:outputStylesheet library="bootstrap/css"
 				name="bootstrap-theme.css" />
@@ -24,6 +26,7 @@
 	</h:head>
 
 	<h:body>
+		<div id="background"></div>
 		<div id="header">
 			<h:panelGrid columns="2">
 			<h:graphicImage value="resources/logo_s.bmp" style="margin-right: 20px" />
@@ -74,6 +77,11 @@
 			      <ul class="nav navbar-nav">
 			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'GENERAL_MANAGER'}">
 			        	<li><a href="admin/boss.xhtml">Manage orders</a></li>
+			        </ui:fragment>
+			      </ul>
+			      <ul class="nav navbar-nav">
+			        <ui:fragment rendered="#{sessionDataBean.currentRole == 'COLD_STORE_MANAGER'}">
+			        	<li><a href="admin/coldStore.xhtml">Purchase orders</a></li>
 			        </ui:fragment>
 			      </ul>
 			      
