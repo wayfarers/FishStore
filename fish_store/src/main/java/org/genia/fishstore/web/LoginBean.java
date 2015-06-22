@@ -63,10 +63,10 @@ public class LoginBean {
 		sessionData.setLoggedInCustomer(null);
 		
 		if (itsEmployee) {
-			return "employeeLogin.xhtml?faces-redirect=true";
+			return "/employeeLogin.xhtml?faces-redirect=true";
 		}
 			
-		return "loggedOut.xhtml?faces-redirect=true";
+		return "/loggedOut.xhtml?faces-redirect=true";
 	}
 	
 	public LoginBean() {
