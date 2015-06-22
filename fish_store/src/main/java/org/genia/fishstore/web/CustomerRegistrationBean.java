@@ -33,7 +33,7 @@ public class CustomerRegistrationBean {
 		customerService.save(newCustomer);
 //		RequestContext.getCurrentInstance().execute("PF('reg_ok').show()");
 		
-		return "registerSuccessed.xhtml?faces-redirect=true";//"filter.xhtml?faces-redirect=true";
+		return "registerSuccessed.xhtml?faces-redirect=true";
 	}
 	
 	

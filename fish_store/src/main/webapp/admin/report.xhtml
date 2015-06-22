@@ -8,36 +8,26 @@
 
 <ui:composition template="/global/admin-template.xhtml">
 	<ui:define name="page-content">
-		<h1>Report by dates:</h1>
 
 
 		<h:form>
 
-			<h:panelGroup>
-				<p:commandButton value="Generate report by dates"
-					action="#{reportBean.generateReportByDates()}"
-					update="dateRep" />
-				<p:commandButton value="Generate report by fish types"
-					action="#{reportBean.generateReportByFishes()}"
-					update="fishRep" />
-			</h:panelGroup>
 
 			<table class="columns" style="width: 100%; ">
 				<tr>
 					<td>
 						<h1>Report by dates</h1> 
-						<p:panelGrid id="dateRep" columns="2">
-							<h:dataTable value="#{reportBean.dateReport.lines}" var="line"
+							<p:dataTable value="#{reportBean.dateReport.lines}" var="line"
 								styleClass="table table-striped">
-								<p:column>
+								<p:column sortBy="#{line.type}">
 									<f:facet name="header">Date</f:facet>
-										<h:outputText value="#{line.type}"><f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-									</h:outputText>
-									
-
+										<h:outputText value="#{line.type}">
+											<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+										</h:outputText>
 								</p:column>
-								<p:column style="text-align: right;">
-									<f:facet name="header">Income</f:facet>
+								
+								<p:column sortBy="#{line.income}">
+									<f:facet name="header" style="text-align: right;">Income</f:facet>
 									<h:outputText value="$#{line.income}">
 									</h:outputText>
 								</p:column>
@@ -45,29 +35,26 @@
 									<p:column style="text-align:right" footerText="Totals: " />
 									<p:column footerText="#{reportBean.dateReport.totalIncome}" />
 								</p:row>
-							</h:dataTable>
-						</p:panelGrid>
+							</p:dataTable>
 					</td>
 					<td>
 						<h1>Report by fish types</h1> 
-						<h:panelGrid id="fishRep" columns="2">
-							<h:dataTable value="#{reportBean.fishReport.lines}" var="line"
+							<p:dataTable value="#{reportBean.fishReport.lines}" var="line"
 								styleClass="table table-striped">
-								<h:column>
+								<p:column sortBy="#{line.type.name}">
 									<f:facet name="header">Fish name</f:facet>
-									<h:outputText value="#{line.type.name} " />
-								</h:column>
-								<h:column  style="text-align: right">
+									<h:outputText value="#{line.type.name}" />
+								</p:column>
+								<p:column sortBy="#{line.income}">
 									<f:facet name="header">Income</f:facet>
 									<h:outputText value="$#{line.income}">
 									</h:outputText>
-								</h:column>
+								</p:column>
 								<p:row>
 									<p:column style="text-align:right" footerText="Totals: " />
 									<p:column footerText="#{reportBean.fishReport.totalIncome}" />
 								</p:row>
-							</h:dataTable>
-						</h:panelGrid>
+							</p:dataTable>
 					</td>
 				</tr>
 			</table>

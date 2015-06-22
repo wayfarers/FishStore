@@ -46,11 +46,35 @@
 					</h:column>
 					<p:column headerText="Action">
 						<p:commandButton value="View details" action="#{customerOrderDetailsBean.orderDetails(order)}"/>
+						<p:commandButton value="Invoice" 
+							actionListener="#{customerOrderDetailsBean.setCurrentOrder(order)}" 
+							oncomplete="PF('inv_dlg').show();" update=":dlgForm:dlg"/>
 					</p:column>
 				</h:dataTable>
 			</h:panelGrid>
+			
+			
+
 		</h:form>
-		
+		<h:form id="dlgForm">
+			<p:dialog id="dlg" header="Invoice" widgetVar="inv_dlg" modal="true"
+				resizable="false" closable="false">
+				<h:panelGrid columns="2" id="cart-dialog" styleClass="columns">
+					<h:outputText value="Order #:" />
+					<h:outputText value="#{customerOrderDetailsBean.currentOrder.id}" />
+					
+					<h:outputText value="Total weight:" />
+					<h:outputText value="#{customerOrderDetailsBean.currentOrder.totalWeight} kg" />
+					
+					<h:outputText value="Total amount:" />
+					<h:outputText value="$#{customerOrderDetailsBean.currentOrder.totalSum}" />
+					
+					<h:outputText value="Bank account:" />
+					<h:outputText value="5168-0168-9741-9236" />
+				</h:panelGrid>
+				<h:commandButton value="Ok" type="button" onclick="PF('inv_dlg').hide();"/>
+			</p:dialog>
+		</h:form>
 		
 	</ui:define>
 </ui:composition>

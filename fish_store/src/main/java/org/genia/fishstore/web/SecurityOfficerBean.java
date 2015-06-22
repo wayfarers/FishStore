@@ -2,6 +2,9 @@ package org.genia.fishstore.web;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,9 +20,15 @@ public class SecurityOfficerBean {
 	
 	private Employee employee;
 	EmployeeFilter filter;
+	private List<Employee> employees;
 	
 	@Inject
 	EmployeeService employeeService;
+	
+	@PostConstruct
+	private void init() {
+		employees = employeeService.findByFilter(filter).getResultList();
+	}
 	
 	public SecurityOfficerBean() {
 		employee = new Employee();
@@ -27,7 +36,7 @@ public class SecurityOfficerBean {
 	}
 	
 	public List<Employee> getEmployees() {
-		return employeeService.findByFilter(filter).getResultList();
+		return employees;
 	}
 	
 	public void disableEmployee(Employee empl) {
@@ -39,7 +48,14 @@ public class SecurityOfficerBean {
 	}
 	
 	public void saveEmployee() {
+		Integer id = employee.getId();
+		if (id == null) {
+			saveNew();
+			return;
+		}
 		employeeService.save(employee);
+		employee = new Employee();
+		RequestContext.getCurrentInstance().execute("PF('edit_dlg').hide()");
 	}
 	
 	public void editEmployee(Employee employee) {
@@ -63,6 +79,18 @@ public class SecurityOfficerBean {
 	}
 	
 	public void addNew() {
-//		TODO: implement this method
+		employee = new Employee();
+	}
+	
+	private void saveNew() {
+		if (employeeService.findByLogin(employee.getLogin()) != null) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Such login is already used.", null));
+			employee.setLogin(null);
+			return;
+		}
+		employeeService.save(employee);
+		init();
+		employee = new Employee();
+		RequestContext.getCurrentInstance().execute("PF('edit_dlg').hide()");
 	}
 }

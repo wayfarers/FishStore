@@ -3,6 +3,7 @@ package org.genia.fishstore.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +23,11 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee> implements Employe
 	public Employee findByLogin(String login) {
 		TypedQuery<Employee> query = em.createQuery("select emp from Employee emp where emp.login = :login", Employee.class);
 		query.setParameter("login", login);
-		return query.getSingleResult();
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

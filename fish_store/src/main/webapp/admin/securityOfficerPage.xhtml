@@ -13,17 +13,19 @@
 	<ui:define name="page-content">
 		<h1>Employees list:</h1>
 		<h:form id="mainForm">
+		<p:messages styleClass="errorMessage" autoUpdate="true"/>
 						<p:dialog header="Employee info" widgetVar="edit_dlg"
 							modal="true" id="editDialogue">
 							<p:outputPanel id="dialogPanel">
+							
 							<h:panelGrid columns="2" id="editEmployee">
 								<h:outputText value="Name:" />
 								<h:inputText 
 									value="#{securityOfficerBean.employee.name}" />
 
 								<h:outputText value="Login:" />
-								<h:inputText 
-									value="#{securityOfficerBean.employee.login}" />
+								<h:inputText value="#{securityOfficerBean.employee.login}" 
+								disabled="#{securityOfficerBean.employee.id != null}"/>
 
 								<h:outputText value="Password:" />
 								<h:inputSecret 
@@ -34,7 +36,8 @@
 									value="#{securityOfficerBean.employee.email}" />
 
 								<h:outputText value="Role:" />
-								<h:selectOneMenu value="#{securityOfficerBean.employee.role}">
+								<h:selectOneMenu value="#{securityOfficerBean.employee.role}" 
+									disabled="#{sessionDataBean.loggedInEmployee.login == securityOfficerBean.employee.login}">
 									<f:selectItem itemValue="GENERAL_MANAGER" itemLabel="General manager" />
 									<f:selectItem itemValue="COLD_STORE_MANAGER" itemLabel="Cold store manager" />
 									<f:selectItem itemValue="ACCOUNTANT" itemLabel="Accountant" />
@@ -45,8 +48,8 @@
 								<h:selectBooleanCheckbox
 									value="#{securityOfficerBean.employee.suspended}" />
 
-								<p:commandButton value="Save" update=":mainForm:employeesTable"
-									action="#{securityOfficerBean.saveEmployee()}" oncomplete="PF('edit_dlg').hide();" />
+								<p:commandButton value="Save" update=":mainForm:employeesTable, :mainForm:editDialogue"
+									action="#{securityOfficerBean.saveEmployee()}" />
 								
 							</h:panelGrid>
 							</p:outputPanel>
@@ -85,7 +88,8 @@
 						</h:dataTable> 
 						<h:messages> </h:messages>
 						<p:commandButton value="Add new user"
-								actionListener="#{securityOfficerBean.addNew()}" />
+								 
+								oncomplete="PF('edit_dlg').show();"/>
 								
 
 		</h:form>
