@@ -54,4 +54,8 @@ public class AccountantBean {
 	public void approve(CustomerOrder order) {
 		customerOrderService.approveOrder(order, sessionData.getLoggedInEmployee());
 	}
+	
+	public boolean isPayedEnough(CustomerOrder order) {
+		return (order.getTotalSum() * order.getCustomer().getPrepaymentRights() / 100 >= order.getSumPayed());
+	}
 }

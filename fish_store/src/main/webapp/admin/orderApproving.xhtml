@@ -52,7 +52,7 @@
 					
 					<p:column headerText="Action">
 						<p:commandButton value="Approve" rendered="#{order.status == 'AWAITING_APPROVAL'}"
-							action="#{accountantBean.approve(order)}" update="cOrders" disabled="#{order.totalSum * order.customer.prepaymentRights / 100 != order.sumPayed}"/>
+							action="#{accountantBean.approve(order)}" update=":mainForm:results" disabled="#{accountantBean.isPayedEnough(order)}"/>
 					</p:column>
 				</h:dataTable>
 			</h:panelGrid>
