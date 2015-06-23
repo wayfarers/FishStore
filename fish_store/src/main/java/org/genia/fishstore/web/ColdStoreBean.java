@@ -3,6 +3,7 @@ package org.genia.fishstore.web;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -37,15 +38,22 @@ public class ColdStoreBean {
 	private PurchaseOrder selectedOrder;
 	
 	private List<FishBatch> orderItems;
+	private List<CustomerOrder> customerOrders;
+	
+	@PostConstruct
+	private void refreshCustomerOrders() {
+		customerOrders = customerOrderService.findByFilter(null).getResultList();
+	}
 	
 	public List<CustomerOrder> getCustomerOrders() {
-		return customerOrderService.findByFilter(null).getResultList();
+		return customerOrders;
 	}
 	
 	public void ship(CustomerOrder order) {
-		order = customerOrderService.getFreshCopy(order);
+		//order = customerOrderService.getFreshCopy(order);
 		order.setStatus(OrderStatus.SHIPPED);
 		customerOrderService.save(order);
+		refreshCustomerOrders();
 	}
 	
 	
