@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/global/admin-template.xhtml">
+	<ui:define name="page-subtitle">
+		Search for fish parcels.
+	</ui:define>
+	<ui:define name="page-content">
+		<h:form id="mainForm">
+			<h1>Customer orders</h1>
+			<h:panelGrid columns="1" id="results">
+
+				<h:dataTable id="cOrders" value="#{coldStoreBean.customerOrders}" var="order"
+					styleClass="table table-striped table-hover">
+					<h:column>
+						<f:facet name="header">Customer</f:facet> 
+						<h:outputText value="#{order.customer.name}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Date ordered</f:facet> 
+						<h:outputText value="#{order.date}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Total amount</f:facet> 
+						<h:outputText value="$#{order.totalSum}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Amount payed</f:facet> 
+						<h:outputText value="$#{order.sumPayed}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Approved by</f:facet>
+						<h:outputText value="#{order.accountant.name}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Status</f:facet>
+						<h:outputText value="#{order.status}" />
+					</h:column>
+					
+					<p:column headerText="Action">
+						<p:commandButton value="Ship"
+							action="#{coldStoreBean.ship(order)}" update=":mainForm:results" disabled="#{order.status != 'APPROVED_FOR_SHIPPMENT'}"/>
+					</p:column>
+				</h:dataTable>
+			</h:panelGrid>
+			
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
+</html>

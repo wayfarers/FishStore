@@ -6,9 +6,12 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.genia.fishstore.entities.CustomerOrder;
 import org.genia.fishstore.entities.FishBatch;
 import org.genia.fishstore.entities.FishType;
+import org.genia.fishstore.entities.OrderStatus;
 import org.genia.fishstore.entities.PurchaseOrder;
+import org.genia.fishstore.services.CustomerOrderService;
 import org.genia.fishstore.services.FishBatchService;
 import org.genia.fishstore.services.FishTypeService;
 import org.genia.fishstore.services.PurchaseOrderService;
@@ -26,12 +29,25 @@ public class ColdStoreBean {
 	PurchaseOrderService purchaseOrderService;
 	@Inject
 	FishTypeService fishTypeService;
+	@Inject
+	CustomerOrderService customerOrderService;
 	
 	List<FishType> fishList;
 	
 	private PurchaseOrder selectedOrder;
 	
 	private List<FishBatch> orderItems;
+	
+	public List<CustomerOrder> getCustomerOrders() {
+		return customerOrderService.findByFilter(null).getResultList();
+	}
+	
+	public void ship(CustomerOrder order) {
+		order = customerOrderService.getFreshCopy(order);
+		order.setStatus(OrderStatus.SHIPPED);
+		customerOrderService.save(order);
+	}
+	
 	
 	private void prepareDetails(PurchaseOrder order) {
 		selectedOrder = order;

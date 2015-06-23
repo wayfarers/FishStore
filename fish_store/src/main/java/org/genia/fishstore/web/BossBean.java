@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class BossBean {
 	
-	PurchaseOrder currentOrder;
+	private PurchaseOrder currentOrder;
 	List<FishType> fishList;
 	
 	@Inject
@@ -82,5 +82,13 @@ public class BossBean {
 	public List<FishType> getFishList() {
 		fishList = fishTypeService.getFishList();
 		return fishList;
+	}
+
+	public PurchaseOrder getCurrentOrder() {
+		return currentOrder;
+	}
+
+	public void setCurrentOrder(PurchaseOrder currentOrder) {
+		this.currentOrder = currentOrder;
 	}
 }

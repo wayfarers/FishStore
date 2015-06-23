@@ -7,13 +7,10 @@ import javax.inject.Named;
 
 import org.genia.fishstore.CustomerOrderFilter;
 import org.genia.fishstore.entities.CustomerOrder;
-import org.genia.fishstore.entities.CustomerOrderItem;
-import org.genia.fishstore.entities.OrderStatus;
 import org.genia.fishstore.services.CustomerOrderService;
 import org.genia.fishstore.services.FishBatchService;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
-import org.springframework.transaction.annotation.Transactional;
 
 @Named
 @Scope("session")

@@ -101,7 +101,7 @@
 					action="#{bossBean.saveChanges}" />
 				<p:button value="Back to orders" outcome="/admin/boss" />
 				<p:commandButton value="Add row"
-					actionListener="#{bossBean.addItem}" update="itemList"/>
+					actionListener="#{bossBean.addItem}" update="itemList" rendered="#{bossBean.currentOrder.coldStoreManager == null}"/>
 			</p:panelGrid>
 		</h:form>
 	</ui:define>
