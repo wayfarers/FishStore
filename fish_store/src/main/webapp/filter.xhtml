@@ -41,7 +41,8 @@
 				</td>
 				<td>
 					<h1>Results</h1>
-						<h:panelGrid columns="1" id="results">
+					<h:outputText value="There are no results yet." rendered="#{parcelBean.result == null}"/>
+						<h:panelGrid columns="1" id="results" rendered="#{parcelBean.result != null}">
 						
 							<h:dataTable value="#{parcelBean.result.resultList}" var="parcel"
 								styleClass="table table-striped table-hover">
@@ -85,12 +86,16 @@
 				<h:outputText value="Fish name: " />
 				<h:outputText value="#{shoppingCartBean.fishBatchSelected.fishType.name}" />
 				<h:outputText value=" " />
+				<h:outputText value="Weight available: " />
+				<h:outputText value="#{shoppingCartBean.fishBatchSelected.weightLeft}" />
+				<h:outputText value=" " />
 				<h:outputText value="Weight: " />
 
 				<ui:fragment>
 				<p:inputText id="weight"
 					value="#{shoppingCartBean.weightSelected}"
 					placeholder="" styleClass="short"
+					converterMessage="Please enter integer only."
 					validatorMessage="Input value should be between 1 and #{shoppingCartBean.fishBatchSelected.weightLeft}">
 					<f:convertNumber integerOnly="true" />
 					<f:validateLongRange minimum="1" maximum="#{shoppingCartBean.fishBatchSelected.weightLeft}" />

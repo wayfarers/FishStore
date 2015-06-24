@@ -61,7 +61,7 @@ public class LoginBean {
 		boolean itsEmployee = sessionData.itsAnEmployee();
 		sessionData.setLoggedInEmployee(null);
 		sessionData.setLoggedInCustomer(null);
-		
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		if (itsEmployee) {
 			return "/employeeLogin.xhtml?faces-redirect=true";
 		}
