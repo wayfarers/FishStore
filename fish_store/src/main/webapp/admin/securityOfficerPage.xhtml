@@ -28,7 +28,7 @@
 								disabled="#{securityOfficerBean.employee.id != null}"/>
 
 								<h:outputText value="Password:" />
-								<h:inputSecret 
+								<h:inputSecret disabled="#{securityOfficerBean.employee.id != null}"
 									value="#{securityOfficerBean.employee.password}" />
 
 								<h:outputText value="Email" />
